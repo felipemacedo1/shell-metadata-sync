@@ -1,1 +1,604 @@
-[]
+[
+  {
+    "name": ".github",
+    "owner": "felipemacedo1",
+    "url": "https://github.com/felipemacedo1/.github",
+    "updated_at": "2024-09-26T00:26:15Z"
+  },
+  {
+    "name": "Projeto_Integrador_Documentos",
+    "owner": "felipemacedo1",
+    "description": "Projeto desenvolvido pelo grupo 2 da turma 69 para o Projeto Integrador do Bootcamp Generation Brasil. Facilitando o Acesso à Energia Limpa  Integração inovadora entre empresas fornecedoras, profissionais capacitados e consumidores, como solução para ampliar o acesso à energia limpa.",
+    "url": "https://github.com/felipemacedo1/Projeto_Integrador_Documentos",
+    "updated_at": "2023-12-15T19:02:46Z"
+  },
+  {
+    "name": "android-ssh-terminal",
+    "owner": "felipemacedo1",
+    "language": "Kotlin",
+    "url": "https://github.com/felipemacedo1/android-ssh-terminal",
+    "updated_at": "2025-10-21T20:29:37Z"
+  },
+  {
+    "name": "aws-toolkit-vscode",
+    "owner": "felipemacedo1",
+    "description": "Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources",
+    "url": "https://github.com/felipemacedo1/aws-toolkit-vscode",
+    "updated_at": "2025-08-10T12:21:01Z"
+  },
+  {
+    "name": "back-end-projeto-integrador",
+    "owner": "felipemacedo1",
+    "language": "Java",
+    "url": "https://github.com/felipemacedo1/back-end-projeto-integrador",
+    "updated_at": "2023-12-13T20:36:02Z"
+  },
+  {
+    "name": "cardgen-pro",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/cardgen-pro",
+    "updated_at": "2025-10-21T23:32:15Z"
+  },
+  {
+    "name": "cookbook_java_fullstack",
+    "owner": "felipemacedo1",
+    "url": "https://github.com/felipemacedo1/cookbook_java_fullstack",
+    "updated_at": "2025-06-18T16:44:32Z"
+  },
+  {
+    "name": "cookbook_javascript",
+    "owner": "felipemacedo1",
+    "url": "https://github.com/felipemacedo1/cookbook_javascript",
+    "updated_at": "2024-10-29T12:57:34Z"
+  },
+  {
+    "name": "dev-metadata-sync",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/dev-metadata-sync",
+    "updated_at": "2025-10-22T12:14:11Z"
+  },
+  {
+    "name": "dio-lab-open-source",
+    "owner": "felipemacedo1",
+    "description": "Repositório do lab \"Contribuindo em um Projeto Open Source no GitHub\" da Digital Innovation One.",
+    "url": "https://github.com/felipemacedo1/dio-lab-open-source",
+    "updated_at": "2024-08-13T17:42:48Z"
+  },
+  {
+    "name": "discord_open",
+    "owner": "felipemacedo1",
+    "description": "A Discord Clone built with Serverpod and Flutter",
+    "language": "PLpgSQL",
+    "url": "https://github.com/felipemacedo1/discord_open",
+    "updated_at": "2025-10-01T15:10:40Z"
+  },
+  {
+    "name": "felipemacedo1",
+    "owner": "felipemacedo1",
+    "url": "https://github.com/felipemacedo1/felipemacedo1",
+    "updated_at": "2024-12-02T16:29:15Z"
+  },
+  {
+    "name": "felipemacedo1.github.io",
+    "owner": "felipemacedo1",
+    "description": "🚀 Portfólio interativo dual: Terminal retrô para desktop + Interface BIOS Android para mobile",
+    "language": "JavaScript",
+    "url": "https://github.com/felipemacedo1/felipemacedo1.github.io",
+    "updated_at": "2025-10-22T06:29:08Z"
+  },
+  {
+    "name": "formacao-blockchain-dio",
+    "owner": "felipemacedo1",
+    "description": "Repositório contendo os desafios de projeto da formação",
+    "url": "https://github.com/felipemacedo1/formacao-blockchain-dio",
+    "updated_at": "2024-09-30T23:13:29Z"
+  },
+  {
+    "name": "front-end",
+    "owner": "felipemacedo1",
+    "description": "Projeto integrador realizado durante o bootcamp Generation Brasil (Front-End)",
+    "url": "https://github.com/felipemacedo1/front-end",
+    "updated_at": "2024-01-19T20:26:03Z"
+  },
+  {
+    "name": "go-coregit-pe",
+    "owner": "felipemacedo1",
+    "description": "A cross-platform Git manager with CLI and local API, built using only Go standard library",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-coregit-pe",
+    "updated_at": "2025-08-09T17:40:49Z"
+  },
+  {
+    "name": "go-mercado-pago-ms",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-mercado-pago-ms",
+    "updated_at": "2025-05-06T00:24:51Z"
+  },
+  {
+    "name": "go-msg-wss",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-msg-wss",
+    "updated_at": "2025-10-01T13:55:07Z"
+  },
+  {
+    "name": "go-msg-wss-app",
+    "owner": "felipemacedo1",
+    "language": "TypeScript",
+    "url": "https://github.com/felipemacedo1/go-msg-wss-app",
+    "updated_at": "2025-06-20T02:33:23Z"
+  },
+  {
+    "name": "go-portifolio",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-portifolio",
+    "updated_at": "2025-09-23T21:10:45Z"
+  },
+  {
+    "name": "go-pricefeed",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-pricefeed",
+    "updated_at": "2025-07-26T17:04:49Z"
+  },
+  {
+    "name": "go-service-gpt",
+    "owner": "felipemacedo1",
+    "description": "Serviço responsável por integrar com a OpenAI GPT, validando autenticação e retornando respostas inteligentes.",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/go-service-gpt",
+    "updated_at": "2025-06-10T00:10:00Z"
+  },
+  {
+    "name": "guiadevbrasil",
+    "owner": "felipemacedo1",
+    "description": "Um guia extenso de informações com um vasto conteúdo de várias áreas para ajudar, agregar conhecimento e retirar dúvidas, nesse guia você encontrará tudo que necessário para qualquer carreira relacionada a tecnologia.",
+    "url": "https://github.com/felipemacedo1/guiadevbrasil",
+    "updated_at": "2024-02-02T00:55:04Z"
+  },
+  {
+    "name": "hacka-llama-go",
+    "owner": "felipemacedo1",
+    "language": "Go",
+    "url": "https://github.com/felipemacedo1/hacka-llama-go",
+    "updated_at": "2024-11-10T14:58:15Z"
+  },
+  {
+    "name": "hacka-llama-react",
+    "owner": "felipemacedo1",
+    "description": "Repositorio",
+    "language": "TypeScript",
+    "url": "https://github.com/felipemacedo1/hacka-llama-react",
+    "updated_at": "2024-12-11T17:21:32Z"
+  },
+  {
+    "name": "hackathon-asapcard-pikachu",
+    "owner": "felipemacedo1",
+    "description": "Projeto de microsserviços desenvolvido durante o hackathon promovido pela Asapcard.",
+    "language": "Java",
+    "url": "https://github.com/felipemacedo1/hackathon-asapcard-pikachu",
+    "updated_at": "2024-02-05T04:16:39Z"
+  },
+  {
+    "name": "infrastructure-agent",
+    "owner": "felipemacedo1",
+    "description": "New Relic Infrastructure Agent",
+    "url": "https://github.com/felipemacedo1/infrastructure-agent",
+    "updated_at": "2024-10-06T19:58:55Z"
+  },
+  {
+    "name": "jagex-launcher-linux-flatpak",
+    "owner": "felipemacedo1",
+    "description": "Play RuneScape with the Jagex Launcher - in Flatpak form!",
+    "url": "https://github.com/felipemacedo1/jagex-launcher-linux-flatpak",
+    "updated_at": "2025-01-13T17:11:39Z"
+  },
+  {
+    "name": "js-on-cvweb",
+    "owner": "felipemacedo1",
+    "language": "TypeScript",
+    "url": "https://github.com/felipemacedo1/js-on-cvweb",
+    "updated_at": "2025-10-21T14:31:04Z"
+  },
+  {
+    "name": "newrelic-k8s-operator-v2",
+    "owner": "felipemacedo1",
+    "description": "K8s Operator to manage New Relic Resources",
+    "url": "https://github.com/felipemacedo1/newrelic-k8s-operator-v2",
+    "updated_at": "2024-10-06T19:56:22Z"
+  },
+  {
+    "name": "nextjs-caixa-preta",
+    "owner": "felipemacedo1",
+    "language": "TypeScript",
+    "url": "https://github.com/felipemacedo1/nextjs-caixa-preta",
+    "updated_at": "2025-09-26T11:27:27Z"
+  },
+  {
+    "name": "op-website-hugo",
+    "owner": "felipemacedo1",
+    "description": "Projeto do Site https://OsProgramadores.com",
+    "url": "https://github.com/felipemacedo1/op-website-hugo",
+    "updated_at": "2023-10-25T13:19:08Z"
+  },
+  {
+    "name": "portal-vagas",
+    "owner": "felipemacedo1",
+    "description": "Portal de Vagas - Sistema de recrutamento para ONGs. MVP com autenticação JWT, gestão de vagas e candidaturas.",
+    "language": "Java",
+    "url": "https://github.com/felipemacedo1/portal-vagas",
+    "updated_at": "2025-08-28T00:45:48Z"
+  },
+  {
+    "name": "portal-vagas-scraper",
+    "owner": "felipemacedo1",
+    "language": "Python",
+    "url": "https://github.com/felipemacedo1/portal-vagas-scraper",
+    "updated_at": "2025-08-25T00:12:00Z"
+  },
+  {
+    "name": "portal-vagas-wapp",
+    "owner": "felipemacedo1",
+    "language": "TypeScript",
+    "url": "https://github.com/felipemacedo1/portal-vagas-wapp",
+    "updated_at": "2025-08-28T01:34:38Z"
+  },
+  {
+    "name": "python-cotacoes-api",
+    "owner": "felipemacedo1",
+    "language": "HTML",
+    "url": "https://github.com/felipemacedo1/python-cotacoes-api",
+    "updated_at": "2025-07-26T10:57:16Z"
+  },
+  {
+    "name": "rekognizevote-android",
+    "owner": "felipemacedo1",
+    "description": "🗳️ Android app for secure voting with facial recognition using AWS Rekognition",
+    "language": "Kotlin",
+    "url": "https://github.com/felipemacedo1/rekognizevote-android",
+    "updated_at": "2025-08-16T00:50:32Z"
+  },
+  {
+    "name": "rekognizevote-api",
+    "owner": "felipemacedo1",
+    "description": "Sistema de votação seguro com verificação facial usando AWS Rekognition.",
+    "language": "Java",
+    "url": "https://github.com/felipemacedo1/rekognizevote-api",
+    "updated_at": "2025-08-16T00:51:45Z"
+  },
+  {
+    "name": "spring-mcd-wallet",
+    "owner": "felipemacedo1",
+    "description": "This project is designed for learning purposes, Supports BIP-39 mnemonic generation, HD wallet (BIP-32/44), address management, transaction signing, and blockchain synchronization. Designed for offline-first operation and easy recovery through mnemonic phrases.",
+    "language": "Java",
+    "url": "https://github.com/felipemacedo1/spring-mcd-wallet",
+    "updated_at": "2025-05-01T12:51:52Z"
+  },
+  {
+    "name": ".github",
+    "owner": "growthfolio",
+    "url": "https://github.com/growthfolio/.github",
+    "updated_at": "2025-08-09T16:09:59Z"
+  },
+  {
+    "name": "CryptoTool",
+    "owner": "growthfolio",
+    "description": "A tool that implements classic and modern encryption algorithms, such as AES, RSA, and others, to practice and study how these techniques work.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/CryptoTool",
+    "updated_at": "2025-08-03T00:40:36Z"
+  },
+  {
+    "name": "agenda-contatos-lifo",
+    "owner": "growthfolio",
+    "description": "Este projeto implementa uma Agenda de Contatos utilizando a estrutura de dados Pilha (Stack) com comportamento LIFO (Last In, First Out). Desenvolvido como projeto acadêmico para a disciplina de Algoritimo e Programação do curso de Bacharelado em Ciências da Computação da FMU | FIAM-FAAM.",
+    "language": "C++",
+    "url": "https://github.com/growthfolio/agenda-contatos-lifo",
+    "updated_at": "2025-09-16T11:28:53Z"
+  },
+  {
+    "name": "amqp-transactions-ms",
+    "owner": "growthfolio",
+    "description": "The Transaction Producer Microservice is responsible for processing CSV files containing transaction data and publishing these transactions to a RabbitMQ message queue. It is designed as part of a microservices architecture where transaction data is consumed by other services for further processing.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/amqp-transactions-ms",
+    "updated_at": "2025-08-03T00:35:58Z"
+  },
+  {
+    "name": "android-stealth-monitor",
+    "owner": "growthfolio",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/android-stealth-monitor",
+    "updated_at": "2025-09-09T02:07:47Z"
+  },
+  {
+    "name": "bash-go-project-structure",
+    "owner": "growthfolio",
+    "description": "Bash script to automate the creation of directory structures for Go projects.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/bash-go-project-structure",
+    "updated_at": "2025-08-03T00:39:46Z"
+  },
+  {
+    "name": "codespace-open",
+    "owner": "growthfolio",
+    "description": "Esse repositorio é um template para simplesmente abrir o CodeSpace de forma simples e rapida, isso é tudo e nada mais.",
+    "url": "https://github.com/growthfolio/codespace-open",
+    "updated_at": "2025-08-03T00:40:03Z"
+  },
+  {
+    "name": "contabancaria",
+    "owner": "growthfolio",
+    "description": "Projeto guiado de uma conta bancaria desenvolvido no Bootcamp Generation.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/contabancaria",
+    "updated_at": "2025-08-04T22:24:09Z"
+  },
+  {
+    "name": "cyber-security-suite",
+    "owner": "growthfolio",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/cyber-security-suite",
+    "updated_at": "2025-10-22T03:40:35Z"
+  },
+  {
+    "name": "demojibake",
+    "owner": "growthfolio",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/demojibake",
+    "updated_at": "2025-09-16T11:28:59Z"
+  },
+  {
+    "name": "dev-cloud-challenge",
+    "owner": "growthfolio",
+    "description": "RESTful API developed in Go as part of the challenge for the Web Development and Cloud course. The project aims to implement a CRUD (Create, Read, Update, Delete) application to manage student data for a school, using PostgreSQL as the database for data persistence.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/dev-cloud-challenge",
+    "updated_at": "2025-08-03T00:41:10Z"
+  },
+  {
+    "name": "front-task-manager",
+    "owner": "growthfolio",
+    "description": "Este é o projeto de interface de usuário (front-end) para o gerenciador de tarefas (To-Do List) e foi desenvolvido como parte de um teste tecnico.",
+    "language": "CSS",
+    "url": "https://github.com/growthfolio/front-task-manager",
+    "updated_at": "2025-08-03T00:41:45Z"
+  },
+  {
+    "name": "go-antifraud-ms",
+    "owner": "growthfolio",
+    "description": "A microservice in Go designed for real-time detection and prevention of fraudulent transactions. This service analyzes transaction patterns, identifies potential risks, and triggers alerts to mitigate fraud, ensuring secure and reliable financial operations.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/go-antifraud-ms",
+    "updated_at": "2025-08-03T00:42:19Z"
+  },
+  {
+    "name": "go-priceguard-api",
+    "owner": "growthfolio",
+    "description": "Projeto backend avançado desenvolvido em Go para estudar Clean Architecture, WebSockets, microserviços e sistemas distribuídos. Implementa alertas de preços de criptomoedas em tempo real com arquitetura enterprise-grade.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/go-priceguard-api",
+    "updated_at": "2025-08-12T01:00:40Z"
+  },
+  {
+    "name": "google-auth-preview",
+    "owner": "growthfolio",
+    "description": "Este projeto tem como objetivo fornecer uma interface simples para testes e manipulação de tokens OAuth 2.0 gerados pelo Google. Não armazena nenhum dado sensível em cache ou banco de dados. Toda a manipulação ocorre no navegador do usuário, garantindo a segurança das informações durante os testes.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/google-auth-preview",
+    "updated_at": "2025-08-03T00:42:36Z"
+  },
+  {
+    "name": "growthfolio",
+    "owner": "growthfolio",
+    "description": "Central de projetos e trajetória de aprendizado de Felipe Macedo.",
+    "url": "https://github.com/growthfolio/growthfolio",
+    "updated_at": "2025-08-03T00:43:10Z"
+  },
+  {
+    "name": "html-supplement-ecommerce",
+    "owner": "growthfolio",
+    "description": "Este projeto foi desenvolvido como parte do bootcamp de Desenvolvimento Web da ProzTech. O objetivo principal foi criar um site de e-commerce para a loja fictícia de suplementos alimentares Supreme Nutrition, com páginas dedicadas a diferentes categorias de produtos.",
+    "language": "HTML",
+    "url": "https://github.com/growthfolio/html-supplement-ecommerce",
+    "updated_at": "2025-08-05T00:33:11Z"
+  },
+  {
+    "name": "huggingface-edu-models",
+    "owner": "growthfolio",
+    "description": "Este projeto visa consumir alguns modelos de NLP de Hugging Face para serem consumidos em outros projetos.",
+    "language": "Python",
+    "url": "https://github.com/growthfolio/huggingface-edu-models",
+    "updated_at": "2025-08-03T00:43:45Z"
+  },
+  {
+    "name": "java-generation-notes",
+    "owner": "growthfolio",
+    "description": "Este repositório contém anotações e atividades realizadas durante o Bootcamp de Java oferecido pela Generation Brasil. Ele abrange tópicos essenciais aprendidos ao longo do curso, servindo como uma referência organizada para estudos futuros e revisões.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/java-generation-notes",
+    "updated_at": "2024-11-27T14:45:34Z"
+  },
+  {
+    "name": "javafx-mytableview-depl",
+    "owner": "growthfolio",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/javafx-mytableview-depl",
+    "updated_at": "2025-08-10T16:13:57Z"
+  },
+  {
+    "name": "js-wallet-generator",
+    "owner": "growthfolio",
+    "description": "A simple Node.js application that generates a hierarchical deterministic (HD) Bitcoin wallet for the Testnet using BIP32, BIP39, and the bitcoinjs-lib library. This project allows you to generate a Bitcoin address, private key, and mnemonic phrase, and provides instructions on how to verify the generated address using Electrum.",
+    "language": "JavaScript",
+    "url": "https://github.com/growthfolio/js-wallet-generator",
+    "updated_at": "2025-08-03T00:44:33Z"
+  },
+  {
+    "name": "learning-c-so",
+    "owner": "growthfolio",
+    "language": "C",
+    "url": "https://github.com/growthfolio/learning-c-so",
+    "updated_at": "2025-09-09T02:04:16Z"
+  },
+  {
+    "name": "my-devops-toolbox",
+    "owner": "growthfolio",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/my-devops-toolbox",
+    "updated_at": "2025-08-18T23:26:38Z"
+  },
+  {
+    "name": "my-linktree-html",
+    "owner": "growthfolio",
+    "description": "Este projeto é uma pagina estatica simples com objetivo de centralizar links uteis de contato.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/my-linktree-html",
+    "updated_at": "2025-10-21T00:08:58Z"
+  },
+  {
+    "name": "nest-taskmanager-app",
+    "owner": "growthfolio",
+    "description": "Este projeto é uma API para gerenciamento de tarefas e projetos, construída com NestJS. A aplicação permite o gerenciamento de tarefas e projetos e oferece autenticação via JWT. ",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/nest-taskmanager-app",
+    "updated_at": "2025-08-03T00:45:24Z"
+  },
+  {
+    "name": "next-comic-store",
+    "owner": "growthfolio",
+    "description": "      Marketplace de Quadrinhos Personalizados — Plataforma completa para visualizar amostras de quadrinhos, enviar imagens para personalização e gerenciar pedidos. Desenvolvido com Next.js, TypeScript, Tailwind, Prisma e banco de dados SQLite.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/next-comic-store",
+    "updated_at": "2025-08-03T00:45:42Z"
+  },
+  {
+    "name": "node-task-manager",
+    "owner": "growthfolio",
+    "description": "Este projeto é o back-end de um gerenciador de tarefas (To-Do List) e foi desenvolvido como parte de um teste tecnico.",
+    "language": "JavaScript",
+    "url": "https://github.com/growthfolio/node-task-manager",
+    "updated_at": "2025-08-03T00:46:14Z"
+  },
+  {
+    "name": "openfund-dao",
+    "owner": "growthfolio",
+    "description": "Decentralized Autonomous Organization (DAO) focused on funding and supporting open-source projects. Empowering developers through decentralized governance and fair rewards for contributions.",
+    "url": "https://github.com/growthfolio/openfund-dao",
+    "updated_at": "2025-08-03T00:46:31Z"
+  },
+  {
+    "name": "react-blog-plataform",
+    "owner": "growthfolio",
+    "description": "O front-end do Blog é  construída com Typescript, React e Tailwind CSS. Ele complementa o back-end, fornecendo uma plataforma intuitiva onde os usuários podem interagir facilmente com os recursos do blog, como criar, editar e visualizar postagens.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-blog-plataform",
+    "updated_at": "2025-08-03T00:46:49Z"
+  },
+  {
+    "name": "react-ecommerce-tt",
+    "owner": "growthfolio",
+    "description": "Um projeto de e-commerce desenvolvido como teste tecnico com React, Vite e TypeScript, com funcionalidades de gerenciamento de categorias, produtos e autenticação.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-ecommerce-tt",
+    "updated_at": "2025-08-03T00:47:06Z"
+  },
+  {
+    "name": "react-gamestore-front",
+    "owner": "growthfolio",
+    "description": "Frontend da Loja de games é uma interface web responsiva e fácil de usar construída com React e Tailwind CSS. Ele complementa o back-end, fornecendo uma plataforma intuitiva onde os usuários(Admin) podem realizar operações CRUD via interface após autenticação",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-gamestore-front",
+    "updated_at": "2025-08-03T00:47:23Z"
+  },
+  {
+    "name": "react-pharmacy-front",
+    "owner": "growthfolio",
+    "description": "This project was developed as part of a performance evaluation during the Generation Brasil Java Web Full Stack Bootcamp.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-pharmacy-front",
+    "updated_at": "2025-08-03T00:47:40Z"
+  },
+  {
+    "name": "react-priceguard-view",
+    "owner": "growthfolio",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-priceguard-view",
+    "updated_at": "2025-08-03T00:47:57Z"
+  },
+  {
+    "name": "react-taskmanager-app",
+    "owner": "growthfolio",
+    "description": "Front-end desenvolvido para API para gerenciamento de tarefas e projetos, construída com NestJS.",
+    "language": "TypeScript",
+    "url": "https://github.com/growthfolio/react-taskmanager-app",
+    "updated_at": "2025-08-03T00:48:15Z"
+  },
+  {
+    "name": "solidity-coinlink-token",
+    "owner": "growthfolio",
+    "description": "Este projeto implementa um token ERC-20 chamado CoinLink (CLNK) como parte da atividade do bootcamp 'Binance - Blockchain Developer with Solidity', utilizando a IDE Remix. O token segue o padrão ERC-20, o que permite sua interoperabilidade com carteiras e exchanges que suportam tokens baseados na rede Ethereum.",
+    "language": "Solidity",
+    "url": "https://github.com/growthfolio/solidity-coinlink-token",
+    "updated_at": "2025-08-03T00:48:32Z"
+  },
+  {
+    "name": "spring-blog-platform",
+    "owner": "growthfolio",
+    "description": "O Blog Pessoal é um projeto open-source desenvolvido em Java utilizando o framework Spring. Ele funciona como uma plataforma completa onde os usuários podem criar, editar e compartilhar postagens de blog. O projeto segue o padrão de arquitetura MVC.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-blog-platform",
+    "updated_at": "2025-08-03T00:48:49Z"
+  },
+  {
+    "name": "spring-bookstore-management",
+    "owner": "growthfolio",
+    "description": "Um sistema de gestão de livraria baseado em Java que permite aos usuários gerenciar livros, clientes e vendas. Este projeto inclui funcionalidades principais como cadastro de usuários, gerenciamento de inventário de livros e processamento de pedidos, construído utilizando Spring Boot e outras tecnologias.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-bookstore-management",
+    "updated_at": "2025-08-03T00:49:07Z"
+  },
+  {
+    "name": "spring-catarina-learn",
+    "owner": "growthfolio",
+    "description": "Projeto iniciado para praticar construção de APIs Rest Aplicando DDD e Solid, além de aplicar ferramentas para melhoria do codigo.",
+    "url": "https://github.com/growthfolio/spring-catarina-learn",
+    "updated_at": "2025-08-03T00:49:23Z"
+  },
+  {
+    "name": "spring-eccomerce-generation",
+    "owner": "growthfolio",
+    "description": "Back-end de um e-commerce feito em Java, como atividade avaliativa para o Bootcamp Generation",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-eccomerce-generation",
+    "updated_at": "2024-11-27T14:35:33Z"
+  },
+  {
+    "name": "spring-ecommerce-tt",
+    "owner": "growthfolio",
+    "description": "Este repositório contém o código-fonte de um projeto de e-commerce desenvolvido como parte de um teste técnico. O objetivo é demonstrar habilidades no uso do framework Spring para criação de APIs RESTful, gerenciamento de dados, e implementação de funcionalidades comuns em plataformas de comércio eletrônico.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-ecommerce-tt",
+    "updated_at": "2025-08-03T00:50:14Z"
+  },
+  {
+    "name": "spring-gamestore",
+    "owner": "growthfolio",
+    "description": "EnergyGames is a robust and scalable Game Store Management System built with Spring Boot. This project is designed to handle the essential operations of a game store, including managing categories, products, and user accounts. It provides a RESTful API that facilitates easy integration with frontend applications,",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-gamestore",
+    "updated_at": "2025-08-03T00:50:31Z"
+  },
+  {
+    "name": "spring-pharmacy-crud",
+    "owner": "growthfolio",
+    "description": "This project is a basic CRUD application for managing a pharmacy, developed in Java using the Spring Framework. It was created as part of the Generation Brasil bootcamp and serves as a demonstration of backend development skills using Spring Boot.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/spring-pharmacy-crud",
+    "updated_at": "2025-08-03T00:50:48Z"
+  }
+]
