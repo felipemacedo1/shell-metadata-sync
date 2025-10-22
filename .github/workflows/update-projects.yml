@@ -5,14 +5,18 @@ on:
     - cron: '0 */6 * * *' # every 6 hours
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false # we'll control auth when pushing
+          persist-credentials: false
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -24,19 +28,31 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           set -euo pipefail
+          echo -e "\033[1;34m[INFO]\033[0m Building Go update script..."
           go build -o bin/update ./scripts/update_projects.go
+          echo -e "\033[1;34m[INFO]\033[0m Running update..."
           ./bin/update -out data/projects.json
+          echo -e "\033[1;32m[SUCCESS]\033[0m JSON updated successfully."
 
-      - name: Commit changes
-        if: ${{ steps.updateoutcome.conclusion == 'success' || always() }}
+      - name: Commit and push changes
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          echo -e "\033[1;34m[INFO]\033[0m Configuring Git user..."
+          git config user.name "Felipe Macedo (auto-sync)"
+          git config user.email "felipemacedo1@users.noreply.github.com"
+
           if git status --porcelain | grep -q "data/projects.json"; then
+            echo -e "\033[1;33m[CHANGE DETECTED]\033[0m data/projects.json modified."
             git add data/projects.json
-            git commit -m "chore: update projects.json (action)"
+            git commit -m "chore(auto-sync): update projects.json"
+
+            echo -e "\033[1;34m[INFO]\033[0m Setting remote with token..."
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+            echo -e "\033[1;34m[INFO]\033[0m Pushing changes to main..."
             git push origin HEAD:main
+            echo -e "\033[1;32m[SUCCESS]\033[0m Push completed."
           else
-            echo "No changes to commit"
+            echo -e "\033[1;90m[NO CHANGES]\033[0m No updates to commit."
           fi
