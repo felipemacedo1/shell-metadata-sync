@@ -13,13 +13,6 @@
     "updated_at": "2023-12-15T19:02:46Z"
   },
   {
-    "name": "android-ssh-terminal",
-    "owner": "felipemacedo1",
-    "language": "Kotlin",
-    "url": "https://github.com/felipemacedo1/android-ssh-terminal",
-    "updated_at": "2025-10-22T17:52:47Z"
-  },
-  {
     "name": "aws-toolkit-vscode",
     "owner": "felipemacedo1",
     "description": "Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources",
@@ -57,7 +50,7 @@
     "owner": "felipemacedo1",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/dev-metadata-sync",
-    "updated_at": "2025-10-22T12:39:44Z"
+    "updated_at": "2025-10-22T18:28:23Z"
   },
   {
     "name": "dio-lab-open-source",
@@ -203,6 +196,13 @@
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/js-on-cvweb",
     "updated_at": "2025-10-21T14:31:04Z"
+  },
+  {
+    "name": "ktar",
+    "owner": "felipemacedo1",
+    "language": "Kotlin",
+    "url": "https://github.com/felipemacedo1/ktar",
+    "updated_at": "2025-10-23T01:22:05Z"
   },
   {
     "name": "newrelic-k8s-operator-v2",
