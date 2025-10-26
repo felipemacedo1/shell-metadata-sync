@@ -50,7 +50,7 @@
     "owner": "felipemacedo1",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/dev-metadata-sync",
-    "updated_at": "2025-10-25T18:23:37Z"
+    "updated_at": "2025-10-26T01:27:23Z"
   },
   {
     "name": "dio-lab-open-source",
@@ -200,9 +200,10 @@
   {
     "name": "ktar",
     "owner": "felipemacedo1",
+    "description": "Modern Android SSH Terminal built with Jetpack Compose, real PTY integration and enhanced security.",
     "language": "Kotlin",
     "url": "https://github.com/felipemacedo1/ktar",
-    "updated_at": "2025-10-25T23:21:12Z"
+    "updated_at": "2025-10-26T06:17:30Z"
   },
   {
     "name": "newrelic-k8s-operator-v2",
@@ -246,6 +247,14 @@
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/portal-vagas-wapp",
     "updated_at": "2025-08-28T01:34:38Z"
+  },
+  {
+    "name": "project-template-pro",
+    "owner": "felipemacedo1",
+    "description": "Template open-source completo com padrões modernos de desenvolvimento, CI/CD e documentação.",
+    "language": "JavaScript",
+    "url": "https://github.com/felipemacedo1/project-template-pro",
+    "updated_at": "2025-10-26T05:30:02Z"
   },
   {
     "name": "python-cotacoes-api",
