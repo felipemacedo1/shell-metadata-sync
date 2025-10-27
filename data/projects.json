@@ -25,7 +25,7 @@
     "description": "Backend for integrated project featuring microservices architecture and database management",
     "language": "Java",
     "url": "https://github.com/felipemacedo1/back-end-projeto-integrador",
-    "updated_at": "2025-10-26T16:11:51Z"
+    "updated_at": "2025-10-26T19:26:24Z"
   },
   {
     "name": "cardgen-pro",
@@ -33,7 +33,7 @@
     "description": "Professional card generation tool supporting multiple formats and customization options",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/cardgen-pro",
-    "updated_at": "2025-10-26T16:11:53Z"
+    "updated_at": "2025-10-26T19:26:29Z"
   },
   {
     "name": "cookbook_java_fullstack",
@@ -53,7 +53,7 @@
     "description": "Metadata synchronization tool for development environments with real-time updates and state management",
     "language": "Shell",
     "url": "https://github.com/felipemacedo1/dev-metadata-sync",
-    "updated_at": "2025-10-26T16:11:45Z"
+    "updated_at": "2025-10-26T19:26:10Z"
   },
   {
     "name": "dio-lab-open-source",
@@ -82,7 +82,7 @@
     "description": "Interactive dual portfolio: retro terminal for desktop and BIOS interface for mobile",
     "language": "JavaScript",
     "url": "https://github.com/felipemacedo1/felipemacedo1.github.io",
-    "updated_at": "2025-10-26T16:12:01Z"
+    "updated_at": "2025-10-26T19:26:51Z"
   },
   {
     "name": "formacao-blockchain-dio",
@@ -104,7 +104,7 @@
     "description": "Cross-platform Git manager CLI with local API built using only Go standard library",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/go-coregit-pe",
-    "updated_at": "2025-10-26T16:11:53Z"
+    "updated_at": "2025-10-26T19:26:31Z"
   },
   {
     "name": "go-mercado-pago-ms",
@@ -112,7 +112,7 @@
     "description": "Mercado Pago payment integration microservice for processing payments and managing transactions",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/go-mercado-pago-ms",
-    "updated_at": "2025-10-26T16:11:51Z"
+    "updated_at": "2025-10-26T19:26:21Z"
   },
   {
     "name": "go-msg-wss",
@@ -120,7 +120,7 @@
     "description": "WebSocket message broker implementing publish-subscribe pattern for real-time communication",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/go-msg-wss",
-    "updated_at": "2025-10-26T16:11:54Z"
+    "updated_at": "2025-10-26T19:26:34Z"
   },
   {
     "name": "go-msg-wss-app",
@@ -128,7 +128,7 @@
     "description": "WebSocket-based messaging application with real-time communication and state synchronization",
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/go-msg-wss-app",
-    "updated_at": "2025-10-26T16:11:49Z"
+    "updated_at": "2025-10-26T19:26:20Z"
   },
   {
     "name": "go-portifolio",
@@ -136,7 +136,7 @@
     "description": "Personal portfolio website built with Go backend and modern web technologies",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/go-portifolio",
-    "updated_at": "2025-10-26T16:11:47Z"
+    "updated_at": "2025-10-26T19:26:15Z"
   },
   {
     "name": "go-pricefeed",
@@ -144,7 +144,7 @@
     "description": "Real-time price feed service providing cryptocurrency and commodity market data streams",
     "language": "Shell",
     "url": "https://github.com/felipemacedo1/go-pricefeed",
-    "updated_at": "2025-10-26T16:11:49Z"
+    "updated_at": "2025-10-26T19:26:18Z"
   },
   {
     "name": "go-service-gpt",
@@ -152,7 +152,7 @@
     "description": "OpenAI GPT integration service validating authentication and providing intelligent responses",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/go-service-gpt",
-    "updated_at": "2025-10-26T16:11:58Z"
+    "updated_at": "2025-10-26T19:26:43Z"
   },
   {
     "name": "guiadevbrasil",
@@ -160,7 +160,7 @@
     "description": "Comprehensive guide with extensive content covering multiple technology career paths and learning resources",
     "language": "Shell",
     "url": "https://github.com/felipemacedo1/guiadevbrasil",
-    "updated_at": "2025-10-26T16:12:02Z"
+    "updated_at": "2025-10-26T19:26:54Z"
   },
   {
     "name": "hacka-llama-go",
@@ -176,7 +176,7 @@
     "description": "Hackathon project with React frontend integrating Llama AI models for intelligent features",
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/hacka-llama-react",
-    "updated_at": "2025-10-26T16:12:00Z"
+    "updated_at": "2025-10-26T19:26:50Z"
   },
   {
     "name": "hackathon-asapcard-pikachu",
@@ -206,7 +206,7 @@
     "description": "JavaScript runtime and execution environment for web-based applications with modern ES features",
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/js-on-cvweb",
-    "updated_at": "2025-10-26T16:11:45Z"
+    "updated_at": "2025-10-26T19:26:11Z"
   },
   {
     "name": "ktar",
@@ -222,7 +222,7 @@
     "description": "Kubernetes operator for managing New Relic resources with advanced monitoring capabilities",
     "language": "Go",
     "url": "https://github.com/felipemacedo1/newrelic-k8s-operator-v2",
-    "updated_at": "2025-10-26T16:11:59Z"
+    "updated_at": "2025-10-26T19:26:45Z"
   },
   {
     "name": "nextjs-caixa-preta",
@@ -230,7 +230,7 @@
     "description": "Next.js project showcasing modern React patterns and server-side rendering capabilities",
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/nextjs-caixa-preta",
-    "updated_at": "2025-10-26T16:11:47Z"
+    "updated_at": "2025-10-26T19:26:13Z"
   },
   {
     "name": "op-website-hugo",
@@ -245,7 +245,7 @@
     "description": "Job recruitment portal MVP with JWT authentication and job posting management system",
     "language": "Java",
     "url": "https://github.com/felipemacedo1/portal-vagas",
-    "updated_at": "2025-10-26T16:11:55Z"
+    "updated_at": "2025-10-26T19:26:35Z"
   },
   {
     "name": "portal-vagas-scraper",
@@ -253,7 +253,7 @@
     "description": "Web scraper for job portal aggregating job listings from multiple sources",
     "language": "Python",
     "url": "https://github.com/felipemacedo1/portal-vagas-scraper",
-    "updated_at": "2025-10-26T16:11:56Z"
+    "updated_at": "2025-10-26T19:26:37Z"
   },
   {
     "name": "portal-vagas-wapp",
@@ -261,7 +261,7 @@
     "description": "Job portal application built with TypeScript and modern web frameworks for recruiting",
     "language": "TypeScript",
     "url": "https://github.com/felipemacedo1/portal-vagas-wapp",
-    "updated_at": "2025-10-26T16:11:48Z"
+    "updated_at": "2025-10-26T19:26:17Z"
   },
   {
     "name": "project-template-pro",
@@ -277,7 +277,7 @@
     "description": "Currency and exchange rates API providing real-time quotation data from multiple sources",
     "language": "HTML",
     "url": "https://github.com/felipemacedo1/python-cotacoes-api",
-    "updated_at": "2025-10-26T16:11:52Z"
+    "updated_at": "2025-10-26T19:26:26Z"
   },
   {
     "name": "rekognizevote-android",
@@ -285,7 +285,7 @@
     "description": "Android voting application with facial recognition using AWS Rekognition for authentication",
     "language": "Kotlin",
     "url": "https://github.com/felipemacedo1/rekognizevote-android",
-    "updated_at": "2025-10-26T16:11:58Z"
+    "updated_at": "2025-10-26T19:26:41Z"
   },
   {
     "name": "rekognizevote-api",
@@ -293,7 +293,7 @@
     "description": "Secure voting API with facial recognition using AWS Rekognition for identity verification",
     "language": "Java",
     "url": "https://github.com/felipemacedo1/rekognizevote-api",
-    "updated_at": "2025-10-26T16:11:57Z"
+    "updated_at": "2025-10-26T19:26:39Z"
   },
   {
     "name": "spring-mcd-wallet",
