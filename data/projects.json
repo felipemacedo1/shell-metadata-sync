@@ -53,7 +53,7 @@
     "description": "Metadata synchronization tool for development environments with real-time updates and state management",
     "language": "Shell",
     "url": "https://github.com/felipemacedo1/dev-metadata-sync",
-    "updated_at": "2025-10-27T18:27:31Z"
+    "updated_at": "2025-10-28T01:21:15Z"
   },
   {
     "name": "dio-lab-open-source",
@@ -329,9 +329,9 @@
     "name": "amqp-transactions-ms",
     "owner": "growthfolio",
     "description": "The Transaction Producer Microservice is responsible for processing CSV files containing transaction data and publishing these transactions to a RabbitMQ message queue. It is designed as part of a microservices architecture where transaction data is consumed by other services for further processing.",
-    "language": "Shell",
+    "language": "Go",
     "url": "https://github.com/growthfolio/amqp-transactions-ms",
-    "updated_at": "2025-10-27T14:46:00Z"
+    "updated_at": "2025-10-28T02:46:35Z"
   },
   {
     "name": "android-stealth-monitor",
