@@ -48,14 +48,6 @@
     "updated_at": "2024-10-29T12:57:34Z"
   },
   {
-    "name": "dev-metadata-sync",
-    "owner": "felipemacedo1",
-    "description": "Metadata synchronization tool for development environments with real-time updates and state management",
-    "language": "Shell",
-    "url": "https://github.com/felipemacedo1/dev-metadata-sync",
-    "updated_at": "2025-11-08T18:24:30Z"
-  },
-  {
     "name": "dio-lab-open-source",
     "owner": "felipemacedo1",
     "description": "Repositório do lab \"Contribuindo em um Projeto Open Source no GitHub\" da Digital Innovation One.",
@@ -139,12 +131,12 @@
     "updated_at": "2025-10-26T19:26:15Z"
   },
   {
-    "name": "go-pricefeed",
+    "name": "go-pricefeed-api",
     "owner": "felipemacedo1",
     "description": "Real-time price feed service providing cryptocurrency and commodity market data streams",
     "language": "Shell",
-    "url": "https://github.com/felipemacedo1/go-pricefeed",
-    "updated_at": "2025-10-26T19:26:18Z"
+    "url": "https://github.com/felipemacedo1/go-pricefeed-api",
+    "updated_at": "2025-11-09T04:42:40Z"
   },
   {
     "name": "go-service-gpt",
@@ -296,6 +288,14 @@
     "updated_at": "2025-10-26T19:26:39Z"
   },
   {
+    "name": "shell-metadata-sync",
+    "owner": "felipemacedo1",
+    "description": "Metadata synchronization tool for development environments with real-time updates and state management",
+    "language": "Shell",
+    "url": "https://github.com/felipemacedo1/shell-metadata-sync",
+    "updated_at": "2025-11-09T04:41:41Z"
+  },
+  {
     "name": "spring-mcd-wallet",
     "owner": "felipemacedo1",
     "description": "Educational cryptocurrency wallet supporting BIP-39 mnemonic, HD wallets and offline-first operation",
@@ -308,14 +308,6 @@
     "owner": "growthfolio",
     "url": "https://github.com/growthfolio/.github",
     "updated_at": "2025-08-09T16:09:59Z"
-  },
-  {
-    "name": "CryptoTool",
-    "owner": "growthfolio",
-    "description": "A tool that implements classic and modern encryption algorithms, such as AES, RSA, and others, to practice and study how these techniques work.",
-    "language": "Go",
-    "url": "https://github.com/growthfolio/CryptoTool",
-    "updated_at": "2025-10-27T02:15:28Z"
   },
   {
     "name": "agenda-contatos-lifo",
@@ -334,35 +326,11 @@
     "updated_at": "2025-10-28T02:46:35Z"
   },
   {
-    "name": "android-stealth-monitor",
+    "name": "c-learning-os",
     "owner": "growthfolio",
-    "language": "Java",
-    "url": "https://github.com/growthfolio/android-stealth-monitor",
-    "updated_at": "2025-10-27T02:15:39Z"
-  },
-  {
-    "name": "bash-go-project-structure",
-    "owner": "growthfolio",
-    "description": "Bash script to automate the creation of directory structures for Go projects.",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/bash-go-project-structure",
-    "updated_at": "2025-10-27T02:17:00Z"
-  },
-  {
-    "name": "codespace-open",
-    "owner": "growthfolio",
-    "description": "Esse repositorio é um template para simplesmente abrir o CodeSpace de forma simples e rapida, isso é tudo e nada mais.",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/codespace-open",
-    "updated_at": "2025-10-27T02:16:59Z"
-  },
-  {
-    "name": "contabancaria",
-    "owner": "growthfolio",
-    "description": "Projeto guiado de uma conta bancaria desenvolvido no Bootcamp Generation.",
-    "language": "Java",
-    "url": "https://github.com/growthfolio/contabancaria",
-    "updated_at": "2025-10-27T02:15:56Z"
+    "language": "C",
+    "url": "https://github.com/growthfolio/c-learning-os",
+    "updated_at": "2025-11-09T04:43:39Z"
   },
   {
     "name": "cyber-security-suite",
@@ -379,28 +347,28 @@
     "updated_at": "2025-10-27T02:15:37Z"
   },
   {
-    "name": "dev-cloud-challenge",
-    "owner": "growthfolio",
-    "description": "RESTful API developed in Go as part of the challenge for the Web Development and Cloud course. The project aims to implement a CRUD (Create, Read, Update, Delete) application to manage student data for a school, using PostgreSQL as the database for data persistence.",
-    "language": "Go",
-    "url": "https://github.com/growthfolio/dev-cloud-challenge",
-    "updated_at": "2025-10-27T02:16:57Z"
-  },
-  {
-    "name": "front-task-manager",
-    "owner": "growthfolio",
-    "description": "Este é o projeto de interface de usuário (front-end) para o gerenciador de tarefas (To-Do List) e foi desenvolvido como parte de um teste tecnico.",
-    "language": "CSS",
-    "url": "https://github.com/growthfolio/front-task-manager",
-    "updated_at": "2025-10-27T02:16:54Z"
-  },
-  {
     "name": "go-antifraud-ms",
     "owner": "growthfolio",
     "description": "A microservice in Go designed for real-time detection and prevention of fraudulent transactions. This service analyzes transaction patterns, identifies potential risks, and triggers alerts to mitigate fraud, ensuring secure and reliable financial operations.",
     "language": "Shell",
     "url": "https://github.com/growthfolio/go-antifraud-ms",
     "updated_at": "2025-10-27T02:16:51Z"
+  },
+  {
+    "name": "go-cryptotool-cli",
+    "owner": "growthfolio",
+    "description": "A tool that implements classic and modern encryption algorithms, such as AES, RSA, and others, to practice and study how these techniques work.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/go-cryptotool-cli",
+    "updated_at": "2025-11-09T04:43:08Z"
+  },
+  {
+    "name": "go-dev-cloud-challenge-api",
+    "owner": "growthfolio",
+    "description": "RESTful API developed in Go as part of the challenge for the Web Development and Cloud course. The project aims to implement a CRUD (Create, Read, Update, Delete) application to manage student data for a school, using PostgreSQL as the database for data persistence.",
+    "language": "Go",
+    "url": "https://github.com/growthfolio/go-dev-cloud-challenge-api",
+    "updated_at": "2025-11-09T04:44:16Z"
   },
   {
     "name": "go-priceguard-api",
@@ -411,14 +379,6 @@
     "updated_at": "2025-10-27T02:16:48Z"
   },
   {
-    "name": "google-auth-preview",
-    "owner": "growthfolio",
-    "description": "Este projeto tem como objetivo fornecer uma interface simples para testes e manipulação de tokens OAuth 2.0 gerados pelo Google. Não armazena nenhum dado sensível em cache ou banco de dados. Toda a manipulação ocorre no navegador do usuário, garantindo a segurança das informações durante os testes.",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/google-auth-preview",
-    "updated_at": "2025-10-27T02:16:49Z"
-  },
-  {
     "name": "growthfolio",
     "owner": "growthfolio",
     "description": "Central de projetos e trajetória de aprendizado de Felipe Macedo.",
@@ -427,65 +387,66 @@
     "updated_at": "2025-10-27T02:16:36Z"
   },
   {
-    "name": "html-supplement-ecommerce",
-    "owner": "growthfolio",
-    "description": "Este projeto foi desenvolvido como parte do bootcamp de Desenvolvimento Web da ProzTech. O objetivo principal foi criar um site de e-commerce para a loja fictícia de suplementos alimentares Supreme Nutrition, com páginas dedicadas a diferentes categorias de produtos.",
-    "language": "HTML",
-    "url": "https://github.com/growthfolio/html-supplement-ecommerce",
-    "updated_at": "2025-10-27T02:15:53Z"
-  },
-  {
-    "name": "huggingface-edu-models",
-    "owner": "growthfolio",
-    "description": "Este projeto visa consumir alguns modelos de NLP de Hugging Face para serem consumidos em outros projetos.",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/huggingface-edu-models",
-    "updated_at": "2025-10-27T02:16:35Z"
-  },
-  {
-    "name": "java-generation-notes",
-    "owner": "growthfolio",
-    "description": "Este repositório contém anotações e atividades realizadas durante o Bootcamp de Java oferecido pela Generation Brasil. Ele abrange tópicos essenciais aprendidos ao longo do curso, servindo como uma referência organizada para estudos futuros e revisões.",
-    "language": "Java",
-    "url": "https://github.com/growthfolio/java-generation-notes",
-    "updated_at": "2025-10-27T02:17:05Z"
-  },
-  {
-    "name": "javafx-mytableview-depl",
-    "owner": "growthfolio",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/javafx-mytableview-depl",
-    "updated_at": "2025-10-27T02:15:48Z"
-  },
-  {
-    "name": "js-wallet-generator",
-    "owner": "growthfolio",
-    "description": "A simple Node.js application that generates a hierarchical deterministic (HD) Bitcoin wallet for the Testnet using BIP32, BIP39, and the bitcoinjs-lib library. This project allows you to generate a Bitcoin address, private key, and mnemonic phrase, and provides instructions on how to verify the generated address using Electrum.",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/js-wallet-generator",
-    "updated_at": "2025-10-27T02:16:33Z"
-  },
-  {
-    "name": "learning-c-so",
-    "owner": "growthfolio",
-    "language": "C",
-    "url": "https://github.com/growthfolio/learning-c-so",
-    "updated_at": "2025-10-27T02:15:42Z"
-  },
-  {
-    "name": "my-devops-toolbox",
-    "owner": "growthfolio",
-    "language": "Shell",
-    "url": "https://github.com/growthfolio/my-devops-toolbox",
-    "updated_at": "2025-10-27T02:15:46Z"
-  },
-  {
-    "name": "my-linktree-html",
+    "name": "html-linktree-personal",
     "owner": "growthfolio",
     "description": "Este projeto é uma pagina estatica simples com objetivo de centralizar links uteis de contato.",
     "language": "TypeScript",
-    "url": "https://github.com/growthfolio/my-linktree-html",
-    "updated_at": "2025-10-27T02:15:33Z"
+    "url": "https://github.com/growthfolio/html-linktree-personal",
+    "updated_at": "2025-11-09T04:43:44Z"
+  },
+  {
+    "name": "html-supplement-store",
+    "owner": "growthfolio",
+    "description": "Este projeto foi desenvolvido como parte do bootcamp de Desenvolvimento Web da ProzTech. O objetivo principal foi criar um site de e-commerce para a loja fictícia de suplementos alimentares Supreme Nutrition, com páginas dedicadas a diferentes categorias de produtos.",
+    "language": "HTML",
+    "url": "https://github.com/growthfolio/html-supplement-store",
+    "updated_at": "2025-11-09T04:43:46Z"
+  },
+  {
+    "name": "html-taskmanager-app",
+    "owner": "growthfolio",
+    "description": "Este é o projeto de interface de usuário (front-end) para o gerenciador de tarefas (To-Do List) e foi desenvolvido como parte de um teste tecnico.",
+    "language": "CSS",
+    "url": "https://github.com/growthfolio/html-taskmanager-app",
+    "updated_at": "2025-11-09T04:44:15Z"
+  },
+  {
+    "name": "java-android-stealth-monitor",
+    "owner": "growthfolio",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/java-android-stealth-monitor",
+    "updated_at": "2025-11-09T04:44:19Z"
+  },
+  {
+    "name": "java-bootcamp-generation-notes",
+    "owner": "growthfolio",
+    "description": "Este repositório contém anotações e atividades realizadas durante o Bootcamp de Java oferecido pela Generation Brasil. Ele abrange tópicos essenciais aprendidos ao longo do curso, servindo como uma referência organizada para estudos futuros e revisões.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/java-bootcamp-generation-notes",
+    "updated_at": "2025-11-09T04:43:44Z"
+  },
+  {
+    "name": "java-conta-bancaria",
+    "owner": "growthfolio",
+    "description": "Projeto guiado de uma conta bancaria desenvolvido no Bootcamp Generation.",
+    "language": "Java",
+    "url": "https://github.com/growthfolio/java-conta-bancaria",
+    "updated_at": "2025-11-09T04:43:13Z"
+  },
+  {
+    "name": "javafx-mytableview-demo",
+    "owner": "growthfolio",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/javafx-mytableview-demo",
+    "updated_at": "2025-11-09T04:44:18Z"
+  },
+  {
+    "name": "js-google-oauth-tester",
+    "owner": "growthfolio",
+    "description": "Este projeto tem como objetivo fornecer uma interface simples para testes e manipulação de tokens OAuth 2.0 gerados pelo Google. Não armazena nenhum dado sensível em cache ou banco de dados. Toda a manipulação ocorre no navegador do usuário, garantindo a segurança das informações durante os testes.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/js-google-oauth-tester",
+    "updated_at": "2025-11-09T04:43:49Z"
   },
   {
     "name": "nest-taskmanager-app",
@@ -504,20 +465,28 @@
     "updated_at": "2025-10-27T02:16:29Z"
   },
   {
-    "name": "node-task-manager",
+    "name": "node-taskmanager-api",
     "owner": "growthfolio",
     "description": "Este projeto é o back-end de um gerenciador de tarefas (To-Do List) e foi desenvolvido como parte de um teste tecnico.",
     "language": "Shell",
-    "url": "https://github.com/growthfolio/node-task-manager",
-    "updated_at": "2025-10-27T02:16:27Z"
+    "url": "https://github.com/growthfolio/node-taskmanager-api",
+    "updated_at": "2025-11-09T04:43:12Z"
   },
   {
-    "name": "openfund-dao",
+    "name": "node-wallet-generator-cli",
     "owner": "growthfolio",
-    "description": "Decentralized Autonomous Organization (DAO) focused on funding and supporting open-source projects. Empowering developers through decentralized governance and fair rewards for contributions.",
+    "description": "A simple Node.js application that generates a hierarchical deterministic (HD) Bitcoin wallet for the Testnet using BIP32, BIP39, and the bitcoinjs-lib library. This project allows you to generate a Bitcoin address, private key, and mnemonic phrase, and provides instructions on how to verify the generated address using Electrum.",
     "language": "Shell",
-    "url": "https://github.com/growthfolio/openfund-dao",
-    "updated_at": "2025-10-27T02:16:24Z"
+    "url": "https://github.com/growthfolio/node-wallet-generator-cli",
+    "updated_at": "2025-11-09T04:44:18Z"
+  },
+  {
+    "name": "python-huggingface-nlp-models",
+    "owner": "growthfolio",
+    "description": "Este projeto visa consumir alguns modelos de NLP de Hugging Face para serem consumidos em outros projetos.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/python-huggingface-nlp-models",
+    "updated_at": "2025-11-09T04:43:42Z"
   },
   {
     "name": "react-blog-plataform",
@@ -567,12 +536,43 @@
     "updated_at": "2025-10-27T02:16:12Z"
   },
   {
-    "name": "solidity-coinlink-token",
+    "name": "shell-codespace-launcher",
+    "owner": "growthfolio",
+    "description": "Esse repositorio é um template para simplesmente abrir o CodeSpace de forma simples e rapida, isso é tudo e nada mais.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/shell-codespace-launcher",
+    "updated_at": "2025-11-09T04:43:47Z"
+  },
+  {
+    "name": "shell-devops-toolbox",
+    "owner": "growthfolio",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/shell-devops-toolbox",
+    "updated_at": "2025-11-09T04:43:43Z"
+  },
+  {
+    "name": "shell-go-project-generator",
+    "owner": "growthfolio",
+    "description": "Bash script to automate the creation of directory structures for Go projects.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/shell-go-project-generator",
+    "updated_at": "2025-11-09T04:43:14Z"
+  },
+  {
+    "name": "solidity-clnk-token",
     "owner": "growthfolio",
     "description": "Este projeto implementa um token ERC-20 chamado CoinLink (CLNK) como parte da atividade do bootcamp 'Binance - Blockchain Developer with Solidity', utilizando a IDE Remix. O token segue o padrão ERC-20, o que permite sua interoperabilidade com carteiras e exchanges que suportam tokens baseados na rede Ethereum.",
     "language": "Shell",
-    "url": "https://github.com/growthfolio/solidity-coinlink-token",
-    "updated_at": "2025-10-27T02:16:09Z"
+    "url": "https://github.com/growthfolio/solidity-clnk-token",
+    "updated_at": "2025-11-09T04:43:15Z"
+  },
+  {
+    "name": "solidity-openfund-dao",
+    "owner": "growthfolio",
+    "description": "Decentralized Autonomous Organization (DAO) focused on funding and supporting open-source projects. Empowering developers through decentralized governance and fair rewards for contributions.",
+    "language": "Shell",
+    "url": "https://github.com/growthfolio/solidity-openfund-dao",
+    "updated_at": "2025-11-09T04:44:17Z"
   },
   {
     "name": "spring-blog-platform",
@@ -599,12 +599,12 @@
     "updated_at": "2025-10-27T02:16:04Z"
   },
   {
-    "name": "spring-eccomerce-generation",
+    "name": "spring-ecommerce-generation",
     "owner": "growthfolio",
     "description": "Back-end de um e-commerce feito em Java, como atividade avaliativa para o Bootcamp Generation",
     "language": "Java",
-    "url": "https://github.com/growthfolio/spring-eccomerce-generation",
-    "updated_at": "2024-11-27T14:35:33Z"
+    "url": "https://github.com/growthfolio/spring-ecommerce-generation",
+    "updated_at": "2025-11-09T04:43:09Z"
   },
   {
     "name": "spring-ecommerce-tt",
