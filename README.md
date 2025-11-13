@@ -1,13 +1,30 @@
 # dev-metadata-sync
 
-This repository generates a public JSON file containing combined public repositories from `felipemacedo1` and `growthfolio` and serves it from `data/projects.json` (suitable for GitHub Pages).
+Coleta e sincroniza metadados de repositórios do GitHub.
 
-Usage
+## Dados
 
-- The script is `scripts/update_projects.go`. It reads GH_TOKEN from the environment (optional) and writes `data/projects.json`.
-- A GitHub Actions workflow runs every 6 hours or manually, compiles the Go program (Go 1.22), runs it, and commits changes if any.
+Arquivos JSON atualizados automaticamente via GitHub Actions:
 
-Pages
+- `data/profile.json` - Perfil do usuário
+- `data/projects.json` - Lista de repositórios
+- `data/activity-daily.json` - Atividade diária
+- `data/languages.json` - Estatísticas de linguagens
 
-Configure GitHub Pages to serve from the `data/` folder on the default branch (or `gh-pages` branch if you prefer). The JSON file will then be available publicly at `https://<owner>.github.io/<repo>/projects.json`.
-# dev-metadata-sync
+## Uso
+
+```bash
+# Compilar
+go build -o bin/repos_collector scripts/collectors/repos_collector.go
+
+# Executar
+export GITHUB_TOKEN=your_token
+./bin/repos_collector
+```
+
+## GitHub Pages
+
+Dados públicos disponíveis em:
+```
+https://felipemacedo1.github.io/dev-metadata-sync/projects.json
+```

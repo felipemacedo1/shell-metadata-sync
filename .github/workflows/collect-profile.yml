@@ -1,0 +1,88 @@
+name: Collect User Profile
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Diariamente ao meio-dia UTC (9h BRT)
+  workflow_dispatch:
+    inputs:
+      user:
+        description: 'Usuário do GitHub'
+        required: false
+        default: 'felipemacedo1'
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build user collector
+        run: |
+          set -euo pipefail
+          echo "🔨 Building user_collector..."
+          go build -o bin/user_collector scripts/collectors/user_collector.go
+          echo "✓ Build completed"
+
+      - name: Collect user profile data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          set -euo pipefail
+          USER="${{ github.event.inputs.user || 'felipemacedo1' }}"
+          echo "📡 Collecting profile for $USER..."
+          ./bin/user_collector -user=$USER
+          echo "✓ Collection completed"
+
+      - name: Validate generated file
+        run: |
+          set -euo pipefail
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y jq
+          fi
+          
+          echo "✓ Validating data/profile.json..."
+          jq empty data/profile.json
+          
+          NAME=$(jq -r '.name' data/profile.json)
+          FOLLOWERS=$(jq '.followers' data/profile.json)
+          REPOS=$(jq '.public_repos' data/profile.json)
+          
+          echo "  Name: $NAME"
+          echo "  Followers: $FOLLOWERS"
+          echo "  Public repos: $REPOS"
+
+      - name: Commit and push changes
+        run: |
+          set -euo pipefail
+          
+          git config user.name "felipemacedo1 [bot]"
+          git config user.email "felipealexandrej@gmail.com"
+
+          if git status --porcelain | grep -q "data/profile.json"; then
+            echo "📝 Changes detected in profile data"
+            git add data/profile.json
+            
+            FOLLOWERS=$(jq '.followers' data/profile.json)
+            git commit -m "chore: update user profile ($FOLLOWERS followers) [skip ci]"
+
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            git push origin HEAD:main
+            echo "✓ Changes pushed successfully"
+          else
+            echo "ℹ️  No changes to commit"
+          fi

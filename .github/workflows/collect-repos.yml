@@ -1,0 +1,85 @@
+name: Collect Repositories
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # A cada 6 horas
+  workflow_dispatch:
+    inputs:
+      users:
+        description: 'Usuários para coletar (separados por vírgula)'
+        required: false
+        default: 'felipemacedo1,growthfolio'
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build repos collector
+        run: |
+          set -euo pipefail
+          echo "🔨 Building repos_collector..."
+          go build -o bin/repos_collector scripts/collectors/repos_collector.go
+          echo "✓ Build completed"
+
+      - name: Collect repositories data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          set -euo pipefail
+          echo "📡 Collecting repositories..."
+          ./bin/repos_collector
+          echo "✓ Collection completed"
+
+      - name: Validate generated files
+        run: |
+          set -euo pipefail
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y jq
+          fi
+          
+          echo "✓ Validating data/projects.json..."
+          jq empty data/projects.json
+          REPOS=$(jq 'length' data/projects.json)
+          echo "  Found $REPOS repositories"
+          
+          echo "✓ Validating data/metadata.json..."
+          jq empty data/metadata.json
+          echo "  Version: $(jq -r '.version' data/metadata.json)"
+
+      - name: Commit and push changes
+        run: |
+          set -euo pipefail
+          
+          git config user.name "felipemacedo1 [bot]"
+          git config user.email "felipealexandrej@gmail.com"
+
+          if git status --porcelain | grep -qE "data/(projects|metadata).json"; then
+            echo "📝 Changes detected in repository data"
+            git add data/projects.json data/metadata.json
+            
+            REPOS=$(jq 'length' data/projects.json)
+            git commit -m "chore: update repositories data ($REPOS repos) [skip ci]"
+
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            git push origin HEAD:main
+            echo "✓ Changes pushed successfully"
+          else
+            echo "ℹ️  No changes to commit"
+          fi

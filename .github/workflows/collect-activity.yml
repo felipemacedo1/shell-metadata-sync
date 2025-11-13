@@ -1,0 +1,88 @@
+name: Collect Activity
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Diariamente às 6h UTC (3h BRT)
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Número de dias para coletar (padrão: 365)'
+        required: false
+        default: '365'
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build activity collector
+        run: |
+          set -euo pipefail
+          echo "🔨 Building activity_collector..."
+          go build -o bin/activity_collector scripts/collectors/activity_collector.go
+          echo "✓ Build completed"
+
+      - name: Collect activity data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          set -euo pipefail
+          DAYS="${{ github.event.inputs.days || '365' }}"
+          echo "📡 Collecting activity for last $DAYS days..."
+          ./bin/activity_collector -user=felipemacedo1 -days=$DAYS
+          echo "✓ Collection completed"
+
+      - name: Validate generated file
+        run: |
+          set -euo pipefail
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y jq
+          fi
+          
+          echo "✓ Validating data/activity-daily.json..."
+          jq empty data/activity-daily.json
+          
+          COMMITS=$(jq '.daily_metrics | to_entries | map(.value.commits) | add' data/activity-daily.json)
+          PRS=$(jq '.daily_metrics | to_entries | map(.value.prs) | add' data/activity-daily.json)
+          ISSUES=$(jq '.daily_metrics | to_entries | map(.value.issues) | add' data/activity-daily.json)
+          
+          echo "  Commits: $COMMITS"
+          echo "  PRs: $PRS"
+          echo "  Issues: $ISSUES"
+
+      - name: Commit and push changes
+        run: |
+          set -euo pipefail
+          
+          git config user.name "felipemacedo1 [bot]"
+          git config user.email "felipealexandrej@gmail.com"
+
+          if git status --porcelain | grep -q "data/activity-daily.json"; then
+            echo "📝 Changes detected in activity data"
+            git add data/activity-daily.json
+            
+            COMMITS=$(jq '.daily_metrics | to_entries | map(.value.commits) | add' data/activity-daily.json)
+            git commit -m "chore: update activity data ($COMMITS commits) [skip ci]"
+
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            git push origin HEAD:main
+            echo "✓ Changes pushed successfully"
+          else
+            echo "ℹ️  No changes to commit"
+          fi

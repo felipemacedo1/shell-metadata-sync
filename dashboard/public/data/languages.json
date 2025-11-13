@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "user": "felipemacedo1",
+    "generated_at": "2025-11-13T17:00:00Z"
+  },
+  "languages": {
+    "Go": {
+      "bytes": 500000,
+      "repos": 15,
+      "percentage": 35.5
+    },
+    "TypeScript": {
+      "bytes": 300000,
+      "repos": 12,
+      "percentage": 21.3
+    },
+    "Kotlin": {
+      "bytes": 200000,
+      "repos": 5,
+      "percentage": 14.2
+    },
+    "Java": {
+      "bytes": 180000,
+      "repos": 8,
+      "percentage": 12.8
+    },
+    "Python": {
+      "bytes": 120000,
+      "repos": 6,
+      "percentage": 8.5
+    },
+    "Shell": {
+      "bytes": 60000,
+      "repos": 10,
+      "percentage": 4.3
+    },
+    "JavaScript": {
+      "bytes": 50000,
+      "repos": 4,
+      "percentage": 3.5
+    }
+  },
+  "top_languages": ["Go", "TypeScript", "Kotlin", "Java", "Python"]
+}

@@ -11,6 +11,22 @@
 # Build output / local binaries
 bin/
 
-
 # Go workspace file
 /go.work
+
+# Documentação detalhada (local only)
+PROPOSAL.md
+WORKFLOWS.md
+QUICK_START.md
+QUICKSTART_SONAR_SYNC.md
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Dashboard
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+dashboard/.turbo/
