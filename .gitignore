@@ -11,6 +11,12 @@
 # Build output / local binaries
 bin/
 
+# Cache directory
+.cache/
+
+# Test outputs
+data/*-test.json
+
 # Go workspace file
 /go.work
 
