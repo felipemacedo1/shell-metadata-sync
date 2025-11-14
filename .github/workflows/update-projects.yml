@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout
-          persist-credentials: true
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -25,6 +25,7 @@ jobs:
           go-version: '1.22'
 
       - name: Build and run update script
+        id: generate
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
@@ -43,17 +44,7 @@ jobs:
             sudo apt-get update -qq
             sudo apt-get install -y jq
           fi
-      - name: Build and run update script
-        id: generate
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          set -euo pipefail
-          go build -o bin/update ./scripts/update_projects.go
-          ./bin/update -out data/projects.json
-
-      - name: Commit changes
-        # Always try to commit; the script will check whether the file changed.
+          echo -e "[INFO] Validating data/projects.json with jq..."
           jq empty data/projects.json
           COUNT=$(jq 'length' data/projects.json)
           echo -e "[INFO] data/projects.json contains $COUNT entries"
