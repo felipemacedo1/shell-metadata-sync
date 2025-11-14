@@ -1,0 +1,115 @@
+name: Sync to MongoDB Atlas
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # A cada 6 horas
+  workflow_dispatch: 
+    inputs:
+      users:
+        description: 'GitHub users (comma-separated)'
+        required: false
+        default: 'felipemacedo1,growthfolio'
+
+permissions:
+  contents: read
+
+jobs:
+  sync-users:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        user: [felipemacedo1, growthfolio]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build collectors
+        run: |
+          go build -o bin/user_collector ./scripts/collectors/user_collector.go
+          go build -o bin/stats_collector ./scripts/collectors/stats_collector.go
+          go build -o bin/activity_collector ./scripts/collectors/activity_collector.go
+
+      - name: Sync user profile
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: dev_metadata
+        run: |
+          ./bin/user_collector -user=${{ matrix.user }}
+
+      - name: Sync user languages
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: dev_metadata
+        run: |
+          ./bin/stats_collector -user=${{ matrix.user }}
+
+      - name: Sync user activity (90 days)
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: dev_metadata
+        run: |
+          ./bin/activity_collector -user=${{ matrix.user }} -days=90
+
+  sync-repos:
+    runs-on: ubuntu-latest
+    needs: sync-users
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build repos collector
+        run: |
+          go build -o bin/repos_collector ./scripts/collectors/repos_collector.go
+
+      - name: Sync repositories
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: dev_metadata
+        run: |
+          USERS="${{ github.event.inputs.users || 'felipemacedo1,growthfolio' }}"
+          ./bin/repos_collector -users="$USERS"
+
+  export-static:
+    runs-on: ubuntu-latest
+    needs: sync-repos
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+
+      - name: Build export tool
+        run: |
+          go build -o bin/export_from_mongo ./scripts/export_from_mongo.go
+
+      - name: Export MongoDB to JSON files
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DATABASE: dev_metadata
+        run: |
+          ./bin/export_from_mongo -out=data
+          
+      - name: Commit JSON files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update static data from MongoDB"
+          file_pattern: "data/*.json"

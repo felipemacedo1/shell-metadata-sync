@@ -1,83 +1,133 @@
 # Dev Metadata Sync
 
-Sistema de coleta e visualização de metadados do GitHub.
+Sistema automatizado de coleta, armazenamento e visualização de metadados do GitHub.
 
-## Sobre
-
-Coleta dados de repositórios públicos via GitHub API, armazena em MongoDB e JSONs, e disponibiliza um dashboard Next.js para visualização.
-
-## Recursos
-
-**Coleta de dados (Go)**
-- Rate limit handling e retry automático
-- Cache com ETag para otimizar requisições
-- Logs estruturados
-- Validação de dados
-- Changelog de mudanças
-
-**API REST (Next.js)**
-```
-GET /api/profile
-GET /api/projects
-GET /api/languages
-GET /api/activity
-GET /api/metadata
-```
-
-**Dashboard**
-- Gráficos de linguagens e atividade
-- Heatmap de contribuições
-- Lista de repositórios
-
-**Automação (GitHub Actions)**
-- Execução a cada 6h
-- Validação automática
-- Commit apenas se houver mudanças
-
-## Estrutura
+## 🎯 Visão Geral
 
 ```
-data/                  # JSONs gerados
-dashboard/             # Next.js app
-  app/api/            # API endpoints
-  components/         # Componentes React
-scripts/              # Collectors Go
-  update_projects.go  # Script principal
-  collectors/         # Outros coletores
-.github/workflows/    # Automação CI/CD
+GitHub API → Go Collectors → MongoDB Atlas → Export JSON → Next.js Dashboard
 ```
 
-## Uso
+Coleta dados de repositórios via GitHub API, armazena em MongoDB Atlas, exporta para JSONs estáticos e exibe em dashboard Next.js hospedado no GitHub Pages.
 
-### Build
+## ✨ Recursos
+
+### Coleta de dados (Go)
+- ✅ Rate limit handling e retry exponential backoff
+- ✅ Cache com ETag (reduz 90% das requisições)
+- ✅ Logs estruturados (JSON/pretty)
+- ✅ Validação de dados e detecção de duplicatas
+- ✅ Changelog automático de mudanças
+- ✅ Testes unitários (9/9 passing)
+
+### Armazenamento
+- ✅ MongoDB Atlas (database principal)
+- ✅ JSONs estáticos (fallback para GitHub Pages)
+- ✅ Sincronização automática a cada 6h
+
+### Dashboard Next.js
+- ✅ Gráficos de linguagens e atividade (Recharts)
+- ✅ Heatmap de contribuições
+- ✅ Listagem de repositórios com filtros
+- ✅ Static export para GitHub Pages
+- ✅ Modo dual: API routes (dev) + static files (prod)
+
+### Automação (GitHub Actions)
+- ✅ Cron schedule a cada 6 horas
+- ✅ Manual dispatch com parâmetros
+- ✅ Validação automática com jq
+- ✅ Commit apenas com mudanças reais
+
+## 📁 Estrutura
+
+```
+.
+├── data/                    # JSONs estáticos exportados
+├── dashboard/               # Next.js app
+│   ├── src/
+│   │   ├── app/            # Pages e layouts
+│   │   ├── components/     # UI components
+│   │   └── lib/            # API client e types
+│   └── public/data/        # JSONs para static hosting
+├── scripts/
+│   ├── collectors/         # Go collectors (MongoDB sync)
+│   │   ├── user_collector.go
+│   │   ├── repos_collector.go
+│   │   ├── stats_collector.go
+│   │   └── activity_collector.go
+│   ├── storage/            # MongoDB client
+│   ├── export_from_mongo.go # MongoDB → JSON export
+│   ├── update_projects.go   # Legacy JSON-only collector
+│   └── test_mongo_connection.go
+├── .github/workflows/
+│   ├── sync-mongodb.yml     # Sync GitHub → MongoDB → JSON
+│   ├── deploy-pages.yml     # Deploy dashboard to Pages
+│   └── update-projects.yml  # Legacy workflow
+└── bin/                     # Binários compilados
+```
+
+## 🚀 Quick Start
+
+### 1. Setup MongoDB Atlas
 
 ```bash
-go build -o bin/update ./scripts/update_projects.go
+./scripts/setup_mongo.sh
 ```
 
-### Executar
+Ou manualmente:
+```bash
+cp .env.example .env
+# Edite .env com suas credenciais
+```
+
+📖 Ver: [MONGODB_SETUP.md](MONGODB_SETUP.md) | [QUICKSTART_MONGO.md](QUICKSTART_MONGO.md)
+
+### 2. Testar conexão
 
 ```bash
-# Básico
-./bin/update
-
-# Com opções
-./bin/update --users=user1,user2 --verbose
+source .env
+go run scripts/test_mongo_connection.go
 ```
 
-### Flags disponíveis
+### 3. Sincronizar dados
 
-```
---users        Usuários separados por vírgula (padrão: felipemacedo1,growthfolio)
---out          Arquivo de saída (padrão: data/projects.json)
---cache-dir    Diretório de cache (padrão: .cache)
---changelog    Arquivo de changelog (padrão: CHANGELOG.md)
---verbose      Logs detalhados
---json-logs    Logs em formato JSON
---token        GitHub token (ou use GH_TOKEN env)
+```bash
+./scripts/sync_all.sh
 ```
 
-## Formato do JSON
+Ou manualmente:
+```bash
+# Build
+go build -o bin/user_collector ./scripts/collectors/user_collector.go
+go build -o bin/repos_collector ./scripts/collectors/repos_collector.go
+go build -o bin/stats_collector ./scripts/collectors/stats_collector.go
+go build -o bin/activity_collector ./scripts/collectors/activity_collector.go
+go build -o bin/export_from_mongo ./scripts/export_from_mongo.go
+
+# Sync
+./bin/user_collector -user=felipemacedo1
+./bin/repos_collector -users=felipemacedo1,growthfolio
+./bin/stats_collector -user=felipemacedo1
+./bin/activity_collector -user=felipemacedo1 -days=90
+./bin/export_from_mongo -out=data
+```
+
+### 4. Dashboard
+
+```bash
+cd dashboard
+npm install
+npm run dev
+```
+
+Acesse: http://localhost:3000
+
+## 📚 Documentação
+
+- **[MONGODB_SETUP.md](MONGODB_SETUP.md)** - Setup completo do MongoDB Atlas
+- **[QUICKSTART_MONGO.md](QUICKSTART_MONGO.md)** - Guia rápido de uso
+- **[WORKFLOWS.md](WORKFLOWS.md)** - Documentação dos workflows
+- **[STATUS_IMPLEMENTACAO.md](STATUS_IMPLEMENTACAO.md)** - Status do projeto
 
 ```json
 {

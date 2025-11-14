@@ -1,7 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+// Client-side API functions for fetching data
+// Works with both Next.js API routes and static JSON files
 
-const DATA_DIR = path.join(process.cwd(), '..', 'data');
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || '/api';
+const USE_STATIC = process.env.NEXT_PUBLIC_USE_STATIC === 'true';
 
 export interface Repository {
   name: string;
@@ -56,46 +57,50 @@ export interface LanguageData {
   top_languages: string[];
 }
 
-function readJSONFile<T>(filename: string): T {
-  const filePath = path.join(DATA_DIR, filename);
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(fileContent) as T;
+export interface ProjectsResponse {
+  metadata: {
+    generated_at: string;
+    total_repos: number;
+    users: string[];
+  };
+  repositories: Repository[];
+}
+
+// Fetch functions - trabalham com API routes ou arquivos estáticos
+async function fetchData<T>(endpoint: string): Promise<T | null> {
+  try {
+    const url = USE_STATIC 
+      ? `/data/${endpoint}.json`
+      : `${API_BASE}/${endpoint}`;
+    
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching ${endpoint}:`, error);
+    return null;
+  }
 }
 
 export async function fetchRepositories(): Promise<Repository[]> {
-  try {
-    return readJSONFile<Repository[]>('projects.json');
-  } catch (error) {
-    console.error('Error fetching repositories:', error);
-    return [];
-  }
+  const data = await fetchData<ProjectsResponse>('projects');
+  return data?.repositories || [];
 }
 
 export async function fetchProfile(): Promise<ProfileData | null> {
-  try {
-    return readJSONFile<ProfileData>('profile.json');
-  } catch (error) {
-    console.error('Error fetching profile:', error);
-    return null;
-  }
+  return fetchData<ProfileData>('profile');
 }
 
 export async function fetchActivity(): Promise<ActivityData | null> {
-  try {
-    return readJSONFile<ActivityData>('activity-daily.json');
-  } catch (error) {
-    console.error('Error fetching activity:', error);
-    return null;
-  }
+  return fetchData<ActivityData>('activity');
 }
 
 export async function fetchLanguages(): Promise<LanguageData | null> {
-  try {
-    return readJSONFile<LanguageData>('languages.json');
-  } catch (error) {
-    console.error('Error fetching languages:', error);
-    return null;
-  }
+  return fetchData<LanguageData>('languages');
+}
+
+export async function fetchMetadata() {
+  return fetchData<any>('metadata');
 }
 
 // Helper functions para transformar dados
@@ -109,8 +114,6 @@ export function transformActivityForChart(activityData: ActivityData | null) {
     issues: metrics.issues
   }));
 }
-
-
 
 export function calculateStreak(activityData: ActivityData | null): number {
   if (!activityData) return 0;
@@ -129,6 +132,7 @@ export function calculateStreak(activityData: ActivityData | null): number {
   
   return currentStreak;
 }
+
 export function transformLanguagesForChart(languageData: LanguageData | null) {
   if (!languageData) return [];
   
@@ -138,6 +142,7 @@ export function transformLanguagesForChart(languageData: LanguageData | null) {
     percentage: data.percentage
   }));
 }
+
 export function calculateRepoStats(repos: Repository[]) {
   const totalRepos = repos.length;
   const reposWithLanguage = repos.filter(r => r.language).length;

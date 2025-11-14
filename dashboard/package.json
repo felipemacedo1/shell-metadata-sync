@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run sync-data && next build",
+    "sync-data": "node -e \"require('child_process').execSync('../scripts/copy-to-dashboard.sh', {stdio: 'inherit'})\"",
     "start": "next start",
     "lint": "eslint"
   },

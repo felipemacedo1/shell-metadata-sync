@@ -1,44 +1,165 @@
 {
   "metadata": {
     "user": "felipemacedo1",
-    "generated_at": "2025-11-13T17:00:00Z"
+    "generated_at": "2025-11-13T19:03:50Z"
   },
   "languages": {
+    "C": {
+      "bytes": 100837,
+      "repos": 1,
+      "percentage": 0.5252113916344003
+    },
+    "C#": {
+      "bytes": 3148,
+      "repos": 1,
+      "percentage": 0.016396416601694736
+    },
+    "C++": {
+      "bytes": 124130,
+      "repos": 1,
+      "percentage": 0.6465334157459872
+    },
+    "CMake": {
+      "bytes": 69992,
+      "repos": 1,
+      "percentage": 0.3645546349383158
+    },
+    "CSS": {
+      "bytes": 229463,
+      "repos": 10,
+      "percentage": 1.1951623070758195
+    },
+    "Dart": {
+      "bytes": 482720,
+      "repos": 1,
+      "percentage": 2.5142561060896074
+    },
+    "Dockerfile": {
+      "bytes": 16490,
+      "repos": 16,
+      "percentage": 0.08588847197012268
+    },
     "Go": {
-      "bytes": 500000,
-      "repos": 15,
-      "percentage": 35.5
+      "bytes": 4345612,
+      "repos": 13,
+      "percentage": 22.634200997879248
     },
-    "TypeScript": {
-      "bytes": 300000,
-      "repos": 12,
-      "percentage": 21.3
+    "HCL": {
+      "bytes": 52241,
+      "repos": 3,
+      "percentage": 0.27209822099400727
     },
-    "Kotlin": {
-      "bytes": 200000,
-      "repos": 5,
-      "percentage": 14.2
+    "HTML": {
+      "bytes": 145310,
+      "repos": 10,
+      "percentage": 0.756849840022955
     },
     "Java": {
-      "bytes": 180000,
-      "repos": 8,
-      "percentage": 12.8
-    },
-    "Python": {
-      "bytes": 120000,
+      "bytes": 225935,
       "repos": 6,
-      "percentage": 8.5
-    },
-    "Shell": {
-      "bytes": 60000,
-      "repos": 10,
-      "percentage": 4.3
+      "percentage": 1.1767866534002225
     },
     "JavaScript": {
-      "bytes": 50000,
+      "bytes": 635274,
+      "repos": 14,
+      "percentage": 3.308836454963476
+    },
+    "Jinja": {
+      "bytes": 2331,
+      "repos": 1,
+      "percentage": 0.012141056892805093
+    },
+    "Jupyter Notebook": {
+      "bytes": 276893,
+      "repos": 1,
+      "percentage": 1.4422023450105022
+    },
+    "Kotlin": {
+      "bytes": 264896,
+      "repos": 3,
+      "percentage": 1.3797157471799648
+    },
+    "Makefile": {
+      "bytes": 82357,
+      "repos": 6,
+      "percentage": 0.42895796761936894
+    },
+    "Objective-C": {
+      "bytes": 38,
+      "repos": 1,
+      "percentage": 0.000197923707390216
+    },
+    "PLpgSQL": {
+      "bytes": 613010,
+      "repos": 1,
+      "percentage": 3.1928739965072714
+    },
+    "PowerShell": {
+      "bytes": 31292,
+      "repos": 2,
+      "percentage": 0.16298496451722735
+    },
+    "Python": {
+      "bytes": 165928,
       "repos": 4,
-      "percentage": 3.5
+      "percentage": 0.8642390768379937
+    },
+    "Ruby": {
+      "bytes": 3186,
+      "repos": 2,
+      "percentage": 0.016594340309084955
+    },
+    "Shell": {
+      "bytes": 417251,
+      "repos": 29,
+      "percentage": 2.173259600849343
+    },
+    "Smarty": {
+      "bytes": 1762,
+      "repos": 1,
+      "percentage": 0.009177409800567386
+    },
+    "Solidity": {
+      "bytes": 6222,
+      "repos": 1,
+      "percentage": 0.032407402825840106
+    },
+    "Swift": {
+      "bytes": 2966,
+      "repos": 1,
+      "percentage": 0.015448466213667912
+    },
+    "TypeScript": {
+      "bytes": 10649528,
+      "repos": 7,
+      "percentage": 55.46826483462928
+    },
+    "Vue": {
+      "bytes": 226363,
+      "repos": 1,
+      "percentage": 1.1790158993676703
+    },
+    "XML": {
+      "bytes": 7349,
+      "repos": 1,
+      "percentage": 0.038277403305544674
+    },
+    "YAML": {
+      "bytes": 16513,
+      "repos": 1,
+      "percentage": 0.08600826789827992
+    },
+    "desktop": {
+      "bytes": 280,
+      "repos": 1,
+      "percentage": 0.00145838521234896
     }
   },
-  "top_languages": ["Go", "TypeScript", "Kotlin", "Java", "Python"]
+  "top_languages": [
+    "TypeScript",
+    "Go",
+    "JavaScript",
+    "PLpgSQL",
+    "Dart"
+  ]
 }
