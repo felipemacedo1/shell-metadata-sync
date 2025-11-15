@@ -40,7 +40,7 @@ jobs:
       
       - name: Install dependencies
         working-directory: dashboard
-        run: npm ci
+        run: npm ci --include=dev
       
       - name: Build dashboard
         working-directory: dashboard
