@@ -1,6 +1,7 @@
 'use client';
 
 import { GitCommit, GitPullRequest, Flame, Calendar, TrendingUp, FolderGit2 } from 'lucide-react';
+import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 
 interface StatsGridProps {
   totalCommits: number;
