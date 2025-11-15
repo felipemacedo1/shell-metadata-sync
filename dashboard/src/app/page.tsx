@@ -1,4 +1,5 @@
-import { fetchAggregatedData } from '@/lib/api';
+import { fetchAllData } from '@/lib/api/fetchers';
+import { aggregateAllData } from '@/lib/api/aggregators';
 import Hero from '@/components/Hero';
 import StatsGrid from '@/components/StatsGrid';
 import ContributionHeatmap from '@/components/charts/ContributionHeatmap';
@@ -7,8 +8,25 @@ import LanguageChart from '@/components/LanguageChart';
 import RepositoryGrid from '@/components/RepositoryGrid';
 
 export default async function Home() {
-  // Fetch aggregated data from multiple sources
-  const { profile: profileData, activity: activityData, languages: languageData, repositories: repos } = await fetchAggregatedData();
+  const [
+    primaryProfile,
+    secondaryProfile,
+    primaryActivity,
+    secondaryActivity,
+    primaryLanguages,
+    secondaryLanguages,
+    repositories,
+  ] = await fetchAllData();
+
+  const { profile: profileData, activity: activityData, languages: languageData, repositories: repos } = aggregateAllData(
+    primaryProfile,
+    secondaryProfile,
+    primaryActivity,
+    secondaryActivity,
+    primaryLanguages,
+    secondaryLanguages,
+    repositories
+  );
 
   // Calculate stats
   const totalCommits = activityData 

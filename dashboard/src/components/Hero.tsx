@@ -1,7 +1,7 @@
 'use client';
 
 import { Github, MapPin, Users, Star } from 'lucide-react';
-import { ProfileData } from '@/lib/api';
+import { ProfileData } from '@/lib/types';
 
 interface HeroProps {
   profile: ProfileData | null;

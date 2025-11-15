@@ -7,6 +7,12 @@ export interface Repository {
   language?: string;
   url: string;
   updated_at: string;
+  homepage?: string;
+  stargazers_count?: number;
+  forks_count?: number;
+  open_issues_count?: number;
+  created_at?: string;
+  topics?: string[];
 }
 
 export interface Profile {
@@ -23,11 +29,12 @@ export interface Profile {
   generated_at: string;
 }
 
-export interface DailyActivity {
-  date: string;
+export type ProfileData = Profile;
+
+export interface DailyMetric {
   commits: number;
-  prs?: number;
-  issues?: number;
+  prs: number;
+  issues: number;
 }
 
 export interface ActivityData {
@@ -38,7 +45,13 @@ export interface ActivityData {
     end_date: string;
     generated_at: string;
   };
-  daily_metrics: Record<string, DailyActivity>;
+  daily_metrics: Record<string, DailyMetric>;
+  summary?: {
+    total_commits: number;
+    total_prs: number;
+    total_issues: number;
+    active_days: number;
+  };
 }
 
 export interface LanguageStats {
@@ -55,6 +68,8 @@ export interface LanguagesData {
   languages: Record<string, LanguageStats>;
   top_languages: string[];
 }
+
+export type LanguageData = LanguagesData;
 
 export interface RepoContribution {
   repo: string;

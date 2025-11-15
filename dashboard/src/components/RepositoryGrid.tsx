@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { ExternalLink, Star, GitFork, AlertCircle, Search, Filter, Calendar } from 'lucide-react';
-import { Repository } from '@/lib/api';
+import { Repository } from '@/lib/types';
 
 interface RepositoryGridProps {
   repositories: Repository[];

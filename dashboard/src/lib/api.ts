@@ -4,70 +4,7 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || '/api';
 const USE_STATIC = process.env.NEXT_PUBLIC_USE_STATIC === 'true';
 
-export interface Repository {
-  name: string;
-  owner: string;
-  description?: string;
-  language?: string;
-  url: string;
-  homepage?: string;
-  stargazers_count?: number;
-  forks_count?: number;
-  open_issues_count?: number;
-  created_at?: string;
-  updated_at: string;
-  topics?: string[];
-}
-
-export interface ProfileData {
-  login: string;
-  name: string;
-  bio: string;
-  avatar_url: string;
-  followers: number;
-  following: number;
-  public_repos: number;
-  total_stars_received: number;
-  total_forks_received: number;
-  organizations: string[];
-  generated_at: string;
-}
-
-export interface DailyMetric {
-  commits: number;
-  prs: number;
-  issues: number;
-}
-
-export interface ActivityData {
-  metadata: {
-    user: string;
-    period: string;
-    start_date: string;
-    end_date: string;
-    generated_at: string;
-  };
-  daily_metrics: Record<string, DailyMetric>;
-  summary?: {
-    total_commits: number;
-    total_prs: number;
-    total_issues: number;
-    active_days: number;
-  };
-}
-
-export interface LanguageData {
-  metadata: {
-    user: string;
-    generated_at: string;
-  };
-  languages: Record<string, {
-    bytes: number;
-    repos: number;
-    percentage: number;
-  }>;
-  top_languages: string[];
-}
+import type { ProfileData, ActivityData, LanguageData, Repository, DailyMetric } from './types';
 
 // Fetch functions - trabalham com dados estaticos em /data
 async function fetchData<T>(endpoint: string): Promise<T | null> {

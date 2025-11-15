@@ -51,14 +51,6 @@ export default function ContributionHeatmap({ data, startDate, endDate }: Contri
             values={data}
             classForValue={(value) => getColorClass(value?.count)}
             showWeekdayLabels={true}
-            tooltipDataAttrs={(value: any) => {
-              if (!value || !value.date) {
-                return {};
-              }
-              return {
-                'data-tip': `${value.count || 0} contributions on ${new Date(value.date).toLocaleDateString()}`
-              };
-            }}
           />
         </div>
       </div>
