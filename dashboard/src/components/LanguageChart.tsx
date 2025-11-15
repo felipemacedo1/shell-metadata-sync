@@ -2,6 +2,7 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { Code2 } from 'lucide-react';
+import { CHART_COLORS } from '@/lib/utils/colors';
 
 interface LanguageChartProps {
   languages: Record<string, {
@@ -10,19 +11,6 @@ interface LanguageChartProps {
     percentage: number;
   }>;
 }
-
-const COLORS = [
-  '#3b82f6', // blue
-  '#8b5cf6', // violet
-  '#10b981', // emerald
-  '#f59e0b', // amber
-  '#ef4444', // red
-  '#06b6d4', // cyan
-  '#ec4899', // pink
-  '#14b8a6', // teal
-  '#f97316', // orange
-  '#6366f1', // indigo
-];
 
 export default function LanguageChart({ languages }: LanguageChartProps) {
   const chartData = Object.entries(languages)
@@ -97,7 +85,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
             animationDuration={800}
           >
             {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${index}`} fill={CHART_COLORS[index % COLORS.length]} />
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
@@ -113,7 +101,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
               <div className="flex items-center gap-2">
                 <div 
                   className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                  style={{ backgroundColor: CHART_COLORS[index % COLORS.length] }}
                 />
                 <span className="text-white font-medium">{lang.name}</span>
               </div>
@@ -126,7 +114,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
                 className="h-2 rounded-full transition-all"
                 style={{ 
                   width: `${lang.percentage}%`,
-                  backgroundColor: COLORS[index % COLORS.length]
+                  backgroundColor: CHART_COLORS[index % COLORS.length]
                 }}
               />
             </div>
