@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  reactCompiler: true,
+  trailingSlash: true,
 };
 
 export default nextConfig;
