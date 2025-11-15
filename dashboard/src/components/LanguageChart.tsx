@@ -85,7 +85,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
             animationDuration={800}
           >
             {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={CHART_COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
@@ -101,7 +101,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
               <div className="flex items-center gap-2">
                 <div 
                   className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: CHART_COLORS[index % COLORS.length] }}
+                  style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
                 />
                 <span className="text-white font-medium">{lang.name}</span>
               </div>
@@ -114,7 +114,7 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
                 className="h-2 rounded-full transition-all"
                 style={{ 
                   width: `${lang.percentage}%`,
-                  backgroundColor: CHART_COLORS[index % COLORS.length]
+                  backgroundColor: CHART_COLORS[index % CHART_COLORS.length]
                 }}
               />
             </div>
