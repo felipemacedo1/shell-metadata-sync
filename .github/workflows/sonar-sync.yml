@@ -1,12 +1,9 @@
-name: SonarCloud Analysis
+name: SonarCloud
 
 on:
   push:
     branches: [main]
     paths:
-      - 'cmd/**'
-      - 'src/**'
-      - 'scripts/**'
       - '**.go'
       - 'go.mod'
       - 'go.sum'
@@ -15,13 +12,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  sonarcloud:
-    name: SonarCloud Analysis
+  sonar:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -29,24 +23,13 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'
-          cache: true
 
-      - name: Run tests with coverage
+      - name: Test with coverage
         run: |
-          go test -v -coverprofile=coverage.out -covermode=atomic ./... || true
-          go tool cover -func=coverage.out || true
+          go test -coverprofile=coverage.out ./... || echo "No tests"
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=felipemacedo1_shell-metadata-sync
-            -Dsonar.organization=felipemacedo1
-            -Dsonar.sources=.
-            -Dsonar.exclusions=**/vendor/**,**/node_modules/**,**/dashboard/**,**/data/**,**/bin/**
-            -Dsonar.go.coverage.reportPaths=coverage.out
-            -Dsonar.tests=.
-            -Dsonar.test.inclusions=**/*_test.go

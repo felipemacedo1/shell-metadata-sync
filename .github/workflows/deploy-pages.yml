@@ -1,11 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy to Pages
 
 on:
   push:
     branches: [main]
-    paths:
-      - 'dashboard/**'
-      - 'data/**'
   workflow_dispatch:
 
 permissions:
@@ -13,52 +10,36 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
           cache-dependency-path: dashboard/package-lock.json
-
-      - name: Install dependencies
-        working-directory: dashboard
-        run: npm ci
-
-      - name: Copy data files
-        run: |
-          mkdir -p dashboard/public/data
-          cp data/*.json dashboard/public/data/ || true
-
+      
+      - name: Install
+        run: cd dashboard && npm ci
+      
       - name: Build
-        working-directory: dashboard
-        run: npm run build
-
-      - name: Add nojekyll
-        run: touch dashboard/out/.nojekyll
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
+        run: cd dashboard && npm run build
+      
+      - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard/out
 
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
-        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
