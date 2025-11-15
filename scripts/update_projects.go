@@ -347,7 +347,7 @@ func main() {
     
     flag.StringVar(&outFile, "out", "data/projects.json", "output JSON file")
     flag.StringVar(&token, "token", os.Getenv("GH_TOKEN"), "GitHub token (or set GH_TOKEN env)")
-    flag.StringVar(&usersFlag, "users", "felipemacedo1,growthfolio", "comma-separated list of GitHub users")
+    flag.StringVar(&usersFlag, "users", os.Getenv("GH_USERS"), "comma-separated list of GitHub users (or set GH_USERS env)")
     flag.StringVar(&cacheDir, "cache-dir", ".cache", "cache directory for ETags")
     flag.StringVar(&changelogFile, "changelog", "CHANGELOG.md", "changelog output file")
     flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")

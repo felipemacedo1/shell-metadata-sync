@@ -36,3 +36,8 @@ dashboard/node_modules/
 dashboard/.next/
 dashboard/out/
 dashboard/.turbo/
+
+# Environment variables
+.env
+.env.local
+.env.*.local

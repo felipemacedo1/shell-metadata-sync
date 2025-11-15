@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	dev-metadata-sync/scripts/storage v0.0.0-00010101000000-000000000000
-	go.mongodb.org/mongo-driver v1.17.6 // indirect
+	go.mongodb.org/mongo-driver v1.17.6
 )
 
 require (
