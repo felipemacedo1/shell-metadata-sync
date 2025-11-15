@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export', // Static export for GitHub Pages
-  basePath: process.env.NODE_ENV === 'production' ? '/dev-metadata-sync' : '',
+  output: 'export',
+  basePath: process.env.NODE_ENV === 'production' ? '/shell-metadata-sync' : '',
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
   reactCompiler: true,
 };
