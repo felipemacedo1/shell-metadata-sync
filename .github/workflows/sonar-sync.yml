@@ -1,65 +1,52 @@
-name: Sync SonarCloud Issues
+name: SonarCloud Analysis
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'cmd/**'
+      - 'src/**'
+      - 'scripts/**'
+      - '**.go'
+      - 'go.mod'
+      - 'go.sum'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: "Simular sem criar issues"
-        required: false
-        default: "false"
-  schedule:
-    - cron: "0 0 * * 1"
-
-permissions:
-  contents: read
-  issues: write
 
 jobs:
-  sync:
+  sonarcloud:
+    name: SonarCloud Analysis
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          ref: main
-          clean: true
-      
-      - name: Verify script version
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+          cache: true
+
+      - name: Run tests with coverage
         run: |
-          echo "📝 Checking script version..."
-          head -5 scripts/sync_sonar_issues.sh
-          if grep -q "DEBUG:" scripts/sync_sonar_issues.sh; then
-            echo "❌ WARNING: Script still has DEBUG statements!"
-          else
-            echo "✅ Script is clean (no DEBUG statements)"
-          fi
-      
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y jq
-      
-      - name: Setup GitHub CLI
-        run: |
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          sudo apt-get update && sudo apt-get install -y gh
-      
-      - name: Authenticate GitHub CLI
-        run: echo "${ secrets.GITHUB_TOKEN }" | gh auth login --with-token
-      
-      - name: Run sync script
+          go test -v -coverprofile=coverage.out -covermode=atomic ./... || true
+          go tool cover -func=coverage.out || true
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${ secrets.SONAR_TOKEN }
-          GH_TOKEN: ${ secrets.GITHUB_TOKEN }
-          DRY_RUN: ${ github.event.inputs.dry_run }
-        run: |
-          chmod +x scripts/sync_sonar_issues.sh
-          bash scripts/sync_sonar_issues.sh
-      
-      - name: Upload sync report
-        if: always()
-        uses: actions/upload-artifact@v4
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          name: sonar-sync-report-${ github.run_number }
-          path: sync_report.log
-          retention-days: 30
-          if-no-files-found: ignore
+          args: >
+            -Dsonar.projectKey=felipemacedo1_shell-metadata-sync
+            -Dsonar.organization=felipemacedo1
+            -Dsonar.sources=.
+            -Dsonar.exclusions=**/vendor/**,**/node_modules/**,**/dashboard/**,**/data/**,**/bin/**
+            -Dsonar.go.coverage.reportPaths=coverage.out
+            -Dsonar.tests=.
+            -Dsonar.test.inclusions=**/*_test.go
