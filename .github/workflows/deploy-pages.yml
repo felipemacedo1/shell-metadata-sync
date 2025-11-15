@@ -1,4 +1,4 @@
-name: Deploy Dashboard to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
     paths:
       - 'dashboard/**'
       - 'data/**'
-      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -15,21 +14,17 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -40,19 +35,16 @@ jobs:
         working-directory: dashboard
         run: npm ci
 
-      - name: Copy data to public
+      - name: Copy data files
         run: |
           mkdir -p dashboard/public/data
-          cp -r data/*.json dashboard/public/data/ || true
-          ls -la dashboard/public/data/
+          cp data/*.json dashboard/public/data/ || true
 
-      - name: Build dashboard
+      - name: Build
         working-directory: dashboard
         run: npm run build
-        env:
-          NODE_ENV: production
 
-      - name: Add .nojekyll
+      - name: Add nojekyll
         run: touch dashboard/out/.nojekyll
 
       - name: Setup Pages
@@ -63,6 +55,10 @@ jobs:
         with:
           path: dashboard/out
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
