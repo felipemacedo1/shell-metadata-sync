@@ -1,9 +1,9 @@
-name: Collect Stats
+name: Collect Language Stats
 
 on:
   schedule:
-    - cron: '0 8 * * 0' # Toda semana no domingo às 8h UTC (5h BRT)
-  workflow_dispatch: {}
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,72 +11,36 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
+      - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - uses: actions/setup-go@v4
         with:
           go-version: '1.22'
 
-      - name: Build stats collector
-        run: |
-          set -euo pipefail
-          echo "🔨 Building stats_collector..."
-          go build -o bin/stats_collector scripts/collectors/stats_collector.go
-          echo "✓ Build completed"
+      - name: Build
+        run: go build -o bin/stats_collector scripts/collectors/stats_collector.go
 
-      - name: Collect language stats
+      - name: Collect primary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-        run: |
-          set -euo pipefail
-          echo "📡 Collecting language statistics..."
-          ./bin/stats_collector -user=felipemacedo1
-          echo "✓ Collection completed"
+        run: ./bin/stats_collector -user=felipemacedo1 -output=data/languages.json
 
-      - name: Validate generated file
+      - name: Collect secondary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./bin/stats_collector -user=growthfolio -output=data/languages-secondary.json || true
+
+      - name: Commit
         run: |
-          set -euo pipefail
-          if ! command -v jq >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y jq
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet data/languages*.json; then
+            echo "No changes"
+            exit 0
           fi
           
-          echo "✓ Validating data/languages.json..."
-          jq empty data/languages.json
-          
-          LANGS=$(jq '.languages | length' data/languages.json)
-          BYTES=$(jq '.languages | to_entries | map(.value.bytes) | add' data/languages.json)
-          TOP=$(jq -r '.languages | to_entries | sort_by(.value.percentage) | reverse | limit(3;.[]) | .key' data/languages.json | tr '\n' ',' | sed 's/,$//')
-          
-          echo "  Languages: $LANGS"
-          echo "  Total bytes: $BYTES"
-          echo "  Top 3: $TOP"
-
-      - name: Commit and push changes
-        run: |
-          set -euo pipefail
-          
-          git config user.name "felipemacedo1 [bot]"
-          git config user.email "felipealexandrej@gmail.com"
-
-          if git status --porcelain | grep -q "data/languages.json"; then
-            echo "📝 Changes detected in language stats"
-            git add data/languages.json
-            
-            LANGS=$(jq '.languages | length' data/languages.json)
-            git commit -m "chore: update language stats ($LANGS languages) [skip ci]"
-
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            git push origin HEAD:main
-            echo "✓ Changes pushed successfully"
-          else
-            echo "ℹ️  No changes to commit"
-          fi
+          git add data/languages*.json
+          git commit -m "chore: update language stats [skip ci]"
+          git push

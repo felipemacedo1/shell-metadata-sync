@@ -2,8 +2,8 @@ name: Update Projects JSON
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # every 6 hours
-  workflow_dispatch: {}
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,77 +11,41 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true
 
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'
 
-      - name: Build and run update script
-        id: generate
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Build collector
         run: |
-          set -euo pipefail
-          echo -e "\033[1;34m[INFO]\033[0m Building Go update script..."
-          go build -o bin/update ./scripts/update_projects.go
-          echo -e "\033[1;34m[INFO]\033[0m Running update with caching and changelog..."
-          ./bin/update --json-logs --cache-dir=.cache --changelog=CHANGELOG.md --out=data/projects.json
-          echo -e "\033[1;32m[SUCCESS]\033[0m JSON updated successfully."
+          cd scripts/collectors
+          go build -o ../../bin/update_projects update_projects.go
 
-      - name: Validate generated JSON
-        run: |
-          set -euo pipefail
-          # Ensure jq is present
-          if ! command -v jq >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y jq
-          fi
-          echo -e "[INFO] Validating data/projects.json with jq..."
-          jq empty data/projects.json
-          TOTAL=$(jq '.metadata.total_repos' data/projects.json)
-          ACTUAL=$(jq '.repositories | length' data/projects.json)
-          echo -e "[INFO] Metadata reports $TOTAL repos, actual array has $ACTUAL entries"
-          
-          if [ "$TOTAL" != "$ACTUAL" ]; then
-            echo -e "[ERROR] Count mismatch detected!"
-            exit 1
-          fi
-          echo -e "[SUCCESS] Validation passed"
-
-      - name: Commit and push changes
+      - name: Run collector
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          set -euo pipefail
+          ./bin/update_projects -user=felipemacedo1 -user=growthfolio
+          ls -lh data/projects.json
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          echo -e "\033[1;34m[INFO]\033[0m Configuring Git user..."
-          git config user.name "felipemacedo1 [bot]"
-          git config user.email "felipealexandrej@gmail.com"
-
-          if git status --porcelain | grep -qE "data/projects.json|CHANGELOG.md"; then
-            echo -e "\033[1;33m[CHANGE DETECTED]\033[0m Files modified."
-            
-            # Add both files if they changed
-            git add data/projects.json CHANGELOG.md || true
-            
-            REPOS=$(jq '.metadata.total_repos' data/projects.json)
-            git commit -m "chore: update repositories data ($REPOS repos) [skip ci]"
-
-            echo -e "\033[1;34m[INFO]\033[0m Setting remote with token..."
-            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
-            echo -e "\033[1;34m[INFO]\033[0m Pushing changes to main..."
-            git push origin HEAD:main
-            echo -e "\033[1;32m[SUCCESS]\033[0m Push completed."
-          else
-            echo -e "\033[1;90m[NO CHANGES]\033[0m No updates to commit."
+          REPOS_COUNT=$(jq 'length' data/projects.json)
+          
+          if git diff --quiet data/projects.json; then
+            echo "No changes to commit"
+            exit 0
           fi
+          
+          git add data/projects.json
+          git commit -m "chore: update repositories data ($REPOS_COUNT repos) [skip ci]"
+          git push

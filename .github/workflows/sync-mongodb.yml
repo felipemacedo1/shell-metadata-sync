@@ -1,49 +1,27 @@
-name: Sync to MongoDB Atlas
+name: Sync to MongoDB
 
 on:
   schedule:
     - cron: '0 */6 * * *'
-  workflow_dispatch: 
-    inputs:
-      users:
-        description: 'GitHub users (comma-separated)'
-        required: false
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Go
-        uses: actions/setup-go@v4
+      - uses: actions/setup-go@v4
         with:
           go-version: '1.22'
 
       - name: Build
-        run: |
-          go build -o bin/sync ./cmd/sync
-          go build -o bin/user_collector ./scripts/collectors/user_collector.go
-          go build -o bin/repos_collector ./scripts/collectors/repos_collector.go
-          go build -o bin/stats_collector ./scripts/collectors/stats_collector.go
-          go build -o bin/activity_collector ./scripts/collectors/activity_collector.go
-          go build -o bin/export_from_mongo ./scripts/export_from_mongo.go
+        run: go build -o bin/sync_mongodb scripts/sync_mongodb.go
 
-      - name: Sync all data
+      - name: Sync
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
-          MONGO_URI: ${{ secrets.MONGODB_URI }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          MONGODB_DATABASE: ${{ secrets.MONGODB_DATABASE || 'dev_metadata' }}
-          GH_USERS: ${{ github.event.inputs.users || secrets.GH_USERS }}
-        run: ./bin/sync
-          
-      - name: Commit updated data
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: sync data [skip ci]"
-          file_pattern: "data/*.json"
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: ./bin/sync_mongodb
