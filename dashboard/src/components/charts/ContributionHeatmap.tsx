@@ -2,6 +2,7 @@
 
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
+import { Activity } from 'lucide-react';
 
 interface HeatmapData {
   date: string;
@@ -10,11 +11,13 @@ interface HeatmapData {
 
 interface ContributionHeatmapProps {
   data: HeatmapData[];
+  startDate?: Date;
+  endDate?: Date;
 }
 
-export default function ContributionHeatmap({ data }: ContributionHeatmapProps) {
-  const today = new Date();
-  const oneYearAgo = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate());
+export default function ContributionHeatmap({ data, startDate, endDate }: ContributionHeatmapProps) {
+  const today = endDate || new Date();
+  const start = startDate || new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
 
   const getColorClass = (count: number | undefined) => {
     if (!count || count === 0) return 'color-empty';
@@ -24,20 +27,64 @@ export default function ContributionHeatmap({ data }: ContributionHeatmapProps) 
     return 'color-scale-4';
   };
 
+  const totalContributions = data.reduce((sum, day) => sum + day.count, 0);
+  const maxDay = data.reduce((max, day) => day.count > max.count ? day : max, { date: '', count: 0 });
+
   return (
-    <div className="w-full overflow-x-auto p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-      <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-white">
-        Contribution Heatmap (Últimos 365 dias)
-      </h3>
-      <div className="min-w-[800px]">
-        <CalendarHeatmap
-          startDate={oneYearAgo}
-          endDate={today}
-          values={data}
-          classForValue={(value) => getColorClass(value?.count)}
-          showWeekdayLabels={true}
-        />
+    <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <Activity className="w-6 h-6 text-emerald-400" />
+          <h2 className="text-2xl font-bold text-white">Contribution Heatmap</h2>
+        </div>
+        <div className="text-right">
+          <p className="text-2xl font-bold text-emerald-400">{totalContributions}</p>
+          <p className="text-sm text-slate-400">contributions</p>
+        </div>
       </div>
+
+      <div className="w-full overflow-x-auto">
+        <div className="min-w-[800px]">
+          <CalendarHeatmap
+            startDate={start}
+            endDate={today}
+            values={data}
+            classForValue={(value) => getColorClass(value?.count)}
+            showWeekdayLabels={true}
+            tooltipDataAttrs={(value: any) => {
+              if (!value || !value.date) {
+                return {};
+              }
+              return {
+                'data-tip': `${value.count || 0} contributions on ${new Date(value.date).toLocaleDateString()}`
+              };
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Legend and Stats */}
+      <div className="mt-6 flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-2 text-sm text-slate-400">
+          <span>Less</span>
+          <div className="flex gap-1">
+            <div className="w-3 h-3 rounded-sm bg-slate-700/50" />
+            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#9be9a8' }} />
+            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#40c463' }} />
+            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#30a14e' }} />
+            <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#216e39' }} />
+          </div>
+          <span>More</span>
+        </div>
+
+        {maxDay.count > 0 && (
+          <div className="text-sm text-slate-400">
+            Most active: <span className="text-emerald-400 font-semibold">{maxDay.count}</span> on{' '}
+            {new Date(maxDay.date).toLocaleDateString()}
+          </div>
+        )}
+      </div>
+
       <style jsx global>{`
         .react-calendar-heatmap {
           width: 100%;
@@ -45,11 +92,11 @@ export default function ContributionHeatmap({ data }: ContributionHeatmapProps) 
         
         .react-calendar-heatmap text {
           font-size: 10px;
-          fill: #64748b;
+          fill: #94a3b8;
         }
         
         .react-calendar-heatmap .color-empty {
-          fill: #ebedf0;
+          fill: #1e293b;
         }
         
         .react-calendar-heatmap .color-scale-1 {
@@ -69,18 +116,9 @@ export default function ContributionHeatmap({ data }: ContributionHeatmapProps) 
         }
         
         .react-calendar-heatmap rect:hover {
-          stroke: #555;
-          stroke-width: 1px;
-        }
-
-        @media (prefers-color-scheme: dark) {
-          .react-calendar-heatmap .color-empty {
-            fill: #161b22;
-          }
-          
-          .react-calendar-heatmap text {
-            fill: #8b949e;
-          }
+          stroke: #3b82f6;
+          stroke-width: 2px;
+          opacity: 0.8;
         }
       `}</style>
     </div>

@@ -1,0 +1,324 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-14T01:50:43.986208574Z",
+    "total_repos": 41,
+    "users": [
+      "felipemacedo1"
+    ],
+    "rate_limit_reset": "0001-01-01T00:00:00Z"
+  },
+  "repositories": [
+    {
+      "name": ".github",
+      "owner": "felipemacedo1",
+      "url": "https://github.com/felipemacedo1/.github",
+      "updated_at": "2024-09-26T00:26:15Z"
+    },
+    {
+      "name": "Projeto_Integrador_Documentos",
+      "owner": "felipemacedo1",
+      "description": "Projeto desenvolvido pelo grupo 2 da turma 69 para o Projeto Integrador do Bootcamp Generation Brasil. Facilitando o Acesso à Energia Limpa  Integração inovadora entre empresas fornecedoras, profissionais capacitados e consumidores, como solução para ampliar o acesso à energia limpa.",
+      "url": "https://github.com/felipemacedo1/Projeto_Integrador_Documentos",
+      "updated_at": "2023-12-15T19:02:46Z"
+    },
+    {
+      "name": "aws-toolkit-vscode",
+      "owner": "felipemacedo1",
+      "description": "VSCode extension toolkit for AWS services including CodeCatalyst, Lambda debugging and ECS terminal",
+      "url": "https://github.com/felipemacedo1/aws-toolkit-vscode",
+      "updated_at": "2025-10-26T15:42:22Z"
+    },
+    {
+      "name": "back-end-projeto-integrador",
+      "owner": "felipemacedo1",
+      "description": "Backend for integrated project featuring microservices architecture and database management",
+      "language": "Java",
+      "url": "https://github.com/felipemacedo1/back-end-projeto-integrador",
+      "updated_at": "2025-10-26T19:26:24Z"
+    },
+    {
+      "name": "cardgen-pro",
+      "owner": "felipemacedo1",
+      "description": "Professional card generation tool supporting multiple formats and customization options",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/cardgen-pro",
+      "updated_at": "2025-10-26T19:26:29Z"
+    },
+    {
+      "name": "cookbook_java_fullstack",
+      "owner": "felipemacedo1",
+      "url": "https://github.com/felipemacedo1/cookbook_java_fullstack",
+      "updated_at": "2025-06-18T16:44:32Z"
+    },
+    {
+      "name": "cookbook_javascript",
+      "owner": "felipemacedo1",
+      "url": "https://github.com/felipemacedo1/cookbook_javascript",
+      "updated_at": "2024-10-29T12:57:34Z"
+    },
+    {
+      "name": "dio-lab-open-source",
+      "owner": "felipemacedo1",
+      "description": "Repositório do lab \"Contribuindo em um Projeto Open Source no GitHub\" da Digital Innovation One.",
+      "url": "https://github.com/felipemacedo1/dio-lab-open-source",
+      "updated_at": "2024-08-13T17:42:48Z"
+    },
+    {
+      "name": "discord_open",
+      "owner": "felipemacedo1",
+      "description": "Open-source Discord clone built with Serverpod and Flutter for cross-platform messaging",
+      "language": "PLpgSQL",
+      "url": "https://github.com/felipemacedo1/discord_open",
+      "updated_at": "2025-11-10T18:54:43Z"
+    },
+    {
+      "name": "felipemacedo1",
+      "owner": "felipemacedo1",
+      "url": "https://github.com/felipemacedo1/felipemacedo1",
+      "updated_at": "2025-11-07T18:21:17Z"
+    },
+    {
+      "name": "felipemacedo1.github.io",
+      "owner": "felipemacedo1",
+      "description": "Interactive dual portfolio: retro terminal for desktop and BIOS interface for mobile",
+      "language": "JavaScript",
+      "url": "https://github.com/felipemacedo1/felipemacedo1.github.io",
+      "updated_at": "2025-11-13T06:29:56Z"
+    },
+    {
+      "name": "formacao-blockchain-dio",
+      "owner": "felipemacedo1",
+      "description": "Repositório contendo os desafios de projeto da formação",
+      "url": "https://github.com/felipemacedo1/formacao-blockchain-dio",
+      "updated_at": "2024-09-30T23:13:29Z"
+    },
+    {
+      "name": "front-end",
+      "owner": "felipemacedo1",
+      "description": "Projeto integrador realizado durante o bootcamp Generation Brasil (Front-End)",
+      "url": "https://github.com/felipemacedo1/front-end",
+      "updated_at": "2024-01-19T20:26:03Z"
+    },
+    {
+      "name": "go-coregit-pe",
+      "owner": "felipemacedo1",
+      "description": "Cross-platform Git manager CLI with local API built using only Go standard library",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/go-coregit-pe",
+      "updated_at": "2025-10-26T19:26:31Z"
+    },
+    {
+      "name": "go-mercado-pago-ms",
+      "owner": "felipemacedo1",
+      "description": "Mercado Pago payment integration microservice for processing payments and managing transactions",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/go-mercado-pago-ms",
+      "updated_at": "2025-10-26T19:26:21Z"
+    },
+    {
+      "name": "go-msg-wss",
+      "owner": "felipemacedo1",
+      "description": "WebSocket message broker implementing publish-subscribe pattern for real-time communication",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/go-msg-wss",
+      "updated_at": "2025-10-26T19:26:34Z"
+    },
+    {
+      "name": "go-msg-wss-app",
+      "owner": "felipemacedo1",
+      "description": "WebSocket-based messaging application with real-time communication and state synchronization",
+      "language": "TypeScript",
+      "url": "https://github.com/felipemacedo1/go-msg-wss-app",
+      "updated_at": "2025-10-26T19:26:20Z"
+    },
+    {
+      "name": "go-portifolio",
+      "owner": "felipemacedo1",
+      "description": "Personal portfolio website built with Go backend and modern web technologies",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/go-portifolio",
+      "updated_at": "2025-10-26T19:26:15Z"
+    },
+    {
+      "name": "go-pricefeed-api",
+      "owner": "felipemacedo1",
+      "description": "Real-time price feed service providing cryptocurrency and commodity market data streams",
+      "language": "Shell",
+      "url": "https://github.com/felipemacedo1/go-pricefeed-api",
+      "updated_at": "2025-11-09T04:42:40Z"
+    },
+    {
+      "name": "go-service-gpt",
+      "owner": "felipemacedo1",
+      "description": "OpenAI GPT integration service validating authentication and providing intelligent responses",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/go-service-gpt",
+      "updated_at": "2025-10-26T19:26:43Z"
+    },
+    {
+      "name": "guiadevbrasil",
+      "owner": "felipemacedo1",
+      "description": "Comprehensive guide with extensive content covering multiple technology career paths and learning resources",
+      "language": "Shell",
+      "url": "https://github.com/felipemacedo1/guiadevbrasil",
+      "updated_at": "2025-10-26T19:26:54Z"
+    },
+    {
+      "name": "hacka-llama-go",
+      "owner": "felipemacedo1",
+      "description": "Hackathon project integrating Llama AI models with Go backend for intelligent processing",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/hacka-llama-go",
+      "updated_at": "2025-10-26T15:42:05Z"
+    },
+    {
+      "name": "hacka-llama-react",
+      "owner": "felipemacedo1",
+      "description": "Hackathon project with React frontend integrating Llama AI models for intelligent features",
+      "language": "TypeScript",
+      "url": "https://github.com/felipemacedo1/hacka-llama-react",
+      "updated_at": "2025-10-26T19:26:50Z"
+    },
+    {
+      "name": "hackathon-asapcard-pikachu",
+      "owner": "felipemacedo1",
+      "description": "Projeto de microsserviços desenvolvido durante o hackathon promovido pela Asapcard.",
+      "language": "Java",
+      "url": "https://github.com/felipemacedo1/hackathon-asapcard-pikachu",
+      "updated_at": "2024-02-05T04:16:39Z"
+    },
+    {
+      "name": "infrastructure-agent",
+      "owner": "felipemacedo1",
+      "description": "New Relic infrastructure agent for comprehensive system monitoring and data collection",
+      "url": "https://github.com/felipemacedo1/infrastructure-agent",
+      "updated_at": "2025-10-26T15:42:27Z"
+    },
+    {
+      "name": "jagex-launcher-linux-flatpak",
+      "owner": "felipemacedo1",
+      "description": "Play RuneScape with the Jagex Launcher - in Flatpak form!",
+      "url": "https://github.com/felipemacedo1/jagex-launcher-linux-flatpak",
+      "updated_at": "2025-01-13T17:11:39Z"
+    },
+    {
+      "name": "js-on-cvweb",
+      "owner": "felipemacedo1",
+      "description": "JavaScript runtime and execution environment for web-based applications with modern ES features",
+      "language": "TypeScript",
+      "url": "https://github.com/felipemacedo1/js-on-cvweb",
+      "updated_at": "2025-10-26T19:26:11Z"
+    },
+    {
+      "name": "ktar",
+      "owner": "felipemacedo1",
+      "description": "Modern Android SSH Terminal built with Jetpack Compose, real PTY integration and enhanced security.",
+      "language": "Kotlin",
+      "url": "https://github.com/felipemacedo1/ktar",
+      "updated_at": "2025-11-07T18:24:18Z"
+    },
+    {
+      "name": "newrelic-k8s-operator-v2",
+      "owner": "felipemacedo1",
+      "description": "Kubernetes operator for managing New Relic resources with advanced monitoring capabilities",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/newrelic-k8s-operator-v2",
+      "updated_at": "2025-10-26T19:26:45Z"
+    },
+    {
+      "name": "nextjs-caixa-preta",
+      "owner": "felipemacedo1",
+      "description": "Next.js project showcasing modern React patterns and server-side rendering capabilities",
+      "language": "TypeScript",
+      "url": "https://github.com/felipemacedo1/nextjs-caixa-preta",
+      "updated_at": "2025-10-26T19:26:13Z"
+    },
+    {
+      "name": "op-website-hugo",
+      "owner": "felipemacedo1",
+      "description": "Projeto do Site https://OsProgramadores.com",
+      "url": "https://github.com/felipemacedo1/op-website-hugo",
+      "updated_at": "2023-10-25T13:19:08Z"
+    },
+    {
+      "name": "playwright-web-scraper",
+      "owner": "felipemacedo1",
+      "description": "Web Scraping profissional com Playwright - Coleta, armazena e refina dados de qualquer site",
+      "language": "Python",
+      "url": "https://github.com/felipemacedo1/playwright-web-scraper",
+      "updated_at": "2025-11-12T00:42:43Z"
+    },
+    {
+      "name": "portal-vagas",
+      "owner": "felipemacedo1",
+      "description": "Job recruitment portal MVP with JWT authentication and job posting management system",
+      "language": "Java",
+      "url": "https://github.com/felipemacedo1/portal-vagas",
+      "updated_at": "2025-10-26T19:26:35Z"
+    },
+    {
+      "name": "portal-vagas-scraper",
+      "owner": "felipemacedo1",
+      "description": "Web scraper for job portal aggregating job listings from multiple sources",
+      "language": "Python",
+      "url": "https://github.com/felipemacedo1/portal-vagas-scraper",
+      "updated_at": "2025-10-26T19:26:37Z"
+    },
+    {
+      "name": "portal-vagas-wapp",
+      "owner": "felipemacedo1",
+      "description": "Job portal application built with TypeScript and modern web frameworks for recruiting",
+      "language": "TypeScript",
+      "url": "https://github.com/felipemacedo1/portal-vagas-wapp",
+      "updated_at": "2025-10-26T19:26:17Z"
+    },
+    {
+      "name": "project-template-pro",
+      "owner": "felipemacedo1",
+      "description": "Template open-source completo com padrões modernos de desenvolvimento, CI/CD e documentação.",
+      "language": "JavaScript",
+      "url": "https://github.com/felipemacedo1/project-template-pro",
+      "updated_at": "2025-10-26T05:30:02Z"
+    },
+    {
+      "name": "python-cotacoes-api",
+      "owner": "felipemacedo1",
+      "description": "Currency and exchange rates API providing real-time quotation data from multiple sources",
+      "language": "HTML",
+      "url": "https://github.com/felipemacedo1/python-cotacoes-api",
+      "updated_at": "2025-10-26T19:26:26Z"
+    },
+    {
+      "name": "rekognizevote-android",
+      "owner": "felipemacedo1",
+      "description": "Android voting application with facial recognition using AWS Rekognition for authentication",
+      "language": "Kotlin",
+      "url": "https://github.com/felipemacedo1/rekognizevote-android",
+      "updated_at": "2025-10-26T19:26:41Z"
+    },
+    {
+      "name": "rekognizevote-api",
+      "owner": "felipemacedo1",
+      "description": "Secure voting API with facial recognition using AWS Rekognition for identity verification",
+      "language": "Java",
+      "url": "https://github.com/felipemacedo1/rekognizevote-api",
+      "updated_at": "2025-10-26T19:26:39Z"
+    },
+    {
+      "name": "shell-metadata-sync",
+      "owner": "felipemacedo1",
+      "description": "Metadata synchronization tool for development environments with real-time updates and state management",
+      "language": "Go",
+      "url": "https://github.com/felipemacedo1/shell-metadata-sync",
+      "updated_at": "2025-11-14T01:40:49Z"
+    },
+    {
+      "name": "spring-mcd-wallet",
+      "owner": "felipemacedo1",
+      "description": "Educational cryptocurrency wallet supporting BIP-39 mnemonic, HD wallets and offline-first operation",
+      "language": "Java",
+      "url": "https://github.com/felipemacedo1/spring-mcd-wallet",
+      "updated_at": "2025-10-27T02:11:19Z"
+    }
+  ]
+}
