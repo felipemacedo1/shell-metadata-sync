@@ -3,6 +3,10 @@ name: Deploy to Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'dashboard/**'
+      - 'data/**'
+      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -22,13 +26,36 @@ jobs:
           cache: npm
           cache-dependency-path: dashboard/package-lock.json
       
-      - name: Install
-        run: cd dashboard && npm ci
+      - name: Copy data files to dashboard public
+        run: |
+          echo "📂 Checking data files..."
+          ls -lh data/
+          
+          echo "📦 Copying to dashboard/public/data..."
+          mkdir -p dashboard/public/data
+          cp -v data/*.json dashboard/public/data/
+          
+          echo "✅ Files copied:"
+          ls -lh dashboard/public/data/
       
-      - name: Build
-        run: cd dashboard && npm run build
+      - name: Install dependencies
+        working-directory: dashboard
+        run: npm ci
       
-      - name: Upload
+      - name: Build dashboard
+        working-directory: dashboard
+        run: npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: Verify build output
+        run: |
+          echo "📦 Build output:"
+          ls -lh dashboard/out/
+          echo "📊 Data in build:"
+          ls -lh dashboard/out/data/ || echo "⚠️ No data folder in out"
+      
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard/out
@@ -40,6 +67,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

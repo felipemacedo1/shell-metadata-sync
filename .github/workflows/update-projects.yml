@@ -49,3 +49,7 @@ jobs:
           git add data/projects.json
           git commit -m "chore: update repositories data ($REPOS_COUNT repos) [skip ci]"
           git push
+
+      - name: Copy data to dashboard
+        if: success()
+        run: bash scripts/copy-data-to-dashboard.sh || true

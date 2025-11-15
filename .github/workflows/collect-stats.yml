@@ -44,3 +44,7 @@ jobs:
           git add data/languages*.json
           git commit -m "chore: update language stats [skip ci]"
           git push
+
+      - name: Copy data to dashboard
+        if: success()
+        run: bash scripts/copy-data-to-dashboard.sh || true
