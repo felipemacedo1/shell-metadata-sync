@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { ExternalLink, Star, GitFork, AlertCircle, Search, Filter, Calendar } from 'lucide-react';
 import { Repository } from '@/lib/types';
+import { getRelativeTime } from '@/lib/utils/dates';
 
 interface RepositoryGridProps {
   repositories: Repository[];
@@ -59,19 +60,6 @@ export default function RepositoryGrid({ repositories }: RepositoryGridProps) {
 
     return sorted;
   }, [repositories, searchTerm, selectedLanguage, sortBy]);
-
-  const getRelativeTime = (date: string) => {
-    const now = new Date();
-    const updated = new Date(date);
-    const diffInDays = Math.floor((now.getTime() - updated.getTime()) / (1000 * 60 * 60 * 24));
-    
-    if (diffInDays === 0) return 'Today';
-    if (diffInDays === 1) return 'Yesterday';
-    if (diffInDays < 7) return `${diffInDays} days ago`;
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`;
-    if (diffInDays < 365) return `${Math.floor(diffInDays / 30)} months ago`;
-    return `${Math.floor(diffInDays / 365)} years ago`;
-  };
 
   return (
     <div className="space-y-6">
