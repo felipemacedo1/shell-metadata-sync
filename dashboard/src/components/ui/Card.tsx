@@ -10,9 +10,19 @@ interface CardProps {
 }
 
 export function Card({ children, className, hover = false, gradient = false, onClick }: CardProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <div
       onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       className={cn(
         'rounded-xl border border-slate-700 p-6 bg-slate-800/50 backdrop-blur-sm',
         hover && 'hover:border-slate-600 hover:scale-105 transition-all cursor-pointer',

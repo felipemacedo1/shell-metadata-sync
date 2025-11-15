@@ -184,7 +184,7 @@ export function calculateStreak(activityData: ActivityData | null): number {
   if (!activityData) return 0;
   
   let currentStreak = 0;
-  const sortedDates = Object.keys(activityData.daily_metrics).sort().reverse();
+  const sortedDates = Object.keys(activityData.daily_metrics).sort((a, b) => b.localeCompare(a));
   
   for (const date of sortedDates) {
     const metrics = activityData.daily_metrics[date];

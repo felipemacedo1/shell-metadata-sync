@@ -22,7 +22,7 @@ export default function RepositoryGrid({ repositories }: RepositoryGridProps) {
     repositories.forEach(repo => {
       if (repo.language) langs.add(repo.language);
     });
-    return Array.from(langs).sort();
+    return Array.from(langs).sort((a, b) => a.localeCompare(b));
   }, [repositories]);
 
   // Filter and sort repositories
