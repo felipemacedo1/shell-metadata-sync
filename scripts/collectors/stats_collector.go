@@ -62,7 +62,8 @@ func fetchReposWithOrg(ctx context.Context, client *http.Client, user, org, toke
 		defer resp.Body.Close()
 
 		if resp.StatusCode != http.StatusOK {
-			return repos, nil
+			body, _ := io.ReadAll(resp.Body)
+			return repos, fmt.Errorf("GitHub API error: status=%d body=%s", resp.StatusCode, string(body))
 		}
 
 		var raw []struct {
