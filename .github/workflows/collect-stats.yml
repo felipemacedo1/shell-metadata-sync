@@ -24,12 +24,12 @@ jobs:
       - name: Collect primary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./bin/stats_collector -user=felipemacedo1 -output=data/languages.json
+        run: ./bin/stats_collector -user=felipemacedo1 -out=data/languages.json
 
       - name: Collect secondary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./bin/stats_collector -user=growthfolio -output=data/languages-secondary.json || true
+        run: ./bin/stats_collector -org=growthfolio -out=data/languages-secondary.json || true
 
       - name: Commit
         run: |

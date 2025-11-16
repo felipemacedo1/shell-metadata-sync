@@ -1,45 +1,65 @@
 {
   "metadata": {
-    "user": "growthfolio",
-    "generated_at": "2025-11-16T13:12:52Z"
+    "user": "felipemacedo1",
+    "generated_at": "2025-11-16T17:36:18Z"
   },
   "languages": {
-    "C": {
-      "bytes": 53595,
-      "repos": 1,
-      "percentage": 41.07777914035196
-    },
-    "C++": {
-      "bytes": 15137,
-      "repos": 1,
-      "percentage": 11.601722975044455
+    "CSS": {
+      "bytes": 89166,
+      "repos": 4,
+      "percentage": 11.45293195109326
     },
     "Dockerfile": {
-      "bytes": 750,
-      "repos": 1,
-      "percentage": 0.5748359801336685
+      "bytes": 1813,
+      "repos": 3,
+      "percentage": 0.2328708883131696
     },
     "Go": {
-      "bytes": 14761,
+      "bytes": 15041,
       "repos": 1,
-      "percentage": 11.313538537004108
+      "percentage": 1.9319421021061136
     },
-    "Makefile": {
-      "bytes": 9750,
-      "repos": 2,
-      "percentage": 7.472867741737691
+    "HTML": {
+      "bytes": 141662,
+      "repos": 4,
+      "percentage": 18.19578366255942
+    },
+    "Java": {
+      "bytes": 181009,
+      "repos": 7,
+      "percentage": 23.249711319734427
+    },
+    "JavaScript": {
+      "bytes": 72112,
+      "repos": 5,
+      "percentage": 9.262429949277047
+    },
+    "Portugol": {
+      "bytes": 1290,
+      "repos": 1,
+      "percentage": 0.1656941235101979
+    },
+    "Procfile": {
+      "bytes": 31,
+      "repos": 1,
+      "percentage": 0.003981796766524135
     },
     "Shell": {
-      "bytes": 36479,
+      "bytes": 148512,
+      "repos": 12,
+      "percentage": 19.07563230290427
+    },
+    "TypeScript": {
+      "bytes": 127907,
       "repos": 3,
-      "percentage": 27.959255625728126
+      "percentage": 16.42902190373557
     }
   },
   "top_languages": [
-    "C",
+    "Java",
     "Shell",
-    "C++",
-    "Go",
-    "Makefile"
+    "HTML",
+    "TypeScript",
+    "CSS"
   ]
 }

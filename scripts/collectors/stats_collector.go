@@ -29,11 +29,22 @@ type LanguagesOutput struct {
 }
 
 func fetchRepos(ctx context.Context, client *http.Client, user, token string) ([]string, error) {
+	return fetchReposWithOrg(ctx, client, user, "", token)
+}
+
+func fetchReposWithOrg(ctx context.Context, client *http.Client, user, org, token string) ([]string, error) {
 	var repos []string
 	page := 1
 
+	var baseURL string
+	if org != "" {
+		baseURL = fmt.Sprintf("https://api.github.com/orgs/%s/repos", org)
+	} else {
+		baseURL = fmt.Sprintf("https://api.github.com/users/%s/repos", user)
+	}
+
 	for {
-		url := fmt.Sprintf("https://api.github.com/users/%s/repos?per_page=100&page=%d", user, page)
+		url := fmt.Sprintf("%s?per_page=100&page=%d", baseURL, page)
 		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 		if err != nil {
 			return nil, err
@@ -127,16 +138,25 @@ func saveJSON(path string, v interface{}) error {
 	return os.Rename(tmp, path)
 }
 
+func getToken() string {
+	if token := os.Getenv("GH_TOKEN"); token != "" {
+		return token
+	}
+	return os.Getenv("GITHUB_TOKEN")
+}
+
 func main() {
 	var (
 		username string
+		org      string
 		token    string
 		outFile  string
 		mongoURI string
 	)
 
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
-	flag.StringVar(&token, "token", os.Getenv("GH_TOKEN"), "GitHub token (or set GH_TOKEN env)")
+	flag.StringVar(&org, "org", "", "GitHub organization (optional)")
+	flag.StringVar(&token, "token", getToken(), "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/languages.json", "output JSON file")
 	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
 	flag.Parse()
@@ -144,10 +164,14 @@ func main() {
 	ctx := context.Background()
 	client := &http.Client{Timeout: 30 * time.Second}
 
-	log.Printf("📡 Collecting language stats for: %s", username)
+	if org != "" {
+		log.Printf("📡 Collecting language stats for organization: %s", org)
+	} else {
+		log.Printf("📡 Collecting language stats for: %s", username)
+	}
 
 	// Buscar lista de repos
-	repos, err := fetchRepos(ctx, client, username, token)
+	repos, err := fetchReposWithOrg(ctx, client, username, org, token)
 	if err != nil {
 		log.Fatalf("❌ Error fetching repos: %v", err)
 	}
