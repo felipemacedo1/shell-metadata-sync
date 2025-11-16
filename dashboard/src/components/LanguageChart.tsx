@@ -70,28 +70,35 @@ export default function LanguageChart({ languages }: LanguageChartProps) {
         <h2 className="text-2xl font-bold text-white">Language Distribution</h2>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <PieChart>
-          <Pie
-            data={chartData}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            outerRadius={100}
-            innerRadius={60}
-            fill="#8884d8"
-            dataKey="value"
-            animationBegin={0}
-            animationDuration={800}
-          >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip content={<CustomTooltip />} />
-          <Legend content={<CustomLegend />} />
-        </PieChart>
-      </ResponsiveContainer>
+      {/* Pie Chart Container with proper spacing */}
+      <div className="mb-6">
+        <ResponsiveContainer width="100%" height={280}>
+          <PieChart>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="45%"
+              labelLine={false}
+              outerRadius={80}
+              innerRadius={50}
+              fill="#8884d8"
+              dataKey="value"
+              animationBegin={0}
+              animationDuration={800}
+            >
+              {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+            <Legend 
+              content={<CustomLegend />}
+              verticalAlign="bottom"
+              height={80}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
 
       {/* Language Bars */}
       <div className="mt-6 space-y-3">
