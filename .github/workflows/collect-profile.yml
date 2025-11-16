@@ -52,6 +52,3 @@ jobs:
           git commit -m "chore: update user profile ($FOLLOWERS followers) [skip ci]"
           git push
 
-      - name: Copy data to dashboard
-        if: success()
-        run: bash scripts/copy-data-to-dashboard.sh || true

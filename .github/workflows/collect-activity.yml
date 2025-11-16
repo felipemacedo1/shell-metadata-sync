@@ -49,6 +49,3 @@ jobs:
           git commit -m "chore: sync data [skip ci]"
           git push
 
-      - name: Copy data to dashboard
-        if: success()
-        run: bash scripts/copy-data-to-dashboard.sh || true
