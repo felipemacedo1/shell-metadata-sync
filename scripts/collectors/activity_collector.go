@@ -76,6 +76,26 @@ func searchCommits(ctx context.Context, client *http.Client, username, token, st
 }
 
 func searchCommitsWithOrg(ctx context.Context, client *http.Client, username, org, token, startDate, endDate string) (map[string]int, error) {
+	start, err := time.Parse("2006-01-02", startDate)
+	if err != nil {
+		return nil, err
+	}
+	end, err := time.Parse("2006-01-02", endDate)
+	if err != nil {
+		return nil, err
+	}
+
+	// Se o período for maior que 90 dias, quebrar em chunks mensais
+	daysDiff := int(end.Sub(start).Hours() / 24)
+	if daysDiff > 90 {
+		log.Printf("   📅 Period > 90 days, splitting into monthly chunks...")
+		return searchCommitsInChunks(ctx, client, username, org, token, start, end)
+	}
+
+	return searchCommitsSinglePeriod(ctx, client, username, org, token, startDate, endDate)
+}
+
+func searchCommitsSinglePeriod(ctx context.Context, client *http.Client, username, org, token, startDate, endDate string) (map[string]int, error) {
 	commits := make(map[string]int)
 	page := 1
 	perPage := 100
@@ -133,6 +153,46 @@ func searchCommitsWithOrg(ctx context.Context, client *http.Client, username, or
 	}
 
 	return commits, nil
+}
+
+func searchCommitsInChunks(ctx context.Context, client *http.Client, username, org, token string, start, end time.Time) (map[string]int, error) {
+	allCommits := make(map[string]int)
+	
+	// Processar mês por mês
+	current := start
+	monthCount := 0
+	
+	for current.Before(end) {
+		// Fim do chunk: 30 dias ou fim do período
+		chunkEnd := current.AddDate(0, 0, 30)
+		if chunkEnd.After(end) {
+			chunkEnd = end
+		}
+		
+		monthCount++
+		startStr := current.Format("2006-01-02")
+		endStr := chunkEnd.Format("2006-01-02")
+		
+		log.Printf("   📦 Chunk %d: %s to %s", monthCount, startStr, endStr)
+		
+		commits, err := searchCommitsSinglePeriod(ctx, client, username, org, token, startStr, endStr)
+		if err != nil {
+			return nil, fmt.Errorf("error in chunk %d: %w", monthCount, err)
+		}
+		
+		// Merge commits
+		for date, count := range commits {
+			allCommits[date] += count
+		}
+		
+		log.Printf("   ✓ Chunk %d: +%d days with commits (total: %d days)", monthCount, len(commits), len(allCommits))
+		
+		current = chunkEnd.AddDate(0, 0, 1)
+		time.Sleep(500 * time.Millisecond) // Rate limiting between chunks
+	}
+	
+	log.Printf("   ✅ Aggregated %d chunks, total: %d days with commits", monthCount, len(allCommits))
+	return allCommits, nil
 }
 
 func searchPRs(ctx context.Context, client *http.Client, username, token, startDate, endDate string) (map[string]int, error) {
