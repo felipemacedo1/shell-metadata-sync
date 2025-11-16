@@ -284,6 +284,13 @@ func saveJSON(path string, v interface{}) error {
 	return os.Rename(tmp, path)
 }
 
+func getToken() string {
+	if token := os.Getenv("GH_TOKEN"); token != "" {
+		return token
+	}
+	return os.Getenv("GITHUB_TOKEN")
+}
+
 func main() {
 	var (
 		username string
@@ -296,7 +303,7 @@ func main() {
 
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
 	flag.StringVar(&org, "org", "", "GitHub organization (optional - if set, searches commits by user in org repos)")
-	flag.StringVar(&token, "token", os.Getenv("GH_TOKEN"), "GitHub token (or set GH_TOKEN env)")
+	flag.StringVar(&token, "token", getToken(), "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/activity-daily.json", "output JSON file")
 	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
 	flag.IntVar(&days, "days", 365, "number of days to fetch (default 365)")
