@@ -1,12 +1,24 @@
 import { ProfileData, ActivityData, LanguageData, Repository } from '@/lib/types';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/shell-metadata-sync' : '';
 
 async function fetchStaticData<T>(filename: string): Promise<T | null> {
   try {
+    // During build time, read from file system
+    if (typeof window === 'undefined' && process.env.NODE_ENV === 'production') {
+      const filePath = join(process.cwd(), 'public', 'data', `${filename}.json`);
+      const fileContents = readFileSync(filePath, 'utf8');
+      const data = JSON.parse(fileContents);
+      console.log(`✅ Loaded ${filename} from filesystem`);
+      return data;
+    }
+    
+    // In browser, fetch normally
     const url = `${basePath}/data/${filename}.json`;
     const response = await fetch(url, { 
-      cache: 'no-store',
+      cache: 'force-cache',
       headers: { 'Content-Type': 'application/json' }
     });
     
