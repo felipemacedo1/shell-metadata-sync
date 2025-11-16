@@ -439,16 +439,32 @@ func main() {
 	output.Metadata.GeneratedAt = time.Now().UTC().Format(time.RFC3339)
 	output.DailyMetrics = dailyMetrics
 
-	// Salvar JSON
-	if err := os.MkdirAll(filepath.Dir(outFile), 0o755); err != nil {
-		log.Fatalf("❌ Error creating output dir: %v", err)
+	// Salvar JSON em múltiplos locais
+	// Determinar paths baseado no output file
+	var paths []string
+	if outFile == "data/activity-daily.json" || outFile == "data/activity-daily-secondary.json" {
+		// Usar paths padrão (data/ e dashboard/public/data/)
+		filename := filepath.Base(outFile)
+		paths = storage.GetDefaultPaths(filename)
+	} else {
+		// Path customizado - salvar apenas no especificado
+		paths = []string{outFile}
+		// Criar diretório se necessário
+		if err := os.MkdirAll(filepath.Dir(outFile), 0o755); err != nil {
+			log.Fatalf("❌ Error creating output dir: %v", err)
+		}
 	}
 
-	if err := saveJSON(outFile, output); err != nil {
-		log.Fatalf("❌ Error saving JSON: %v", err)
+	// Salvar em todos os paths
+	for _, path := range paths {
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			log.Fatalf("❌ Error creating dir for %s: %v", path, err)
+		}
+		if err := saveJSON(path, output); err != nil {
+			log.Fatalf("❌ Error saving to %s: %v", path, err)
+		}
+		log.Printf("✓ Saved activity to: %s", path)
 	}
-
-	log.Printf("✓ Saved activity to: %s", outFile)
 
 	// Upsert no MongoDB (se configurado)
 	if mongoURI != "" {

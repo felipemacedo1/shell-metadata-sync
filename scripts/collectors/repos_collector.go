@@ -252,27 +252,44 @@ func main() {
 	})
 
 	// Salvar projects.json
-	if err := os.MkdirAll(filepath.Dir(outFile), 0o755); err != nil {
-		log.Fatalf("❌ Error creating output dir: %v", err)
+	// Salvar repos JSON em múltiplos locais
+	var repoPaths []string
+	if outFile == "data/projects.json" {
+		repoPaths = storage.GetDefaultPaths("projects.json")
+	} else {
+		repoPaths = []string{outFile}
 	}
 
-	if err := saveJSON(outFile, allRepos); err != nil {
-		log.Fatalf("❌ Error saving JSON: %v", err)
+	for _, path := range repoPaths {
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			log.Fatalf("❌ Error creating dir for %s: %v", path, err)
+		}
+		if err := saveJSON(path, allRepos); err != nil {
+			log.Fatalf("❌ Error saving to %s: %v", path, err)
+		}
+		log.Printf("✓ Saved %d repositories to: %s", len(allRepos), path)
 	}
 
-	log.Printf("✓ Saved %d repositories to: %s", len(allRepos), outFile)
-
-	// Salvar metadata.json
+	// Salvar metadata.json em múltiplos locais
 	metadata := MetadataOutput{
 		Version: "2.0.0",
 	}
 	metadata.LastSync.Repos = time.Now().UTC().Format(time.RFC3339)
 	metadata.DataCoverage.ReposCount = len(allRepos)
 
-	if err := saveJSON(metaFile, metadata); err != nil {
-		log.Printf("⚠️  Warning saving metadata: %v", err)
+	var metaPaths []string
+	if metaFile == "data/metadata.json" {
+		metaPaths = storage.GetDefaultPaths("metadata.json")
 	} else {
-		log.Printf("✓ Saved metadata to: %s", metaFile)
+		metaPaths = []string{metaFile}
+	}
+
+	for _, path := range metaPaths {
+		if err := saveJSON(path, metadata); err != nil {
+			log.Printf("⚠️  Warning saving metadata to %s: %v", path, err)
+		} else {
+			log.Printf("✓ Saved metadata to: %s", path)
+		}
 	}
 
 	// Upsert no MongoDB (se configurado)

@@ -246,16 +246,24 @@ func main() {
 	output.Languages = languagesOutput
 	output.TopLanguages = topLangNames
 
-	// Salvar JSON
-	if err := os.MkdirAll(filepath.Dir(outFile), 0o755); err != nil {
-		log.Fatalf("❌ Error creating output dir: %v", err)
+	// Salvar JSON em múltiplos locais
+	var paths []string
+	if outFile == "data/languages.json" || outFile == "data/languages-secondary.json" {
+		filename := filepath.Base(outFile)
+		paths = storage.GetDefaultPaths(filename)
+	} else {
+		paths = []string{outFile}
 	}
 
-	if err := saveJSON(outFile, output); err != nil {
-		log.Fatalf("❌ Error saving JSON: %v", err)
+	for _, path := range paths {
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			log.Fatalf("❌ Error creating dir for %s: %v", path, err)
+		}
+		if err := saveJSON(path, output); err != nil {
+			log.Fatalf("❌ Error saving to %s: %v", path, err)
+		}
+		log.Printf("✓ Saved languages to: %s", path)
 	}
-
-	log.Printf("✓ Saved languages to: %s", outFile)
 
 	// MongoDB update (enriquecer repositories collection)
 	if mongoURI != "" {

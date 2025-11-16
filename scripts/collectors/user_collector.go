@@ -191,16 +191,24 @@ func main() {
 		GeneratedAt:         time.Now().UTC().Format(time.RFC3339),
 	}
 
-	// Salvar JSON estático
-	if err := os.MkdirAll(filepath.Dir(outFile), 0o755); err != nil {
-		log.Fatalf("❌ Error creating output dir: %v", err)
+	// Salvar JSON em múltiplos locais
+	var paths []string
+	if outFile == "data/profile.json" || outFile == "data/profile-secondary.json" {
+		filename := filepath.Base(outFile)
+		paths = storage.GetDefaultPaths(filename)
+	} else {
+		paths = []string{outFile}
 	}
 
-	if err := saveJSON(outFile, profileData); err != nil {
-		log.Fatalf("❌ Error saving JSON: %v", err)
+	for _, path := range paths {
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			log.Fatalf("❌ Error creating dir for %s: %v", path, err)
+		}
+		if err := saveJSON(path, profileData); err != nil {
+			log.Fatalf("❌ Error saving to %s: %v", path, err)
+		}
+		log.Printf("✓ Saved profile to: %s", path)
 	}
-
-	log.Printf("✓ Saved profile to: %s", outFile)
 
 	// Upsert no MongoDB (se configurado)
 	if mongoURI != "" {
