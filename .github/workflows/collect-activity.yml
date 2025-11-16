@@ -33,7 +33,7 @@ jobs:
         run: |
           DAYS="${{ github.event.inputs.days || '365' }}"
           ./bin/activity_collector -user=felipemacedo1 -days=$DAYS
-          ./bin/activity_collector -user=growthfolio -days=$DAYS -out=data/activity-daily-secondary.json || true
+          ./bin/activity_collector -user=felipemacedo1 -org=growthfolio -days=$DAYS -out=data/activity-daily-secondary.json || true
 
       - name: Commit
         run: |
