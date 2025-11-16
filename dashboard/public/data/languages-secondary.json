@@ -1,100 +1,45 @@
 {
   "metadata": {
     "user": "growthfolio",
-    "generated_at": "2025-11-15T03:31:05Z"
+    "generated_at": "2025-11-16T13:12:52Z"
   },
   "languages": {
     "C": {
-      "bytes": 98400,
-      "repos": 4,
-      "percentage": 2.23262196491607
+      "bytes": 53595,
+      "repos": 1,
+      "percentage": 41.07777914035196
     },
     "C++": {
       "bytes": 15137,
       "repos": 1,
-      "percentage": 0.3434471410867333
-    },
-    "CMake": {
-      "bytes": 216,
-      "repos": 1,
-      "percentage": 0.004900877483962105
-    },
-    "CSS": {
-      "bytes": 157236,
-      "repos": 13,
-      "percentage": 3.5675665373530814
+      "percentage": 11.601722975044455
     },
     "Dockerfile": {
-      "bytes": 4455,
-      "repos": 7,
-      "percentage": 0.1010805981067184
+      "bytes": 750,
+      "repos": 1,
+      "percentage": 0.5748359801336685
     },
     "Go": {
-      "bytes": 680427,
-      "repos": 6,
-      "percentage": 15.438376684166128
-    },
-    "HTML": {
-      "bytes": 401266,
-      "repos": 11,
-      "percentage": 9.104423631849713
-    },
-    "Java": {
-      "bytes": 1032305,
-      "repos": 12,
-      "percentage": 23.42222375500695
-    },
-    "JavaScript": {
-      "bytes": 102575,
-      "repos": 14,
-      "percentage": 2.3273495736917265
+      "bytes": 14761,
+      "repos": 1,
+      "percentage": 11.313538537004108
     },
     "Makefile": {
-      "bytes": 28541,
-      "repos": 4,
-      "percentage": 0.647573816063715
-    },
-    "Nix": {
-      "bytes": 922,
-      "repos": 1,
-      "percentage": 0.020919486297282693
-    },
-    "Portugol": {
-      "bytes": 1290,
-      "repos": 1,
-      "percentage": 0.029269129418107016
-    },
-    "Procfile": {
-      "bytes": 31,
-      "repos": 1,
-      "percentage": 0.0007033666759390058
-    },
-    "Python": {
-      "bytes": 26647,
-      "repos": 3,
-      "percentage": 0.6046003810886029
+      "bytes": 9750,
+      "repos": 2,
+      "percentage": 7.472867741737691
     },
     "Shell": {
-      "bytes": 639768,
-      "repos": 40,
-      "percentage": 14.515854565553093
-    },
-    "Solidity": {
-      "bytes": 5194,
-      "repos": 1,
-      "percentage": 0.11784795209119989
-    },
-    "TypeScript": {
-      "bytes": 1212964,
-      "repos": 10,
-      "percentage": 27.521240539150977
+      "bytes": 36479,
+      "repos": 3,
+      "percentage": 27.959255625728126
     }
   },
   "top_languages": [
-    "TypeScript",
-    "Java",
-    "Go",
+    "C",
     "Shell",
-    "HTML"
+    "C++",
+    "Go",
+    "Makefile"
   ]
 }

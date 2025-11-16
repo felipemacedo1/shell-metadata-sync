@@ -1,19 +1,14 @@
 {
   "metadata": {
-    "user": "growthfolio",
+    "user": "felipemacedo1",
     "period": "rolling_365_days",
-    "start_date": "2025-08-17",
-    "end_date": "2025-11-15",
-    "generated_at": "2025-11-15T03:31:10Z"
+    "start_date": "2025-08-18",
+    "end_date": "2025-11-16",
+    "generated_at": "2025-11-16T13:19:45Z"
   },
   "daily_metrics": {
-    "2025-08-17": {
-      "commits": 0,
-      "prs": 0,
-      "issues": 0
-    },
     "2025-08-18": {
-      "commits": 0,
+      "commits": 5,
       "prs": 0,
       "issues": 0
     },
@@ -88,22 +83,22 @@
       "issues": 0
     },
     "2025-09-02": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
     "2025-09-03": {
-      "commits": 0,
+      "commits": 2,
       "prs": 0,
       "issues": 0
     },
     "2025-09-04": {
-      "commits": 0,
+      "commits": 4,
       "prs": 0,
       "issues": 0
     },
     "2025-09-05": {
-      "commits": 0,
+      "commits": 7,
       "prs": 0,
       "issues": 0
     },
@@ -118,22 +113,22 @@
       "issues": 0
     },
     "2025-09-08": {
-      "commits": 0,
+      "commits": 5,
       "prs": 0,
       "issues": 0
     },
     "2025-09-09": {
-      "commits": 0,
+      "commits": 3,
       "prs": 0,
       "issues": 0
     },
     "2025-09-10": {
-      "commits": 0,
+      "commits": 6,
       "prs": 0,
       "issues": 0
     },
     "2025-09-11": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
@@ -208,7 +203,7 @@
       "issues": 0
     },
     "2025-09-26": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
@@ -248,7 +243,7 @@
       "issues": 0
     },
     "2025-10-04": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
@@ -323,22 +318,22 @@
       "issues": 0
     },
     "2025-10-19": {
-      "commits": 0,
+      "commits": 3,
       "prs": 0,
       "issues": 0
     },
     "2025-10-20": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
     "2025-10-21": {
-      "commits": 0,
+      "commits": 5,
       "prs": 0,
       "issues": 0
     },
     "2025-10-22": {
-      "commits": 0,
+      "commits": 3,
       "prs": 0,
       "issues": 0
     },
@@ -358,17 +353,17 @@
       "issues": 0
     },
     "2025-10-26": {
-      "commits": 0,
+      "commits": 39,
       "prs": 0,
       "issues": 0
     },
     "2025-10-27": {
-      "commits": 0,
+      "commits": 2,
       "prs": 0,
       "issues": 0
     },
     "2025-10-28": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
@@ -418,7 +413,7 @@
       "issues": 0
     },
     "2025-11-07": {
-      "commits": 0,
+      "commits": 1,
       "prs": 0,
       "issues": 0
     },
@@ -433,7 +428,7 @@
       "issues": 0
     },
     "2025-11-10": {
-      "commits": 0,
+      "commits": 2,
       "prs": 0,
       "issues": 0
     },
@@ -458,6 +453,11 @@
       "issues": 0
     },
     "2025-11-15": {
+      "commits": 0,
+      "prs": 0,
+      "issues": 0
+    },
+    "2025-11-16": {
       "commits": 0,
       "prs": 0,
       "issues": 0

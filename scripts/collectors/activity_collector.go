@@ -72,11 +72,20 @@ type ActivityOutput struct {
 }
 
 func searchCommits(ctx context.Context, client *http.Client, username, token, startDate, endDate string) (map[string]int, error) {
+	return searchCommitsWithOrg(ctx, client, username, "", token, startDate, endDate)
+}
+
+func searchCommitsWithOrg(ctx context.Context, client *http.Client, username, org, token, startDate, endDate string) (map[string]int, error) {
 	commits := make(map[string]int)
 	page := 1
 	perPage := 100
 
-	query := fmt.Sprintf("author:%s committer-date:%s..%s", username, startDate, endDate)
+	var query string
+	if org != "" {
+		query = fmt.Sprintf("author:%s org:%s committer-date:%s..%s", username, org, startDate, endDate)
+	} else {
+		query = fmt.Sprintf("author:%s committer-date:%s..%s", username, startDate, endDate)
+	}
 	
 	for {
 		urlStr := fmt.Sprintf("https://api.github.com/search/commits?q=%s&per_page=%d&page=%d",
@@ -127,11 +136,20 @@ func searchCommits(ctx context.Context, client *http.Client, username, token, st
 }
 
 func searchPRs(ctx context.Context, client *http.Client, username, token, startDate, endDate string) (map[string]int, error) {
+	return searchPRsWithOrg(ctx, client, username, "", token, startDate, endDate)
+}
+
+func searchPRsWithOrg(ctx context.Context, client *http.Client, username, org, token, startDate, endDate string) (map[string]int, error) {
 	prs := make(map[string]int)
 	page := 1
 	perPage := 100
 
-	query := fmt.Sprintf("author:%s type:pr created:%s..%s", username, startDate, endDate)
+	var query string
+	if org != "" {
+		query = fmt.Sprintf("author:%s org:%s type:pr created:%s..%s", username, org, startDate, endDate)
+	} else {
+		query = fmt.Sprintf("author:%s type:pr created:%s..%s", username, startDate, endDate)
+	}
 	
 	for {
 		urlStr := fmt.Sprintf("https://api.github.com/search/issues?q=%s&per_page=%d&page=%d",
@@ -182,11 +200,20 @@ func searchPRs(ctx context.Context, client *http.Client, username, token, startD
 }
 
 func searchIssues(ctx context.Context, client *http.Client, username, token, startDate, endDate string) (map[string]int, error) {
+	return searchIssuesWithOrg(ctx, client, username, "", token, startDate, endDate)
+}
+
+func searchIssuesWithOrg(ctx context.Context, client *http.Client, username, org, token, startDate, endDate string) (map[string]int, error) {
 	issues := make(map[string]int)
 	page := 1
 	perPage := 100
 
-	query := fmt.Sprintf("author:%s type:issue created:%s..%s", username, startDate, endDate)
+	var query string
+	if org != "" {
+		query = fmt.Sprintf("author:%s org:%s type:issue created:%s..%s", username, org, startDate, endDate)
+	} else {
+		query = fmt.Sprintf("author:%s type:issue created:%s..%s", username, startDate, endDate)
+	}
 	
 	for {
 		urlStr := fmt.Sprintf("https://api.github.com/search/issues?q=%s&per_page=%d&page=%d",
@@ -260,6 +287,7 @@ func saveJSON(path string, v interface{}) error {
 func main() {
 	var (
 		username string
+		org      string
 		token    string
 		outFile  string
 		mongoURI string
@@ -267,6 +295,7 @@ func main() {
 	)
 
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
+	flag.StringVar(&org, "org", "", "GitHub organization (optional - if set, searches commits by user in org repos)")
 	flag.StringVar(&token, "token", os.Getenv("GH_TOKEN"), "GitHub token (or set GH_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/activity-daily.json", "output JSON file")
 	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
@@ -282,12 +311,16 @@ func main() {
 	startStr := startDate.Format("2006-01-02")
 	endStr := endDate.Format("2006-01-02")
 
-	log.Printf("📡 Collecting activity for: %s", username)
+	if org != "" {
+		log.Printf("📡 Collecting activity for: %s in organization %s", username, org)
+	} else {
+		log.Printf("📡 Collecting activity for: %s", username)
+	}
 	log.Printf("   Period: %s to %s (%d days)", startStr, endStr, days)
 
 	// Buscar commits
 	log.Printf("🔍 Searching commits...")
-	commits, err := searchCommits(ctx, client, username, token, startStr, endStr)
+	commits, err := searchCommitsWithOrg(ctx, client, username, org, token, startStr, endStr)
 	if err != nil {
 		log.Fatalf("❌ Error searching commits: %v", err)
 	}
@@ -295,7 +328,7 @@ func main() {
 
 	// Buscar PRs
 	log.Printf("🔍 Searching pull requests...")
-	prs, err := searchPRs(ctx, client, username, token, startStr, endStr)
+	prs, err := searchPRsWithOrg(ctx, client, username, org, token, startStr, endStr)
 	if err != nil {
 		log.Fatalf("❌ Error searching PRs: %v", err)
 	}
@@ -303,7 +336,7 @@ func main() {
 
 	// Buscar issues
 	log.Printf("🔍 Searching issues...")
-	issues, err := searchIssues(ctx, client, username, token, startStr, endStr)
+	issues, err := searchIssuesWithOrg(ctx, client, username, org, token, startStr, endStr)
 	if err != nil {
 		log.Fatalf("❌ Error searching issues: %v", err)
 	}
