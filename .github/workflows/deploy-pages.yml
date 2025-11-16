@@ -54,11 +54,9 @@ jobs:
           ls -lh dashboard/out/
           echo "📊 Data in build:"
           ls -lh dashboard/out/data/ || echo "⚠️ No data folder in out"
-      
-      - name: Remove custom domain CNAME
-        run: |
-          rm -f dashboard/out/CNAME
-          echo "✅ Removed CNAME file if it existed"
+          if [ -f dashboard/out/CNAME ]; then
+            echo "🔗 CNAME configured for: $(cat dashboard/out/CNAME)"
+          fi
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
