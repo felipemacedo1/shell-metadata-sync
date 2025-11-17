@@ -1,105 +1,100 @@
 {
   "metadata": {
     "user": "felipemacedo1",
-    "generated_at": "2025-11-16T18:02:55Z"
+    "generated_at": "2025-11-17T01:44:12Z"
   },
   "languages": {
-    "Assembly": {
-      "bytes": 2098461,
-      "repos": 1,
-      "percentage": 30.300240023946078
-    },
     "C": {
-      "bytes": 145915,
-      "repos": 5,
-      "percentage": 2.1069057385837016
+      "bytes": 98400,
+      "repos": 4,
+      "percentage": 2.23262196491607
     },
     "C++": {
       "bytes": 15137,
       "repos": 1,
-      "percentage": 0.21856719435932895
+      "percentage": 0.3434471410867333
     },
     "CMake": {
       "bytes": 216,
       "repos": 1,
-      "percentage": 0.00311888181156207
+      "percentage": 0.004900877483962105
     },
     "CSS": {
       "bytes": 157236,
       "repos": 13,
-      "percentage": 2.2703726876054335
+      "percentage": 3.5675665373530814
     },
     "Dockerfile": {
-      "bytes": 5060,
-      "repos": 8,
-      "percentage": 0.07306269428937072
+      "bytes": 4455,
+      "repos": 7,
+      "percentage": 0.1010805981067184
     },
     "Go": {
-      "bytes": 725098,
-      "repos": 8,
-      "percentage": 10.469884091666824
+      "bytes": 680427,
+      "repos": 6,
+      "percentage": 15.438376684166128
     },
     "HTML": {
-      "bytes": 401330,
-      "repos": 12,
-      "percentage": 5.794911284417619
+      "bytes": 401266,
+      "repos": 11,
+      "percentage": 9.104423631849713
     },
     "Java": {
-      "bytes": 1356979,
-      "repos": 14,
-      "percentage": 19.593782971165215
+      "bytes": 1032305,
+      "repos": 12,
+      "percentage": 23.42222375500695
     },
     "JavaScript": {
       "bytes": 102575,
       "repos": 14,
-      "percentage": 1.4811078788008305
+      "percentage": 2.3273495736917265
     },
     "Makefile": {
-      "bytes": 28975,
-      "repos": 5,
-      "percentage": 0.4183777800463471
+      "bytes": 28541,
+      "repos": 4,
+      "percentage": 0.647573816063715
     },
     "Nix": {
       "bytes": 922,
       "repos": 1,
-      "percentage": 0.013313004769723281
+      "percentage": 0.020919486297282693
     },
     "Portugol": {
       "bytes": 1290,
       "repos": 1,
-      "percentage": 0.0186266552634957
+      "percentage": 0.029269129418107016
     },
     "Procfile": {
       "bytes": 31,
       "repos": 1,
-      "percentage": 0.00044761729702974155
+      "percentage": 0.0007033666759390058
     },
     "Python": {
       "bytes": 26647,
       "repos": 3,
-      "percentage": 0.3847631649661782
+      "percentage": 0.6046003810886029
     },
     "Shell": {
-      "bytes": 641529,
-      "repos": 41,
-      "percentage": 9.263208933748164
+      "bytes": 639768,
+      "repos": 40,
+      "percentage": 14.515854565553093
     },
     "Solidity": {
       "bytes": 5194,
       "repos": 1,
-      "percentage": 0.0749975561539509
+      "percentage": 0.11784795209119989
     },
     "TypeScript": {
       "bytes": 1212964,
       "repos": 10,
-      "percentage": 17.51431184110914
+      "percentage": 27.521240539150977
     }
   },
   "top_languages": [
-    "Assembly",
-    "Java",
     "TypeScript",
+    "Java",
     "Go",
-    "Shell"
+    "Shell",
+    "HTML"
   ]
 }
