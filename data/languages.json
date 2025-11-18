@@ -1,158 +1,158 @@
 {
   "metadata": {
     "user": "felipemacedo1",
-    "generated_at": "2025-11-17T12:44:32Z"
+    "generated_at": "2025-11-18T01:42:14Z"
   },
   "languages": {
     "C": {
       "bytes": 100837,
       "repos": 1,
-      "percentage": 0.521339143166759
+      "percentage": 0.5209075115248534
     },
     "C#": {
       "bytes": 3148,
       "repos": 1,
-      "percentage": 0.016275530040451
+      "percentage": 0.016262055061933997
     },
     "C++": {
       "bytes": 124130,
       "repos": 1,
-      "percentage": 0.6417666912074913
+      "percentage": 0.6412353541416349
     },
     "CMake": {
       "bytes": 69992,
       "repos": 1,
-      "percentage": 0.3618668674050973
+      "percentage": 0.36156726743801915
     },
     "CSS": {
       "bytes": 229808,
       "repos": 11,
-      "percentage": 1.1881343734231142
+      "percentage": 1.187150682869418
     },
     "Dart": {
       "bytes": 482720,
       "repos": 1,
-      "percentage": 2.4957191426704277
+      "percentage": 2.4936528651514545
     },
     "Dockerfile": {
       "bytes": 16490,
       "repos": 16,
-      "percentage": 0.08525523836309942
+      "percentage": 0.08518465310396811
     },
     "Go": {
       "bytes": 4429827,
       "repos": 13,
-      "percentage": 22.9027263063853
+      "percentage": 22.883764481843038
     },
     "HCL": {
       "bytes": 52241,
       "repos": 3,
-      "percentage": 0.27009211081423146
+      "percentage": 0.2698684938025711
     },
     "HTML": {
       "bytes": 145310,
       "repos": 10,
-      "percentage": 0.7512697808697378
+      "percentage": 0.750647783052614
     },
     "Java": {
       "bytes": 225935,
       "repos": 6,
-      "percentage": 1.1681105081605134
+      "percentage": 1.1671433959396624
     },
     "JavaScript": {
       "bytes": 636659,
       "repos": 15,
-      "percentage": 3.2916018678600674
+      "percentage": 3.288876656186733
     },
     "Jinja": {
       "bytes": 2331,
       "repos": 1,
-      "percentage": 0.012051544003904473
+      "percentage": 0.012041566184678571
     },
     "Jupyter Notebook": {
       "bytes": 276893,
       "repos": 1,
-      "percentage": 1.4315693581609272
+      "percentage": 1.4303841207954542
     },
     "Kotlin": {
       "bytes": 264896,
       "repos": 3,
-      "percentage": 1.3695434579400598
+      "percentage": 1.3684095735978614
     },
     "Makefile": {
       "bytes": 82357,
       "repos": 6,
-      "percentage": 0.4257953708835524
+      "percentage": 0.42544284267334753
     },
     "Objective-C": {
       "bytes": 38,
       "repos": 1,
-      "percentage": 0.0001964644668161175
+      "percentage": 0.00019630180824443833
     },
     "PLpgSQL": {
       "bytes": 613010,
       "repos": 1,
-      "percentage": 3.1693337579723218
+      "percentage": 3.1667097755769245
     },
     "PowerShell": {
       "bytes": 31292,
       "repos": 2,
-      "percentage": 0.161783318305525
+      "percentage": 0.16164937325223588
     },
     "Python": {
       "bytes": 165928,
       "repos": 4,
-      "percentage": 0.857867264470125
+      "percentage": 0.857157011536399
     },
     "Ruby": {
       "bytes": 3186,
       "repos": 2,
-      "percentage": 0.016471994507267117
+      "percentage": 0.016458356870178433
     },
     "Shell": {
-      "bytes": 410818,
+      "bytes": 426845,
       "repos": 29,
-      "percentage": 2.1239773507490467
+      "percentage": 2.205011719476244
     },
     "Smarty": {
       "bytes": 1762,
       "repos": 1,
-      "percentage": 0.009109747119210502
+      "percentage": 0.009102204898071061
     },
     "Solidity": {
       "bytes": 6222,
       "repos": 1,
-      "percentage": 0.03216847138236535
+      "percentage": 0.03214183818149724
     },
     "Swift": {
       "bytes": 2966,
       "repos": 1,
-      "percentage": 0.015334568646752754
+      "percentage": 0.015321872717184316
     },
     "TypeScript": {
       "bytes": 10712619,
       "repos": 8,
-      "percentage": 55.38549947471606
+      "percentage": 55.3396442298349
     },
     "Vue": {
       "bytes": 226363,
       "repos": 1,
-      "percentage": 1.1703233184709687
+      "percentage": 1.1693543742009418
     },
     "XML": {
       "bytes": 7349,
       "repos": 1,
-      "percentage": 0.03799519385872757
+      "percentage": 0.03796373654706256
     },
     "YAML": {
       "bytes": 16513,
       "repos": 1,
-      "percentage": 0.08537415106669866
+      "percentage": 0.08530346735632657
     },
     "desktop": {
       "bytes": 280,
       "repos": 1,
-      "percentage": 0.0014476329133819186
+      "percentage": 0.0014464343765379665
     }
   },
   "top_languages": [
