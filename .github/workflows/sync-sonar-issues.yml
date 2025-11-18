@@ -1,0 +1,80 @@
+name: Sync SonarCloud Issues
+
+on:
+  schedule:
+    # Executa 2x por dia: 6h UTC (3h BRT) e 18h UTC (15h BRT)
+    - cron: '0 6,18 * * *'
+  workflow_dispatch:
+    inputs:
+      repos_filter:
+        description: 'Filter repos (comma-separated, e.g., "repo1,repo2" or "all")'
+        required: false
+        default: 'all'
+      dry_run:
+        description: 'Dry run mode (no changes will be made)'
+        required: false
+        type: boolean
+        default: false
+      max_repos:
+        description: 'Max number of repos to process (0 = unlimited)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync-sonar-issues:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (for SonarCloud API)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install -g axios
+          sudo apt-get update && sudo apt-get install -y jq curl
+
+      - name: Execute Sonar Issues Sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          REPOS_FILTER: ${{ inputs.repos_filter }}
+          MAX_REPOS: ${{ inputs.max_repos }}
+        run: |
+          chmod +x scripts/sonar-issue-sync.sh
+          bash scripts/sonar-issue-sync.sh
+
+      - name: Upload execution report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonar-sync-report-${{ github.run_number }}
+          path: |
+            data/sonar-sync-*.json
+            data/sonar-sync-*.log
+          retention-days: 30
+
+      - name: Commit updated data
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || \
+            (git commit -m "chore: update sonar sync data [skip ci]" && git push)
+
+      - name: Send notification on failure
+        if: failure()
+        run: |
+          echo "❌ Sonar sync failed! Check logs for details."
+          # Aqui você pode adicionar integração com Slack, Discord, etc.
