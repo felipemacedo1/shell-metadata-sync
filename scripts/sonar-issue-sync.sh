@@ -414,11 +414,11 @@ main() {
             break
         fi
         
-        # Process repo with error handling
-        if ! sync_repo_issues "$repo" 2>/dev/null; then
+        # Process repo with error handling (continue on failure)
+        sync_repo_issues "$repo" || {
             log_error "Failed to sync: ${repo}"
             ((FAILED_SYNCS++))
-        fi
+        }
         
         # Rate limiting between repos
         sleep 2
