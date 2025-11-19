@@ -164,10 +164,10 @@ func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
 		for _, user := range o.Config.GetUsers() {
 			output := getConfigString(task.Config, "output", "data/profile.json")
 			if user == o.Config.GetUsers()[0] {
-				args = []string{"-user=" + user, "-output=" + output}
+				args = []string{"-user=" + user, "-out=" + output}
 			} else {
 				output = getConfigString(task.Config, "output_secondary", "data/profile-secondary.json")
-				args = []string{"-user=" + user, "-output=" + output}
+				args = []string{"-user=" + user, "-out=" + output}
 			}
 			if err := o.runBinary(binaryName, args...); err != nil {
 				return err
@@ -209,7 +209,7 @@ func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
 			args = []string{fmt.Sprintf("-user=%s", user), fmt.Sprintf("-days=%d", days)}
 			if i > 0 {
 				// Secondary user - usa arquivo secundário
-				args = append(args, "-output=data/activity-daily-secondary.json")
+				args = append(args, "-out=data/activity-daily-secondary.json")
 			}
 			if err := o.runBinary(binaryName, args...); err != nil {
 				return err
