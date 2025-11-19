@@ -124,13 +124,22 @@ func (o *Orchestrator) executeTask(ctx context.Context, task Task) error {
 			time.Sleep(time.Second * time.Duration(attempt))
 		}
 
-		err = o.runTask(ctx, task)
+		// Add timeout of 5 minutes per task
+		taskCtx, cancel := context.WithTimeout(ctx, 5*time.Minute)
+		err = o.runTask(taskCtx, task)
+		cancel()
+		
 		if err == nil {
 			fmt.Println(" ✓")
 			o.Results.mu.Lock()
 			o.Results.TasksSuccess++
 			o.Results.mu.Unlock()
 			return nil
+		}
+		
+		// Check if it was a timeout
+		if taskCtx.Err() == context.DeadlineExceeded {
+			fmt.Printf(" ⏱️  timeout")
 		}
 	}
 
@@ -146,15 +155,15 @@ func (o *Orchestrator) executeTask(ctx context.Context, task Task) error {
 func (o *Orchestrator) runTask(ctx context.Context, task Task) error {
 	switch task.Type {
 	case "collector":
-		return o.runCollector(ctx, task)
+		return o.runCollectorWithContext(ctx, task)
 	case "exporter":
-		return o.runExporter(ctx, task)
+		return o.runExporterWithContext(ctx, task)
 	default:
 		return fmt.Errorf("unknown task type: %s", task.Type)
 	}
 }
 
-func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
+func (o *Orchestrator) runCollectorWithContext(ctx context.Context, task Task) error {
 	var binaryName string
 	var args []string
 
@@ -196,7 +205,7 @@ func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
 				output = getConfigString(task.Config, "output_secondary", "data/languages-secondary.json")
 			}
 			args = []string{"-user=" + user, "-out=" + output}
-			if err := o.runBinary(binaryName, args...); err != nil {
+			if err := o.runBinaryWithContext(ctx, binaryName, args...); err != nil {
 				return err
 			}
 		}
@@ -211,7 +220,7 @@ func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
 				// Secondary user - usa arquivo secundário
 				args = append(args, "-out=data/activity-daily-secondary.json")
 			}
-			if err := o.runBinary(binaryName, args...); err != nil {
+			if err := o.runBinaryWithContext(ctx, binaryName, args...); err != nil {
 				return err
 			}
 		}
@@ -221,21 +230,25 @@ func (o *Orchestrator) runCollector(ctx context.Context, task Task) error {
 		return fmt.Errorf("unknown collector: %s", task.Name)
 	}
 
-	return o.runBinary(binaryName, args...)
+	return o.runBinaryWithContext(ctx, binaryName, args...)
 }
 
-func (o *Orchestrator) runExporter(ctx context.Context, task Task) error {
+func (o *Orchestrator) runExporterWithContext(ctx context.Context, task Task) error {
 	switch task.Name {
 	case "dashboard":
 		source := getConfigString(task.Config, "source", "data")
 		dest := getConfigString(task.Config, "destination", "dashboard/public/data")
-		return o.runBinary("cp", "-r", source+"/.", dest+"/")
+		return o.runBinaryWithContext(ctx, "cp", "-r", source+"/.", dest+"/")
 	default:
 		return fmt.Errorf("unknown exporter: %s", task.Name)
 	}
 }
 
 func (o *Orchestrator) runBinary(name string, args ...string) error {
+	return o.runBinaryWithContext(context.Background(), name, args...)
+}
+
+func (o *Orchestrator) runBinaryWithContext(ctx context.Context, name string, args ...string) error {
 	// Check if it's a binary in bin/ or system command
 	var cmdPath string
 	if _, err := os.Stat("./bin/" + name); err == nil {
@@ -244,7 +257,7 @@ func (o *Orchestrator) runBinary(name string, args ...string) error {
 		cmdPath = name
 	}
 
-	cmd := exec.Command(cmdPath, args...)
+	cmd := exec.CommandContext(ctx, cmdPath, args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Env = os.Environ()
