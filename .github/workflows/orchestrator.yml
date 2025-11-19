@@ -59,18 +59,32 @@ jobs:
       - name: Determine Pipeline
         id: pipeline
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # Push = apenas dry-run para validar build
+            echo "name=full" >> $GITHUB_OUTPUT
+            echo "dry_run=true" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
             # Cron da 06:00 = full, outros = quick
             if [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
               echo "name=full" >> $GITHUB_OUTPUT
             else
               echo "name=quick" >> $GITHUB_OUTPUT
             fi
+            echo "dry_run=false" >> $GITHUB_OUTPUT
           else
             echo "name=${{ github.event.inputs.pipeline || 'full' }}" >> $GITHUB_OUTPUT
+            echo "dry_run=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Run Orchestrator
+      - name: Run Orchestrator (Dry Run)
+        if: steps.pipeline.outputs.dry_run == 'true'
+        run: |
+          echo "🔍 Running in dry-run mode (triggered by push)"
+          ./bin/orchestrator -config=config/orchestrator.yml -pipeline=${{ steps.pipeline.outputs.name }} -dry-run
+
+      - name: Run Orchestrator (Real)
+        if: steps.pipeline.outputs.dry_run == 'false'
+        timeout-minutes: 30
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
@@ -78,7 +92,7 @@ jobs:
           ./bin/orchestrator -config=config/orchestrator.yml -pipeline=${{ steps.pipeline.outputs.name }}
 
       - name: Commit and Push
-        if: success()
+        if: success() && steps.pipeline.outputs.dry_run == 'false'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
