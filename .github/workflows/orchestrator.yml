@@ -1,6 +1,14 @@
 name: Orchestrator
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'cmd/orchestrator/**'
+      - 'internal/**'
+      - 'config/orchestrator.yml'
+      - 'scripts/collectors/**'
+      - '.github/workflows/orchestrator.yml'
   schedule:
     - cron: '0 6 * * *'  # Diário às 06:00 UTC - pipeline full
     - cron: '0 */6 * * *'  # A cada 6 horas - pipeline quick

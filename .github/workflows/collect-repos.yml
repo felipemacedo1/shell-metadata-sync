@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   collect:
+    if: false  # Desabilitado - usando orchestrator.yml
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
