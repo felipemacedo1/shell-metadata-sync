@@ -1,0 +1,94 @@
+name: Orchestrator
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Diário às 06:00 UTC - pipeline full
+    - cron: '0 */6 * * *'  # A cada 6 horas - pipeline quick
+  workflow_dispatch:
+    inputs:
+      pipeline:
+        description: 'Pipeline to execute'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - quick
+
+permissions:
+  contents: write
+
+jobs:
+  orchestrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Build Orchestrator
+        run: make build
+
+      - name: Build Collectors (legacy)
+        run: make build-collectors
+
+      - name: Determine Pipeline
+        id: pipeline
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            # Cron da 06:00 = full, outros = quick
+            if [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
+              echo "name=full" >> $GITHUB_OUTPUT
+            else
+              echo "name=quick" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "name=${{ github.event.inputs.pipeline || 'full' }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Orchestrator
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          ./bin/orchestrator -config=config/orchestrator.yml -pipeline=${{ steps.pipeline.outputs.name }}
+
+      - name: Commit and Push
+        if: success()
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          
+          # Add data files
+          git add data/*.json 2>/dev/null || true
+          git add dashboard/public/data/*.json 2>/dev/null || true
+          
+          # Commit if there are changes
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "chore: update data via orchestrator [${{ steps.pipeline.outputs.name }}] - $(date +'%Y-%m-%d %H:%M')"
+          
+          # Push
+          git push
+
+      - name: Report Failure
+        if: failure()
+        run: |
+          echo "❌ Orchestrator failed"
+          echo "Pipeline: ${{ steps.pipeline.outputs.name }}"
+          echo "Check logs above for details"

@@ -10,6 +10,7 @@
 
 # Build output / local binaries
 bin/
+build/
 
 # Cache directory
 .cache/

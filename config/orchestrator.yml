@@ -1,0 +1,138 @@
+version: "1.0"
+name: "dev-metadata-sync"
+
+# Usuários/organizações para coletar dados
+sources:
+  github:
+    users:
+      - felipemacedo1
+      - growthfolio
+    rate_limit:
+      enabled: true
+      max_retries: 3
+      backoff_seconds: 5
+
+# Destinos de armazenamento
+storage:
+  mongodb:
+    enabled: true
+    uri_env: "MONGO_URI"
+    database: "dev_metadata"
+    collections:
+      users: "users"
+      repositories: "repositories"
+      daily_activity: "daily_activity"
+      language_stats: "language_stats"
+  
+  json:
+    enabled: true
+    output_dir: "data"
+    files:
+      - profile.json
+      - profile-secondary.json
+      - repos.json
+      - languages.json
+      - languages-secondary.json
+      - activity-daily.json
+      - activity-daily-secondary.json
+
+# Pipelines de execução
+pipelines:
+  # Pipeline completo - executa 1x por dia
+  full:
+    name: "Full Data Collection"
+    description: "Coleta completa de todos os dados"
+    schedule: "0 6 * * *"  # Daily 06:00 UTC
+    enabled: true
+    stages:
+      - name: "collect"
+        parallel: true
+        tasks:
+          - type: "collector"
+            name: "profile"
+            config:
+              output: "data/profile.json"
+              output_secondary: "data/profile-secondary.json"
+            retry: 3
+            
+          - type: "collector"
+            name: "repos"
+            config:
+              output: "data/repos.json"
+            retry: 3
+            
+          - type: "collector"
+            name: "stats"
+            config:
+              output: "data/languages.json"
+              output_secondary: "data/languages-secondary.json"
+            retry: 3
+            
+          - type: "collector"
+            name: "activity"
+            config:
+              days: 365
+              output: "data/activity-daily.json"
+              output_secondary: "data/activity-daily-secondary.json"
+            retry: 3
+      
+      - name: "export"
+        parallel: false
+        tasks:
+          - type: "exporter"
+            name: "dashboard"
+            config:
+              source: "data"
+              destination: "dashboard/public/data"
+            retry: 2
+
+  # Pipeline rápido - executa a cada 6 horas
+  quick:
+    name: "Quick Update"
+    description: "Atualização rápida de dados recentes"
+    schedule: "0 */6 * * *"
+    enabled: true
+    stages:
+      - name: "collect"
+        parallel: true
+        tasks:
+          - type: "collector"
+            name: "profile"
+            config:
+              output: "data/profile.json"
+              output_secondary: "data/profile-secondary.json"
+            retry: 2
+            
+          - type: "collector"
+            name: "activity"
+            config:
+              days: 7
+              output: "data/activity-daily.json"
+              output_secondary: "data/activity-daily-secondary.json"
+            retry: 2
+      
+      - name: "export"
+        parallel: false
+        tasks:
+          - type: "exporter"
+            name: "dashboard"
+            config:
+              source: "data"
+              destination: "dashboard/public/data"
+            retry: 1
+
+# Configuração de logging
+logging:
+  level: "info"  # debug, info, warn, error
+  format: "json"  # json, text
+  output: "stdout"
+
+# Configuração de monitoring
+monitoring:
+  enabled: true
+  metrics:
+    - execution_time
+    - success_rate
+    - tasks_completed
+    - tasks_failed
+    - api_calls_count
