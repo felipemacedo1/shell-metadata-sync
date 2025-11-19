@@ -1,0 +1,51 @@
+name: Reusable Build
+
+on:
+  workflow_call:
+    inputs:
+      collector:
+        description: 'Name of the collector to build'
+        required: true
+        type: string
+      source-path:
+        description: 'Source path for the collector'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Build ${{ inputs.collector }}
+        run: |
+          mkdir -p bin
+          go build -o bin/${{ inputs.collector }} ${{ inputs.source-path }}
+          chmod +x bin/${{ inputs.collector }}
+          ls -lh bin/${{ inputs.collector }}
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.collector }}
+          path: bin/${{ inputs.collector }}
+          retention-days: 1

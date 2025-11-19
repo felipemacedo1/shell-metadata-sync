@@ -10,9 +10,11 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"dev-metadata-sync/scripts/storage"
+	"dev-metadata-sync/scripts/utils"
 )
 
 type LanguagesOutput struct {
@@ -87,19 +89,23 @@ func fetchReposWithOrg(ctx context.Context, client *http.Client, user, org, toke
 	return repos, nil
 }
 
-func fetchLanguages(ctx context.Context, client *http.Client, repoFullName, token string) (map[string]int, error) {
+func fetchLanguages(ctx context.Context, client *http.Client, repoFullName, token string, rateLimiter *utils.RateLimitHandler) (map[string]int, error) {
 	url := fmt.Sprintf("https://api.github.com/repos/%s/languages", repoFullName)
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
+	
+	resp, err := rateLimiter.RetryWithBackoff(ctx, func() (*http.Response, error) {
+		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+		if err != nil {
+			return nil, err
+		}
 
-	if token != "" {
-		req.Header.Set("Authorization", "Bearer "+token)
-	}
-	req.Header.Set("Accept", "application/vnd.github.v3+json")
+		if token != "" {
+			req.Header.Set("Authorization", "Bearer "+token)
+		}
+		req.Header.Set("Accept", "application/vnd.github.v3+json")
 
-	resp, err := client.Do(req)
+		return client.Do(req)
+	})
+	
 	if err != nil {
 		return nil, err
 	}
@@ -155,15 +161,17 @@ func main() {
 		mongoURI string
 	)
 
+	config := utils.LoadConfig()
+
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
 	flag.StringVar(&org, "org", "", "GitHub organization (optional)")
-	flag.StringVar(&token, "token", getToken(), "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
+	flag.StringVar(&token, "token", config.GitHubToken, "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/languages.json", "output JSON file")
-	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
+	flag.StringVar(&mongoURI, "mongo-uri", config.MongoURI, "MongoDB URI (or set MONGO_URI env)")
 	flag.Parse()
 
 	ctx := context.Background()
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := &http.Client{Timeout: config.HTTPTimeout}
 
 	if org != "" {
 		log.Printf("📡 Collecting language stats for organization: %s", org)
@@ -179,27 +187,58 @@ func main() {
 
 	log.Printf("✓ Found %d repositories", len(repos))
 
-	// Agregar linguagens de todos os repos
+	// Processar linguagens concorrentemente
 	languageTotals := make(map[string]int)
 	languageRepoCount := make(map[string]int)
 	totalBytes := 0
-
-	for i, repoFullName := range repos {
-		log.Printf("  [%d/%d] Fetching languages for %s", i+1, len(repos), repoFullName)
-
-		langs, err := fetchLanguages(ctx, client, repoFullName, token)
-		if err != nil {
-			log.Printf("    ⚠️  Warning: %v", err)
+	rateLimiter := utils.NewRateLimitHandler(config.MaxRetries, config.RateLimitDelay)
+	
+	// Usar mutex para acesso seguro aos maps
+	var mu sync.Mutex
+	type repoLangs struct {
+		repo  string
+		langs map[string]int
+		err   error
+	}
+	
+	// Processar concorrentemente com worker pool
+	resultsCh := make(chan repoLangs, len(repos))
+	workerPool := utils.NewWorkerPool(config.MaxConcurrency)
+	workerPool.Start(ctx)
+	
+	for _, repoFullName := range repos {
+		repoName := repoFullName
+		workerPool.Submit(func() error {
+			langs, err := fetchLanguages(ctx, client, repoName, token, rateLimiter)
+			resultsCh <- repoLangs{repo: repoName, langs: langs, err: err}
+			return nil
+		})
+	}
+	
+	// Aguardar workers finalizarem
+	go func() {
+		workerPool.Close()
+		close(resultsCh)
+	}()
+	
+	// Coletar resultados
+	processed := 0
+	for result := range resultsCh {
+		processed++
+		if result.err != nil {
+			log.Printf("  [%d/%d] ⚠️  %s: %v", processed, len(repos), result.repo, result.err)
 			continue
 		}
-
-		for lang, bytes := range langs {
+		
+		log.Printf("  [%d/%d] ✓ %s", processed, len(repos), result.repo)
+		
+		mu.Lock()
+		for lang, bytes := range result.langs {
 			languageTotals[lang] += bytes
 			languageRepoCount[lang]++
 			totalBytes += bytes
 		}
-
-		time.Sleep(100 * time.Millisecond) // Rate limiting
+		mu.Unlock()
 	}
 
 	log.Printf("✓ Aggregated %d languages across %d repos", len(languageTotals), len(repos))

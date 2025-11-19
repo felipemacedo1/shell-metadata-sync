@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"dev-metadata-sync/scripts/storage"
+	"dev-metadata-sync/scripts/utils"
 )
 
 type SearchCommitsResponse struct {
@@ -99,6 +100,8 @@ func searchCommitsSinglePeriod(ctx context.Context, client *http.Client, usernam
 	commits := make(map[string]int)
 	page := 1
 	perPage := 100
+	
+	rateLimiter := utils.NewRateLimitHandler(3, 1*time.Second)
 
 	var query string
 	if org != "" {
@@ -111,19 +114,22 @@ func searchCommitsSinglePeriod(ctx context.Context, client *http.Client, usernam
 		urlStr := fmt.Sprintf("https://api.github.com/search/commits?q=%s&per_page=%d&page=%d",
 			url.QueryEscape(query), perPage, page)
 
-		req, err := http.NewRequestWithContext(ctx, "GET", urlStr, nil)
-		if err != nil {
-			return nil, err
-		}
+		resp, err := rateLimiter.RetryWithBackoff(ctx, func() (*http.Response, error) {
+			req, err := http.NewRequestWithContext(ctx, "GET", urlStr, nil)
+			if err != nil {
+				return nil, err
+			}
 
-		if token != "" {
-			req.Header.Set("Authorization", "Bearer "+token)
-		}
-		req.Header.Set("Accept", "application/vnd.github.cloak-preview+json")
+			if token != "" {
+				req.Header.Set("Authorization", "Bearer "+token)
+			}
+			req.Header.Set("Accept", "application/vnd.github.cloak-preview+json")
 
-		resp, err := client.Do(req)
+			return client.Do(req)
+		})
+		
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("failed after retries: %w", err)
 		}
 		defer resp.Body.Close()
 
@@ -131,6 +137,8 @@ func searchCommitsSinglePeriod(ctx context.Context, client *http.Client, usernam
 			body, _ := io.ReadAll(resp.Body)
 			return nil, fmt.Errorf("GitHub API error: status=%d body=%s", resp.StatusCode, string(body))
 		}
+		
+		utils.LogRateLimitInfo(resp)
 
 		var result SearchCommitsResponse
 		if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -361,16 +369,20 @@ func main() {
 		days     int
 	)
 
+	config := utils.LoadConfig()
+	logger := utils.NewLogger(config.EnableStructured)
+	metrics := utils.NewMetrics()
+
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
 	flag.StringVar(&org, "org", "", "GitHub organization (optional - if set, searches commits by user in org repos)")
-	flag.StringVar(&token, "token", getToken(), "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
+	flag.StringVar(&token, "token", config.GitHubToken, "GitHub token (or set GH_TOKEN/GITHUB_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/activity-daily.json", "output JSON file")
-	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
+	flag.StringVar(&mongoURI, "mongo-uri", config.MongoURI, "MongoDB URI (or set MONGO_URI env)")
 	flag.IntVar(&days, "days", 365, "number of days to fetch (default 365)")
 	flag.Parse()
 
 	ctx := context.Background()
-	client := &http.Client{Timeout: 60 * time.Second}
+	client := &http.Client{Timeout: config.HTTPTimeout}
 
 	endDate := time.Now().UTC()
 	startDate := endDate.AddDate(0, 0, -days)
@@ -379,9 +391,16 @@ func main() {
 	endStr := endDate.Format("2006-01-02")
 
 	if org != "" {
-		log.Printf("📡 Collecting activity for: %s in organization %s", username, org)
+		logger.Info("Collecting activity for user in organization", map[string]interface{}{
+			"user": username,
+			"org":  org,
+			"days": days,
+		})
 	} else {
-		log.Printf("📡 Collecting activity for: %s", username)
+		logger.Info("Collecting activity for user", map[string]interface{}{
+			"user": username,
+			"days": days,
+		})
 	}
 	log.Printf("   Period: %s to %s (%d days)", startStr, endStr, days)
 
@@ -439,7 +458,7 @@ func main() {
 	output.Metadata.GeneratedAt = time.Now().UTC().Format(time.RFC3339)
 	output.DailyMetrics = dailyMetrics
 
-	// Salvar JSON em múltiplos locais
+	// Salvar JSON em múltiplos locais com validação
 	// Determinar paths baseado no output file
 	var paths []string
 	if outFile == "data/activity-daily.json" || outFile == "data/activity-daily-secondary.json" {
@@ -455,15 +474,15 @@ func main() {
 		}
 	}
 
-	// Salvar em todos os paths
+	// Salvar em todos os paths com validação
 	for _, path := range paths {
 		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 			log.Fatalf("❌ Error creating dir for %s: %v", path, err)
 		}
-		if err := saveJSON(path, output); err != nil {
+		if err := utils.ValidateAndSaveJSON(path, output); err != nil {
 			log.Fatalf("❌ Error saving to %s: %v", path, err)
 		}
-		log.Printf("✓ Saved activity to: %s", path)
+		log.Printf("✓ Saved and validated activity to: %s", path)
 	}
 
 	// Upsert no MongoDB (se configurado)
@@ -504,10 +523,23 @@ func main() {
 		totalPRs += m.PRs
 		totalIssues += m.Issues
 	}
+	
+	metrics.ItemsTotal = len(dailyMetrics)
+	metrics.ItemsSuccess = len(dailyMetrics)
+	metrics.Finish()
 
+	logger.Success("Activity collection completed", map[string]interface{}{
+		"total_commits": totalCommits,
+		"total_prs":     totalPRs,
+		"total_issues":  totalIssues,
+		"days":          len(dailyMetrics),
+		"metrics":       metrics.ToMap(),
+	})
+	
 	log.Printf("📊 Summary:")
 	log.Printf("   Total commits: %d", totalCommits)
 	log.Printf("   Total PRs: %d", totalPRs)
 	log.Printf("   Total issues: %d", totalIssues)
+	log.Printf("   %s", metrics.String())
 	log.Printf("🎉 Activity collection completed!")
 }

@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"dev-metadata-sync/scripts/storage"
+	"dev-metadata-sync/scripts/utils"
 )
 
 type GitHubRepo struct {
@@ -56,24 +57,31 @@ type MetadataOutput struct {
 func fetchRepos(ctx context.Context, client *http.Client, user, token string) ([]GitHubRepo, error) {
 	var repos []GitHubRepo
 	page := 1
+	rateLimiter := utils.NewRateLimitHandler(3, 1*time.Second)
 
 	for {
 		url := fmt.Sprintf("https://api.github.com/users/%s/repos?per_page=100&page=%d", user, page)
-		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-		if err != nil {
-			return nil, err
-		}
+		
+		resp, err := rateLimiter.RetryWithBackoff(ctx, func() (*http.Response, error) {
+			req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+			if err != nil {
+				return nil, err
+			}
 
-		if token != "" {
-			req.Header.Set("Authorization", "Bearer "+token)
-		}
-		req.Header.Set("Accept", "application/vnd.github.v3+json")
+			if token != "" {
+				req.Header.Set("Authorization", "Bearer "+token)
+			}
+			req.Header.Set("Accept", "application/vnd.github.v3+json")
 
-		resp, err := client.Do(req)
+			return client.Do(req)
+		})
+		
 		if err != nil {
 			return nil, err
 		}
 		defer resp.Body.Close()
+		
+		utils.LogRateLimitInfo(resp)
 
 		if resp.StatusCode == http.StatusNotFound {
 			return repos, nil

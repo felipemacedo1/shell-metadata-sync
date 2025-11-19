@@ -2,7 +2,7 @@ name: Collect User Profile
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */12 * * *'  # A cada 12h (2x/dia) - otimizado para free tier
   workflow_dispatch:
 
 permissions:
@@ -16,9 +16,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Build
         run: |
@@ -32,10 +44,18 @@ jobs:
           ./bin/profile_collector -user=felipemacedo1 -output=data/profile.json
 
       - name: Collect secondary
+        id: collect-secondary
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./bin/profile_collector -user=growthfolio -output=data/profile-secondary.json || echo "Secondary failed, continuing"
+          ./bin/profile_collector -user=growthfolio -output=data/profile-secondary.json
+
+      - name: Check secondary collection
+        if: steps.collect-secondary.outcome == 'failure'
+        run: |
+          echo "⚠️ Secondary profile collection failed"
+          echo "::warning::Secondary profile collection failed for growthfolio"
 
       - name: Commit
         run: |

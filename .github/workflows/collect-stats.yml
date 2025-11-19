@@ -2,7 +2,7 @@ name: Collect Language Stats
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 0 * * *'  # Diário às 00:00 UTC - otimizado para free tier
   workflow_dispatch:
 
 permissions:
@@ -14,9 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Build
         run: go build -o bin/stats_collector scripts/collectors/stats_collector.go
@@ -27,9 +39,17 @@ jobs:
         run: ./bin/stats_collector -user=felipemacedo1 -out=data/languages.json
 
       - name: Collect secondary
+        id: collect-secondary
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./bin/stats_collector -org=growthfolio -out=data/languages-secondary.json || true
+        run: ./bin/stats_collector -org=growthfolio -out=data/languages-secondary.json
+
+      - name: Check secondary collection
+        if: steps.collect-secondary.outcome == 'failure'
+        run: |
+          echo "⚠️ Secondary stats collection failed"
+          echo "::warning::Secondary stats collection failed for growthfolio"
 
       - name: Commit
         run: |

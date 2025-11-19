@@ -2,7 +2,7 @@ name: Collect Activity
 
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 6 * * *'  # Diário às 06:00 UTC - coleta de atividade
   workflow_dispatch:
     inputs:
       days:
@@ -19,21 +19,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Build
         run: go build -o bin/activity_collector scripts/collectors/activity_collector.go
 
-      - name: Collect
+      - name: Collect primary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
         run: |
           DAYS="${{ github.event.inputs.days || '365' }}"
           ./bin/activity_collector -user=felipemacedo1 -days=$DAYS
-          ./bin/activity_collector -user=felipemacedo1 -org=growthfolio -days=$DAYS -out=data/activity-daily-secondary.json || true
+
+      - name: Collect secondary
+        id: collect-secondary
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: |
+          DAYS="${{ github.event.inputs.days || '365' }}"
+          ./bin/activity_collector -user=felipemacedo1 -org=growthfolio -days=$DAYS -out=data/activity-daily-secondary.json
+
+      - name: Check secondary collection
+        if: steps.collect-secondary.outcome == 'failure'
+        run: |
+          echo "⚠️ Secondary activity collection failed"
+          echo "::warning::Secondary activity collection failed for growthfolio"
 
       - name: Commit
         run: |

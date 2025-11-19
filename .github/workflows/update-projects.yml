@@ -2,7 +2,7 @@ name: Update Projects JSON
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */12 * * *'  # A cada 12h (2x/dia) - otimizado para free tier
   workflow_dispatch:
 
 permissions:

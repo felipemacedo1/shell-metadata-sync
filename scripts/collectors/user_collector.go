@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"dev-metadata-sync/scripts/storage"
+	"dev-metadata-sync/scripts/utils"
 )
 
 type GitHubUser struct {
@@ -51,21 +52,28 @@ type ProfileData struct {
 
 func fetchUser(ctx context.Context, client *http.Client, username, token string) (*GitHubUser, error) {
 	url := fmt.Sprintf("https://api.github.com/users/%s", username)
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
+	rateLimiter := utils.NewRateLimitHandler(3, 1*time.Second)
+	
+	resp, err := rateLimiter.RetryWithBackoff(ctx, func() (*http.Response, error) {
+		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+		if err != nil {
+			return nil, err
+		}
 
-	if token != "" {
-		req.Header.Set("Authorization", "Bearer "+token)
-	}
-	req.Header.Set("Accept", "application/vnd.github.v3+json")
+		if token != "" {
+			req.Header.Set("Authorization", "Bearer "+token)
+		}
+		req.Header.Set("Accept", "application/vnd.github.v3+json")
 
-	resp, err := client.Do(req)
+		return client.Do(req)
+	})
+	
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	
+	utils.LogRateLimitInfo(resp)
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
@@ -144,14 +152,16 @@ func main() {
 		mongoURI string
 	)
 
+	config := utils.LoadConfig()
+
 	flag.StringVar(&username, "user", "felipemacedo1", "GitHub username")
-	flag.StringVar(&token, "token", os.Getenv("GH_TOKEN"), "GitHub token (or set GH_TOKEN env)")
+	flag.StringVar(&token, "token", config.GitHubToken, "GitHub token (or set GH_TOKEN env)")
 	flag.StringVar(&outFile, "out", "data/profile.json", "output JSON file")
-	flag.StringVar(&mongoURI, "mongo-uri", os.Getenv("MONGO_URI"), "MongoDB URI (or set MONGO_URI env)")
+	flag.StringVar(&mongoURI, "mongo-uri", config.MongoURI, "MongoDB URI (or set MONGO_URI env)")
 	flag.Parse()
 
 	ctx := context.Background()
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := &http.Client{Timeout: config.HTTPTimeout}
 
 	log.Printf("📡 Fetching user data for: %s", username)
 

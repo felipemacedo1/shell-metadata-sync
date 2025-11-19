@@ -49,11 +49,98 @@ func NewMongoClient(ctx context.Context, uri string) (*MongoClient, error) {
 
 	log.Printf("✓ Conectado ao MongoDB: %s", dbName)
 
-	return &MongoClient{
+	mc := &MongoClient{
 		client: client,
 		db:     client.Database(dbName),
 		ctx:    ctx,
-	}, nil
+	}
+	
+	// Criar índices automaticamente
+	if err := mc.EnsureIndexes(); err != nil {
+		log.Printf("⚠️  Warning: Failed to create indexes: %v", err)
+	} else {
+		log.Printf("✓ Database indexes ensured")
+	}
+
+	return mc, nil
+}
+
+// EnsureIndexes cria todos os índices necessários
+func (mc *MongoClient) EnsureIndexes() error {
+	indexes := []struct {
+		collection string
+		indexes    []mongo.IndexModel
+	}{
+		{
+			collection: "users",
+			indexes: []mongo.IndexModel{
+				{
+					Keys: bson.D{{Key: "login", Value: 1}},
+					Options: options.Index().SetUnique(true),
+				},
+				{
+					Keys: bson.D{{Key: "last_synced", Value: -1}},
+				},
+			},
+		},
+		{
+			collection: "repositories",
+			indexes: []mongo.IndexModel{
+				{
+					Keys: bson.D{{Key: "owner", Value: 1}, {Key: "name", Value: 1}},
+					Options: options.Index().SetUnique(true),
+				},
+				{
+					Keys: bson.D{{Key: "owner", Value: 1}},
+				},
+				{
+					Keys: bson.D{{Key: "language", Value: 1}},
+				},
+				{
+					Keys: bson.D{{Key: "updated_at", Value: -1}},
+				},
+				{
+					Keys: bson.D{{Key: "stars", Value: -1}},
+				},
+			},
+		},
+		{
+			collection: "daily_activity",
+			indexes: []mongo.IndexModel{
+				{
+					Keys: bson.D{{Key: "user", Value: 1}, {Key: "date", Value: -1}},
+					Options: options.Index().SetUnique(true),
+				},
+				{
+					Keys: bson.D{{Key: "user", Value: 1}},
+				},
+				{
+					Keys: bson.D{{Key: "date", Value: -1}},
+				},
+			},
+		},
+		{
+			collection: "language_stats",
+			indexes: []mongo.IndexModel{
+				{
+					Keys: bson.D{{Key: "user", Value: 1}, {Key: "language", Value: 1}},
+					Options: options.Index().SetUnique(true),
+				},
+				{
+					Keys: bson.D{{Key: "user", Value: 1}},
+				},
+			},
+		},
+	}
+
+	for _, idx := range indexes {
+		coll := mc.db.Collection(idx.collection)
+		if _, err := coll.Indexes().CreateMany(mc.ctx, idx.indexes); err != nil {
+			return fmt.Errorf("failed to create indexes for %s: %w", idx.collection, err)
+		}
+	}
+
+	return nil
 }
 
 // Close fecha a conexão com o MongoDB
