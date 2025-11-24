@@ -124,8 +124,8 @@ func (o *Orchestrator) executeTask(ctx context.Context, task Task) error {
 			time.Sleep(time.Second * time.Duration(attempt))
 		}
 
-		// Add timeout of 5 minutes per task
-		taskCtx, cancel := context.WithTimeout(ctx, 5*time.Minute)
+		// Add timeout of 15 minutes per task (increased to avoid runner kills)
+		taskCtx, cancel := context.WithTimeout(ctx, 15*time.Minute)
 		err = o.runTask(taskCtx, task)
 		cancel()
 		

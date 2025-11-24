@@ -46,7 +46,7 @@ pipelines:
     enabled: true
     stages:
       - name: "collect"
-        parallel: true
+        parallel: false
         tasks:
           - type: "collector"
             name: "profile"
