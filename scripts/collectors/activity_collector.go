@@ -165,40 +165,95 @@ func searchCommitsSinglePeriod(ctx context.Context, client *http.Client, usernam
 
 func searchCommitsInChunks(ctx context.Context, client *http.Client, username, org, token string, start, end time.Time) (map[string]int, error) {
 	allCommits := make(map[string]int)
-	
+    
 	// Processar mês por mês
 	current := start
 	monthCount := 0
-	
+	type chunk struct {
+		start time.Time
+		end   time.Time
+		idx   int
+	}
+	var chunks []chunk
+
 	for current.Before(end) {
 		// Fim do chunk: 30 dias ou fim do período
 		chunkEnd := current.AddDate(0, 0, 30)
 		if chunkEnd.After(end) {
 			chunkEnd = end
 		}
-		
 		monthCount++
-		startStr := current.Format("2006-01-02")
-		endStr := chunkEnd.Format("2006-01-02")
-		
-		log.Printf("   📦 Chunk %d: %s to %s", monthCount, startStr, endStr)
-		
+		chunks = append(chunks, chunk{start: current, end: chunkEnd, idx: monthCount})
+		current = chunkEnd.AddDate(0, 0, 1)
+	}
+
+	if monthCount == 0 {
+		return allCommits, nil
+	}
+
+	// Paralelizar execução de chunks (limitado por MaxConcurrency)
+	cfg := utils.LoadConfig()
+	concurrency := cfg.MaxConcurrency
+	if concurrency <= 0 {
+		concurrency = 2
+	}
+	// Cap razoável para chunks paralelos para evitar bursts nos limites de busca
+	if concurrency > 4 {
+		concurrency = 4
+	}
+
+	log.Printf("   📦 Executing %d chunks with concurrency %d", monthCount, concurrency)
+
+	// Channel de resultados por chunk
+	type chunkResult struct {
+		idx    int
+		start  time.Time
+		end    time.Time
+		commits map[string]int
+		err    error
+	}
+
+	results := make(chan chunkResult, len(chunks))
+
+	// Função para processar um chunk
+	processChunk := func(c chunk) error {
+		startStr := c.start.Format("2006-01-02")
+		endStr := c.end.Format("2006-01-02")
+		log.Printf("   → Chunk %d: %s to %s (started)", c.idx, startStr, endStr)
 		commits, err := searchCommitsSinglePeriod(ctx, client, username, org, token, startStr, endStr)
-		if err != nil {
-			return nil, fmt.Errorf("error in chunk %d: %w", monthCount, err)
+		results <- chunkResult{idx: c.idx, start: c.start, end: c.end, commits: commits, err: err}
+		return nil
+	}
+
+	// Executar em paralelo com worker pool
+	errs := utils.ProcessBatch(ctx, chunks, concurrency, func(c chunk) error {
+		return processChunk(c)
+	})
+
+	// Fechar a channel de resultados depois do processamento
+	// (a utils.ProcessBatch aguarda os workers e fecha automaticamente)
+
+	close(results)
+
+	// Agregar resultados
+	totalDays := 0
+	for res := range results {
+		if res.err != nil {
+			// Se houve erro em algum chunk, reporte e falhe
+			return nil, fmt.Errorf("error in chunk %d: %w", res.idx, res.err)
 		}
-		
 		// Merge commits
-		for date, count := range commits {
+		for date, count := range res.commits {
 			allCommits[date] += count
 		}
-		
-		log.Printf("   ✓ Chunk %d: +%d days with commits (total: %d days)", monthCount, len(commits), len(allCommits))
-		
-		current = chunkEnd.AddDate(0, 0, 1)
-		time.Sleep(500 * time.Millisecond) // Rate limiting between chunks
+		totalDays += len(res.commits)
+		log.Printf("   ✓ Chunk %d: +%d days with commits (aggregated: %d days)", res.idx, len(res.commits), len(allCommits))
 	}
-	
+
+	if len(errs) > 0 {
+		return nil, fmt.Errorf("errors executing chunks: %v", errs)
+	}
+
 	log.Printf("   ✅ Aggregated %d chunks, total: %d days with commits", monthCount, len(allCommits))
 	return allCommits, nil
 }
