@@ -213,15 +213,16 @@ export default function ContributionHeatmap({ data, startDate, endDate }: Contri
         }
         
         .react-calendar-heatmap rect {
-          transition: all 0.2s ease;
+          transition: opacity 0.15s ease, filter 0.15s ease;
+          /* Ensure hover effects don't force layout changes */
+          vector-effect: non-scaling-stroke;
         }
-        
+
         .react-calendar-heatmap rect:hover {
-          stroke: #3b82f6;
-          stroke-width: 2px;
-          opacity: 0.9;
-          transform: scale(1.1);
-          rx: 3;
+          /* Avoid scale/transform or stroke-width changes (prevents neighbor shifting) */
+          opacity: 0.95;
+          filter: drop-shadow(0 3px 6px rgba(59,130,246,0.25));
+          cursor: default;
         }
         
         .scrollbar-thin::-webkit-scrollbar {

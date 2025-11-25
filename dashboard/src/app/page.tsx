@@ -28,9 +28,9 @@ export default async function Home() {
     repositories
   );
 
-  // Calculate stats
-  const totalCommits = activityData 
-    ? Object.values(activityData.daily_metrics).reduce((sum, day) => sum + day.commits, 0)
+  // Calculate stats (prefer the pre-calculated summary if present)
+  const totalCommits = activityData
+    ? (activityData.summary?.total_commits ?? Object.values(activityData.daily_metrics).reduce((sum, day) => sum + day.commits, 0))
     : 0;
 
   const totalPRs = activityData
@@ -85,8 +85,8 @@ export default async function Home() {
           </div>
         )}
 
-        {/* Activity Timeline & Language Distribution */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        {/* Activity Timeline & Language Distribution (stacked, full-width) */}
+        <div className="grid grid-cols-1 gap-8 mb-8">
           {activityData && (
             <ActivityTimeline dailyMetrics={activityData.daily_metrics} />
           )}
