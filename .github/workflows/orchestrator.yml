@@ -94,17 +94,18 @@ jobs:
       - name: Commit and Push
         if: success() && steps.pipeline.outputs.dry_run == 'false'
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-          
+          # Configure author to the repository owner
+          git config user.name "felipemacedo1"
+          git config user.email "felipealexandrej@gmail.com"
+
           # Add data files
           git add data/*.json 2>/dev/null || true
           git add dashboard/public/data/*.json 2>/dev/null || true
-          
-          # Commit if there are changes
+
+          # Commit if there are changes (explicitly set commit author as backup)
           git diff --quiet && git diff --staged --quiet || \
-            git commit -m "chore: update data via orchestrator [${{ steps.pipeline.outputs.name }}] - $(date +'%Y-%m-%d %H:%M')"
-          
+            git commit --author "felipemacedo1 <felipealexandrej@gmail.com>" -m "chore: update data via orchestrator [${{ steps.pipeline.outputs.name }}] - $(date +'%Y-%m-%d %H:%M')"
+
           # Push
           git push
 
