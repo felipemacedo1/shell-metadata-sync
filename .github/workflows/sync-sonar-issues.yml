@@ -67,8 +67,8 @@ jobs:
       - name: Commit updated data
         if: ${{ !inputs.dry_run }}
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
+          git config user.name "felipemacedo1"
+          git config user.email "felipemacedo1@users.noreply.github.com"
           git add data/
           git diff --quiet && git diff --staged --quiet || \
             (git commit -m "chore: update sonar sync data [skip ci]" && git push)

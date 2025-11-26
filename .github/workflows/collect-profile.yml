@@ -60,8 +60,8 @@ jobs:
 
       - name: Commit
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "felipemacedo1"
+          git config user.email "felipemacedo1@users.noreply.github.com"
           
           if git diff --quiet data/profile*.json; then
             echo "No changes"
