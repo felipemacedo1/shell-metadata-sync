@@ -4,7 +4,7 @@
     "period": "rolling_365_days",
     "start_date": "2025-11-21",
     "end_date": "2025-11-28",
-    "generated_at": "2025-11-28T06:11:35Z"
+    "generated_at": "2025-11-28T12:13:00Z"
   },
   "daily_metrics": {
     "2025-11-21": {
@@ -43,7 +43,7 @@
       "issues": 0
     },
     "2025-11-28": {
-      "commits": 1,
+      "commits": 2,
       "prs": 0,
       "issues": 0
     }
