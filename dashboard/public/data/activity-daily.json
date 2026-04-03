@@ -2,16 +2,11 @@
   "metadata": {
     "user": "felipemacedo1",
     "period": "rolling_365_days",
-    "start_date": "2026-03-26",
-    "end_date": "2026-04-02",
-    "generated_at": "2026-04-02T18:25:36Z"
+    "start_date": "2026-03-27",
+    "end_date": "2026-04-03",
+    "generated_at": "2026-04-03T00:45:57Z"
   },
   "daily_metrics": {
-    "2026-03-26": {
-      "commits": 4,
-      "prs": 0,
-      "issues": 0
-    },
     "2026-03-27": {
       "commits": 4,
       "prs": 0,
@@ -43,7 +38,12 @@
       "issues": 0
     },
     "2026-04-02": {
-      "commits": 3,
+      "commits": 4,
+      "prs": 0,
+      "issues": 0
+    },
+    "2026-04-03": {
+      "commits": 0,
       "prs": 0,
       "issues": 0
     }
