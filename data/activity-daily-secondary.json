@@ -2,16 +2,11 @@
   "metadata": {
     "user": "growthfolio",
     "period": "rolling_365_days",
-    "start_date": "2026-03-31",
-    "end_date": "2026-04-07",
-    "generated_at": "2026-04-07T18:26:33Z"
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-08",
+    "generated_at": "2026-04-08T00:47:07Z"
   },
   "daily_metrics": {
-    "2026-03-31": {
-      "commits": 0,
-      "prs": 0,
-      "issues": 0
-    },
     "2026-04-01": {
       "commits": 0,
       "prs": 0,
@@ -43,6 +38,11 @@
       "issues": 0
     },
     "2026-04-07": {
+      "commits": 0,
+      "prs": 0,
+      "issues": 0
+    },
+    "2026-04-08": {
       "commits": 0,
       "prs": 0,
       "issues": 0
