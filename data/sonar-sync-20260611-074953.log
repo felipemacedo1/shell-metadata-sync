@@ -1,0 +1,298 @@
+2026-06-11 07:49:54 [INFO] [0;34mValidating environment...[0m
+2026-06-11 07:49:54 [SUCCESS] [0;32mEnvironment validated[0m
+2026-06-11 07:49:54 [INFO] [0;34mDiscovering repositories...[0m
+2026-06-11 07:49:56 [INFO] [0;34mTotal repositories to process: 96[0m
+2026-06-11 07:49:56 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:49:56 [INFO] [0;34mProcessing: 2026-06-11 07:49:54 [INFO] [0;34mDiscovering repositories...[0m[0m
+2026-06-11 07:49:56 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:49:58 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:49:58 [INFO] [0;34mProcessing: felipemacedo1/shell-metadata-sync[0m
+2026-06-11 07:49:59 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:01 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:01 [INFO] [0;34mProcessing: felipemacedo1/weather-smart-notifier-mvp[0m
+2026-06-11 07:50:01 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:03 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:03 [INFO] [0;34mProcessing: felipemacedo1/react-nexu-crm[0m
+2026-06-11 07:50:03 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:05 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:05 [INFO] [0;34mProcessing: felipemacedo1/spring-nexu-crm[0m
+2026-06-11 07:50:05 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:07 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:07 [INFO] [0;34mProcessing: felipemacedo1/ai-chat-platform[0m
+2026-06-11 07:50:07 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:09 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:09 [INFO] [0;34mProcessing: felipemacedo1/ai-chat-ui[0m
+2026-06-11 07:50:10 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:12 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:12 [INFO] [0;34mProcessing: felipemacedo1/ai-chat-api[0m
+2026-06-11 07:50:12 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:14 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:14 [INFO] [0;34mProcessing: felipemacedo1/go-whatsapp-ai-agent[0m
+2026-06-11 07:50:14 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:16 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:16 [INFO] [0;34mProcessing: felipemacedo1/felipemacedo1.github.io[0m
+2026-06-11 07:50:16 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:18 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:18 [INFO] [0;34mProcessing: felipemacedo1/js-on-cvweb[0m
+2026-06-11 07:50:18 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:20 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:20 [INFO] [0;34mProcessing: felipemacedo1/odonto-project[0m
+2026-06-11 07:50:20 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:22 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:22 [INFO] [0;34mProcessing: felipemacedo1/felipemacedo1[0m
+2026-06-11 07:50:22 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:24 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:24 [INFO] [0;34mProcessing: felipemacedo1/spring-gamestore[0m
+2026-06-11 07:50:25 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:27 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:27 [INFO] [0;34mProcessing: felipemacedo1/javafx-diagonalcordeis[0m
+2026-06-11 07:50:27 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:29 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:29 [INFO] [0;34mProcessing: felipemacedo1/nextjs-caixa-preta[0m
+2026-06-11 07:50:29 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:31 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:31 [INFO] [0;34mProcessing: felipemacedo1/portal-vagas-wapp[0m
+2026-06-11 07:50:31 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:33 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:33 [INFO] [0;34mProcessing: felipemacedo1/go-pricefeed-api[0m
+2026-06-11 07:50:33 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:35 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:35 [INFO] [0;34mProcessing: felipemacedo1/go-msg-wss-app[0m
+2026-06-11 07:50:36 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:38 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:38 [INFO] [0;34mProcessing: felipemacedo1/go-mercado-pago-ms[0m
+2026-06-11 07:50:38 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:40 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:40 [INFO] [0;34mProcessing: felipemacedo1/go-msg-wss[0m
+2026-06-11 07:50:40 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:42 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:42 [INFO] [0;34mProcessing: felipemacedo1/portal-vagas[0m
+2026-06-11 07:50:43 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:45 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:45 [INFO] [0;34mProcessing: felipemacedo1/portal-vagas-scraper[0m
+2026-06-11 07:50:45 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:47 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:47 [INFO] [0;34mProcessing: felipemacedo1/rekognizevote-android[0m
+2026-06-11 07:50:47 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:49 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:49 [INFO] [0;34mProcessing: felipemacedo1/go-service-gpt[0m
+2026-06-11 07:50:49 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:51 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:51 [INFO] [0;34mProcessing: felipemacedo1/newrelic-k8s-operator-v2[0m
+2026-06-11 07:50:52 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:54 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:54 [INFO] [0;34mProcessing: felipemacedo1/hacka-llama-react[0m
+2026-06-11 07:50:54 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:56 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:56 [INFO] [0;34mProcessing: felipemacedo1/go-coregit-pe[0m
+2026-06-11 07:50:57 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:50:59 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:50:59 [INFO] [0;34mProcessing: felipemacedo1/guiadevbrasil[0m
+2026-06-11 07:50:59 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:01 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:01 [INFO] [0;34mProcessing: felipemacedo1/back-end-projeto-integrador[0m
+2026-06-11 07:51:01 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:03 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:03 [INFO] [0;34mProcessing: felipemacedo1/cardgen-pro[0m
+2026-06-11 07:51:04 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:06 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:06 [INFO] [0;34mProcessing: felipemacedo1/discord_open[0m
+2026-06-11 07:51:06 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:08 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:08 [INFO] [0;34mProcessing: felipemacedo1/rekognizevote-api[0m
+2026-06-11 07:51:08 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:10 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:10 [INFO] [0;34mProcessing: felipemacedo1/python-cotacoes-api[0m
+2026-06-11 07:51:11 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:13 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:13 [INFO] [0;34mProcessing: felipemacedo1/go-portifolio[0m
+2026-06-11 07:51:13 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:15 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:15 [INFO] [0;34mProcessing: felipemacedo1/ktar[0m
+2026-06-11 07:51:15 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:17 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:17 [INFO] [0;34mProcessing: felipemacedo1/playwright-web-scraper[0m
+2026-06-11 07:51:18 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:20 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:20 [INFO] [0;34mProcessing: felipemacedo1/spring-mcd-wallet[0m
+2026-06-11 07:51:20 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:22 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:22 [INFO] [0;34mProcessing: felipemacedo1/infrastructure-agent[0m
+2026-06-11 07:51:22 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:24 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:24 [INFO] [0;34mProcessing: felipemacedo1/aws-toolkit-vscode[0m
+2026-06-11 07:51:25 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:27 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:27 [INFO] [0;34mProcessing: felipemacedo1/hacka-llama-go[0m
+2026-06-11 07:51:27 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:29 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:29 [INFO] [0;34mProcessing: felipemacedo1/project-template-pro[0m
+2026-06-11 07:51:29 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:31 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:31 [INFO] [0;34mProcessing: felipemacedo1/cookbook_java_fullstack[0m
+2026-06-11 07:51:32 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:34 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:34 [INFO] [0;34mProcessing: felipemacedo1/jagex-launcher-linux-flatpak[0m
+2026-06-11 07:51:34 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:36 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:36 [INFO] [0;34mProcessing: felipemacedo1/cookbook_javascript[0m
+2026-06-11 07:51:37 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:39 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:39 [INFO] [0;34mProcessing: felipemacedo1/.github[0m
+2026-06-11 07:51:39 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:41 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:41 [INFO] [0;34mProcessing: felipemacedo1/formacao-blockchain-dio[0m
+2026-06-11 07:51:41 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:43 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:43 [INFO] [0;34mProcessing: felipemacedo1/dio-lab-open-source[0m
+2026-06-11 07:51:44 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:46 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:46 [INFO] [0;34mProcessing: felipemacedo1/hackathon-asapcard-pikachu[0m
+2026-06-11 07:51:46 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:48 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:48 [INFO] [0;34mProcessing: felipemacedo1/front-end[0m
+2026-06-11 07:51:48 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:50 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:50 [INFO] [0;34mProcessing: felipemacedo1/Projeto_Integrador_Documentos[0m
+2026-06-11 07:51:51 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:53 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:53 [INFO] [0;34mProcessing: felipemacedo1/op-website-hugo[0m
+2026-06-11 07:51:53 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:55 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:55 [INFO] [0;34mProcessing: growthfolio/go-cryptotool-cli[0m
+2026-06-11 07:51:55 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:51:57 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:51:57 [INFO] [0;34mProcessing: growthfolio/react-gamestore-front[0m
+2026-06-11 07:51:58 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:00 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:00 [INFO] [0;34mProcessing: growthfolio/spring-gamestore[0m
+2026-06-11 07:52:00 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:02 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:02 [INFO] [0;34mProcessing: growthfolio/html-about-llm[0m
+2026-06-11 07:52:02 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:04 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:04 [INFO] [0;34mProcessing: growthfolio/javafx-diagonalcordeis-open[0m
+2026-06-11 07:52:05 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:07 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:07 [INFO] [0;34mProcessing: growthfolio/cyber-security-suite[0m
+2026-06-11 07:52:07 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:09 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:09 [INFO] [0;34mProcessing: growthfolio/demojibake[0m
+2026-06-11 07:52:09 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:11 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:11 [INFO] [0;34mProcessing: growthfolio/java-android-stealth-monitor[0m
+2026-06-11 07:52:12 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:14 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:14 [INFO] [0;34mProcessing: growthfolio/c-learning-os[0m
+2026-06-11 07:52:14 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:16 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:16 [INFO] [0;34mProcessing: growthfolio/agenda-contatos-lifo[0m
+2026-06-11 07:52:16 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:18 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:18 [INFO] [0;34mProcessing: growthfolio/html-supplement-store[0m
+2026-06-11 07:52:18 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:20 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:20 [INFO] [0;34mProcessing: growthfolio/java-conta-bancaria[0m
+2026-06-11 07:52:20 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:22 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:22 [INFO] [0;34mProcessing: growthfolio/spring-catarina-learn[0m
+2026-06-11 07:52:23 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:25 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:25 [INFO] [0;34mProcessing: growthfolio/spring-bookstore-management[0m
+2026-06-11 07:52:25 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:27 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:27 [INFO] [0;34mProcessing: growthfolio/spring-blog-platform[0m
+2026-06-11 07:52:27 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:29 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:29 [INFO] [0;34mProcessing: growthfolio/solidity-clnk-token[0m
+2026-06-11 07:52:29 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:31 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:31 [INFO] [0;34mProcessing: growthfolio/react-taskmanager-app[0m
+2026-06-11 07:52:31 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:33 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:33 [INFO] [0;34mProcessing: growthfolio/solidity-openfund-dao[0m
+2026-06-11 07:52:33 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:35 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:35 [INFO] [0;34mProcessing: growthfolio/next-comic-store[0m
+2026-06-11 07:52:36 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:38 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:38 [INFO] [0;34mProcessing: growthfolio/node-wallet-generator-cli[0m
+2026-06-11 07:52:38 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:40 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:40 [INFO] [0;34mProcessing: growthfolio/python-huggingface-nlp-models[0m
+2026-06-11 07:52:40 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:42 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:42 [INFO] [0;34mProcessing: growthfolio/growthfolio[0m
+2026-06-11 07:52:42 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:44 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:44 [INFO] [0;34mProcessing: growthfolio/go-antifraud-ms[0m
+2026-06-11 07:52:44 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:46 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:46 [INFO] [0;34mProcessing: growthfolio/shell-codespace-launcher[0m
+2026-06-11 07:52:46 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:48 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:48 [INFO] [0;34mProcessing: growthfolio/shell-go-project-generator[0m
+2026-06-11 07:52:48 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:50 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:50 [INFO] [0;34mProcessing: growthfolio/java-bootcamp-generation-notes[0m
+2026-06-11 07:52:51 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:53 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:53 [INFO] [0;34mProcessing: growthfolio/html-linktree-personal[0m
+2026-06-11 07:52:53 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:55 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:55 [INFO] [0;34mProcessing: growthfolio/shell-devops-toolbox[0m
+2026-06-11 07:52:56 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:52:58 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:52:58 [INFO] [0;34mProcessing: growthfolio/spring-pharmacy-crud[0m
+2026-06-11 07:52:58 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:00 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:00 [INFO] [0;34mProcessing: growthfolio/react-pharmacy-front[0m
+2026-06-11 07:53:00 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:02 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:02 [INFO] [0;34mProcessing: growthfolio/react-blog-plataform[0m
+2026-06-11 07:53:03 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:05 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:05 [INFO] [0;34mProcessing: growthfolio/nest-taskmanager-app[0m
+2026-06-11 07:53:05 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:07 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:07 [INFO] [0;34mProcessing: growthfolio/go-priceguard-api[0m
+2026-06-11 07:53:07 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:09 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:09 [INFO] [0;34mProcessing: growthfolio/js-google-oauth-tester[0m
+2026-06-11 07:53:10 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:12 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:12 [INFO] [0;34mProcessing: growthfolio/html-taskmanager-app[0m
+2026-06-11 07:53:12 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:14 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:14 [INFO] [0;34mProcessing: growthfolio/go-dev-cloud-challenge-api[0m
+2026-06-11 07:53:14 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:16 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:16 [INFO] [0;34mProcessing: growthfolio/node-taskmanager-api[0m
+2026-06-11 07:53:17 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:19 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:19 [INFO] [0;34mProcessing: growthfolio/react-ecommerce-tt[0m
+2026-06-11 07:53:19 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:21 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:21 [INFO] [0;34mProcessing: growthfolio/spring-ecommerce-tt[0m
+2026-06-11 07:53:21 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:23 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:23 [INFO] [0;34mProcessing: growthfolio/javafx-mytableview-demo[0m
+2026-06-11 07:53:24 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:26 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:26 [INFO] [0;34mProcessing: growthfolio/amqp-transactions-ms[0m
+2026-06-11 07:53:26 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:28 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:28 [INFO] [0;34mProcessing: growthfolio/react-priceguard-view[0m
+2026-06-11 07:53:29 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:31 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:31 [INFO] [0;34mProcessing: growthfolio/.github[0m
+2026-06-11 07:53:31 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:33 [INFO] [0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+2026-06-11 07:53:33 [INFO] [0;34mProcessing: growthfolio/spring-ecommerce-generation[0m
+2026-06-11 07:53:33 [WARNING] [1;33mNo SonarCloud project found, skipping...[0m
+2026-06-11 07:53:35 [INFO] [0;34mGenerating execution report...[0m
+2026-06-11 07:53:35 [SUCCESS] [0;32mReport saved to: /home/runner/work/shell-metadata-sync/shell-metadata-sync/scripts/../data/sonar-sync-20260611-074953.json[0m
+2026-06-11 07:53:35 [INFO] [0;34mSaving metrics to MongoDB...[0m
+2026-06-11 07:53:35 [SUCCESS] [0;32mMetrics saved to MongoDB[0m
+2026-06-11 07:53:35 [SUCCESS] [0;32m✅ Sync completed![0m
+2026-06-11 07:53:35 [INFO] [0;34mTotal execution time: 221s[0m
