@@ -1,0 +1,19 @@
+{
+  "execution": {
+    "timestamp": "2026-07-23T08:36:21+00:00",
+    "duration_seconds": 234,
+    "dry_run": false
+  },
+  "summary": {
+    "total_repos": 96,
+    "processed": 96,
+    "successful": 0,
+    "failed": 0,
+    "skipped": 96
+  },
+  "issues": {
+    "created": 0,
+    "updated": 0,
+    "closed": 0
+  }
+}
