@@ -1,8 +1,6 @@
 name: Collect User Profile
 
 on:
-  schedule:
-    - cron: '0 */12 * * *'  # A cada 12h (2x/dia) - otimizado para free tier
   workflow_dispatch:
 
 permissions:
@@ -72,4 +70,5 @@ jobs:
           git add data/profile*.json
           git commit -m "chore: update user profile ($FOLLOWERS followers) [skip ci]"
           git push
+
 

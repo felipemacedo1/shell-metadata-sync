@@ -1,14 +1,15 @@
 name: Collect Activity
 
 on:
-  schedule:
-    - cron: '0 6 * * *'  # Diário às 06:00 UTC - coleta de atividade
   workflow_dispatch:
     inputs:
       days:
         description: 'Days to collect'
         required: false
         default: '365'
+
+# DESABILITADO - Usando orchestrator.yml para coleta centralizada semanal
+# Para executar manualmente, use workflow_dispatch
 
 permissions:
   contents: write

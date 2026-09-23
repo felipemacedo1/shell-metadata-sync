@@ -2,8 +2,8 @@ name: Sync SonarCloud Issues
 
 on:
   schedule:
-    # Executa 2x por dia: 6h UTC (3h BRT) e 18h UTC (15h BRT)
-    - cron: '0 6,18 * * *'
+    # Semanal: terça-feira 06:17 UTC (03:17 São Paulo) - dia após a coleta principal
+    - cron: '17 6 * * 2'
   workflow_dispatch:
     inputs:
       repos_filter:

@@ -1,8 +1,6 @@
 name: Sync to MongoDB
 
 on:
-  schedule:
-    - cron: '0 */12 * * *'  # A cada 12h - backup MongoDB
   workflow_dispatch:
 
 permissions:
@@ -26,3 +24,4 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
         run: ./bin/sync_mongodb
+

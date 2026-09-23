@@ -10,8 +10,7 @@ on:
       - 'scripts/collectors/**'
       - '.github/workflows/orchestrator.yml'
   schedule:
-    - cron: '0 6 * * *'  # Diário às 06:00 UTC - pipeline full
-    - cron: '0 */6 * * *'  # A cada 6 horas - pipeline quick
+    - cron: '17 6 * * 1'  # Semanal: segunda-feira 06:17 UTC (03:17 São Paulo) - pipeline full
   workflow_dispatch:
     inputs:
       pipeline:
@@ -64,12 +63,8 @@ jobs:
             echo "name=full" >> $GITHUB_OUTPUT
             echo "dry_run=true" >> $GITHUB_OUTPUT
           elif [ "${{ github.event_name }}" = "schedule" ]; then
-            # Cron da 06:00 = full, outros = quick
-            if [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
-              echo "name=full" >> $GITHUB_OUTPUT
-            else
-              echo "name=quick" >> $GITHUB_OUTPUT
-            fi
+            # Schedule semanal sempre executa full
+            echo "name=full" >> $GITHUB_OUTPUT
             echo "dry_run=false" >> $GITHUB_OUTPUT
           else
             echo "name=${{ github.event.inputs.pipeline || 'full' }}" >> $GITHUB_OUTPUT
